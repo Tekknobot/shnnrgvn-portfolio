@@ -8,6 +8,14 @@ export default function Home({ profile }) {
           <h1 className="section-title">{profile.name}</h1>
           <p className="subtitle mt-1">{profile.headline}</p>
           <p className="mt-3 text-slate-300">{profile.summary}</p>
+
+          {profile.services?.length ? (
+            <ul className="mt-3 list-disc pl-5 text-slate-300/90">
+              {profile.services.map((s) => (
+                <li key={s} className="mt-1">{s}</li>
+              ))}
+            </ul>
+          ) : null}
         </div>
 
         <div className="flex flex-wrap gap-2">

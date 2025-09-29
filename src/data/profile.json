@@ -2,7 +2,13 @@
   "name": "Shanna Ragavan",
   "headline": "Technologist • Programmer • Creative Producer",
   "avatar": "",
-  "summary": "I’m a versatile technologist, creative, and producer who builds interactive applications with Godot, C#, React, and a wide range of supporting technologies. As a programmer, I translate complex design specifications into polished, functional solutions.",
+  "summary": "I’m a versatile technologist, creative, and producer who builds interactive applications with Godot, C#, React, and a wide range of supporting technologies. I translate design specifications into polished, functional solutions and engaging user experiences.",
+  "services": [
+    "Game design & development (Godot, Unity C#)",
+    "Frontend engineering (React, responsive UI/UX implementation)",
+    "Interactive tools & creative coding (music, strategy, custom apps)",
+    "Technical consulting & rapid prototyping for digital products"
+  ],
   "skills": ["Godot", "GDScript", "Unity C#", "React", "Git"],
   "apps": [
     {
@@ -31,7 +37,7 @@
       "tag": "Strategy",
       "description": "A futuristic, turn-based strategy game where you command a squad of high-tech mechs on a dynamic, procedurally generated battlefield."
     }
-  ],  
+  ],
   "links": [
     { "label": "LinkedIn", "href": "https://www.linkedin.com/in/shnnrgvn/" },
     { "label": "Itch.io", "href": "https://zillatronics.itch.io" }
