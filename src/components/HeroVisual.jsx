@@ -103,16 +103,6 @@ export default function HeroVisual() {
           </radialGradient>
         </defs>
 
-        {/* starfield */}
-        <g opacity="0.25">
-          {Array.from({ length: 26 }).map((_, i) => {
-            const x = (i * 273) % 800;
-            const y = (i * 97) % 300;
-            const r = (i % 3) + 0.7;
-            return <circle key={i} cx={x} cy={y} r={r} fill="url(#star)" />;
-          })}
-        </g>
-
         {/* center solar system */}
         <g transform="translate(400,150)">
           {/* Sun */}
