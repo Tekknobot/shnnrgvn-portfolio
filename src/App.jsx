@@ -5,16 +5,15 @@ import Home from "./pages/Home.jsx";
 import Apps from "./pages/Apps.jsx";
 import Games from "./pages/Games.jsx";
 import profile from "./data/profile.json";
-import HeroVisual from "./components/HeroVisual.jsx";
+import WeatherVisual from "./components/WeatherVisual.jsx";
 
 export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
         <main className="flex-1">
-          {/* visual sits above the Home card */}
           <section className="container mx-auto max-w-4xl pt-6 md:pt-10">
-            <HeroVisual />
+            <WeatherVisual />
           </section>
 
           <section id="home" className="container mx-auto max-w-4xl py-6 md:py-10">
