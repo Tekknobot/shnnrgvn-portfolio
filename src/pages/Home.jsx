@@ -10,11 +10,14 @@ export default function Home({ profile }) {
           <p className="mt-3 text-slate-300">{profile.summary}</p>
 
           {profile.services?.length ? (
-            <ul className="mt-3 list-disc pl-5 text-slate-300/90">
-              {profile.services.map((s) => (
-                <li key={s} className="mt-1">{s}</li>
-              ))}
-            </ul>
+            <>
+              <h3 className="mt-4 font-semibold text-slate-200">Services</h3>
+              <ul className="mt-2 list-disc pl-5 text-slate-300/90">
+                {profile.services.map((s) => (
+                  <li key={s} className="mt-1">{s}</li>
+                ))}
+              </ul>
+            </>
           ) : null}
         </div>
 
