@@ -1,0 +1,15 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark UI utilities */
+.shadow-soft { box-shadow: 0 10px 25px rgba(0,0,0,0.35); }
+.card { @apply rounded-2xl bg-slate-900 text-slate-100 p-4 md:p-6 shadow-soft border border-slate-800; }
+.section-title { @apply text-2xl md:text-3xl font-bold; }
+.subtitle { @apply text-slate-400; }
+
+@layer base {
+  html, body { @apply bg-slate-950 text-slate-100; }
+  header, footer { @apply bg-slate-950 border-slate-900; }
+}
