@@ -64,3 +64,27 @@
 @media (prefers-reduced-motion: reduce) {
   .spin-slower, .spin-slow, .spin-mid, .float-y, .float-y2, .float-y3 { animation: none !important; }
 }
+
+/* === AtomVisual animation === */
+@keyframes spin-atom { to { transform: rotate(360deg); } }
+@keyframes spin-atom-rev { to { transform: rotate(-360deg); } }
+
+.rot-slow     { animation: spin-atom 26s linear infinite; }
+.rot-mid      { animation: spin-atom 16s linear infinite; }
+.rot-fast-rev { animation: spin-atom-rev 10s linear infinite; }
+
+/* important for SVG transforms on mobile Safari */
+.rot-slow, .rot-mid, .rot-fast-rev { transform-box: fill-box; transform-origin: center; }
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .rot-slow, .rot-mid, .rot-fast-rev { animation: none !important; }
+}
+
+@keyframes spin-atom { to { transform: rotate(360deg); } }
+@keyframes spin-atom-rev { to { transform: rotate(-360deg); } }
+
+/* (Optional) Accessibility: pause if user prefers less motion */
+@media (prefers-reduced-motion: reduce) {
+  svg [style*="animation"] { animation: none !important; }
+}

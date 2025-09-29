@@ -1,6 +1,13 @@
 import React from "react";
 
 export default function AtomVisual() {
+  // shared inline styles for rotating orbits
+  const baseRot = {
+    transformOrigin: "center",
+    transformBox: "fill-box",
+    willChange: "transform",
+  };
+
   return (
     <div
       className="relative mx-auto mb-8 h-44 w-full max-w-4xl sm:h-56 md:h-64"
@@ -30,7 +37,6 @@ export default function AtomVisual() {
 
         {/* center at (300,120) */}
         <g transform="translate(300,120)">
-
           {/* nucleus */}
           <g>
             <circle r="14" fill="url(#core)" />
@@ -39,37 +45,47 @@ export default function AtomVisual() {
             </circle>
           </g>
 
-          {/* ===== ORBIT 1 (horizontal ellipse) ===== */}
-          {/* orbit outline */}
-          <g className="rot-slow" style={{ transformOrigin: "center", transformBox: "fill-box" }}>
-            {/* ellipse by squashing a circle via scaleY */}
+          {/* ORBIT 1 */}
+          <g
+            style={{
+              ...baseRot,
+              animation: "spin-atom 26s linear infinite",
+            }}
+          >
             <g transform="scale(1,0.55)">
               <circle r="120" stroke="url(#orbitStroke)" strokeWidth="2" fill="none" filter="url(#soft)" />
-              {/* electron positioned on +X, carried by rotation */}
               <circle cx="120" cy="0" r="5.5" fill="#93C5FD" />
             </g>
           </g>
 
-          {/* ===== ORBIT 2 (tilted) ===== */}
-          <g className="rot-mid" style={{ transformOrigin: "center", transformBox: "fill-box" }}>
-            {/* tilt the plane */}
+          {/* ORBIT 2 */}
+          <g
+            style={{
+              ...baseRot,
+              animation: "spin-atom 16s linear infinite",
+            }}
+          >
             <g transform="rotate(35) scale(1,0.6)">
               <circle r="90" stroke="url(#orbitStroke)" strokeWidth="2" fill="none" />
-              {/* two electrons on opposite sides */}
               <circle cx="90" cy="0" r="5" fill="#22D3EE" />
               <circle cx="-90" cy="0" r="4.5" fill="#7DD3FC" />
             </g>
           </g>
 
-          {/* ===== ORBIT 3 (counter-rotating) ===== */}
-          <g className="rot-fast-rev" style={{ transformOrigin: "center", transformBox: "fill-box" }}>
+          {/* ORBIT 3 (counter-rotating) */}
+          <g
+            style={{
+              ...baseRot,
+              animation: "spin-atom-rev 10s linear infinite",
+            }}
+          >
             <g transform="rotate(-25) scale(1,0.7)">
               <circle r="60" stroke="url(#orbitStroke)" strokeWidth="2" fill="none" />
               <circle cx="60" cy="0" r="5" fill="#60A5FA" />
             </g>
           </g>
 
-          {/* tiny sparkles near nucleus */}
+          {/* sparkles */}
           <g opacity="0.5">
             <circle r="2" cx="10" cy="-8" fill="#E5E7EB" />
             <circle r="1.6" cx="-12" cy="6" fill="#E5E7EB" />
