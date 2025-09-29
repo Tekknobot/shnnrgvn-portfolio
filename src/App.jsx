@@ -5,7 +5,7 @@ import Home from "./pages/Home.jsx";
 import Apps from "./pages/Apps.jsx";
 import Games from "./pages/Games.jsx";
 import profile from "./data/profile.json";
-import WeatherVisual from "./components/WeatherVisual.jsx";
+import AtomVisual from "./components/AtomVisual.jsx";
 
 export default function App() {
   return (
@@ -13,7 +13,7 @@ export default function App() {
       <Header />
         <main className="flex-1">
           <section className="container mx-auto max-w-4xl pt-6 md:pt-10">
-            <WeatherVisual />
+            <AtomVisual />
           </section>
 
           <section id="home" className="container mx-auto max-w-4xl py-6 md:py-10">
