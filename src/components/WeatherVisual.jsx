@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 
 /**
- * WeatherVisual
- * - Uses navigator.geolocation (if allowed) → fetches weather from Open-Meteo
- * - Fallback to a default (NYC) if blocked/errored
- * - Renders a canvas particle animation for: clear | clouds | rain | snow | windy
- * - Respects prefers-reduced-motion
+ * WeatherVisual (fixed)
+ * - Uses Open-Meteo current_weather=true (stable fields: weathercode, windspeed)
+ * - Maps WMO codes to: clear | clouds | rain | snow | windy
+ * - Geolocation -> fallback
+ * - Optional force condition for testing: <WeatherVisual force="rain" />
  */
 export default function WeatherVisual({
   fallback = { lat: 40.7128, lon: -74.0060 }, // NYC
-  height = 220
+  height = 220,
+  force // "clear" | "clouds" | "rain" | "snow" | "windy"
 }) {
   const canvasRef = useRef(null);
   const [wx, setWx] = useState({ condition: "clear", wind: 0 });
@@ -23,48 +24,42 @@ export default function WeatherVisual({
     let cancelled = false;
 
     async function getLocation() {
-      // Try geolocation first
       const pos = await new Promise((resolve) => {
         if (!("geolocation" in navigator)) return resolve(null);
         navigator.geolocation.getCurrentPosition(
-          (p) => resolve({ lat: p.coords.latitude, lon: p.coords.longitude }),
-          () => resolve(null), // denial -> fallback
+          p => resolve({ lat: p.coords.latitude, lon: p.coords.longitude }),
+          () => resolve(null),
           { enableHighAccuracy: false, timeout: 6000, maximumAge: 600000 }
         );
       });
       return pos || fallback;
     }
 
+    function mapWMOToCondition(code, windspeed) {
+      // See: https://open-meteo.com/en/docs (WMO weather codes)
+      const windy = windspeed >= 20; // km/h
+      if ([71, 73, 75, 77, 85, 86].includes(code)) return "snow";
+      if ([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82, 95, 96, 99].includes(code))
+        return "rain";
+      if ([2, 3, 45, 48].includes(code)) return windy ? "windy" : "clouds";
+      if (windy) return "windy";
+      // 0 = clear sky, 1 = mainly clear
+      return [0, 1].includes(code) ? "clear" : "clouds";
+    }
+
     async function getWeather({ lat, lon }) {
-      // Open-Meteo current weather (no API key)
+      // Use current_weather=true which returns { temperature, windspeed, weathercode, ... }
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(
         3
       )}&longitude=${lon.toFixed(
         3
-      )}&current=temperature_2m,precipitation,weather_code,wind_speed_10m,cloud_cover&hourly=cloud_cover,precipitation&timezone=auto`;
+      )}&current_weather=true&timezone=auto`;
       const res = await fetch(url);
       const data = await res.json();
-      const cw = data.current || {};
-
-      // Map WMO weather codes to our buckets
-      const code = cw.weather_code ?? 0; // https://open-meteo.com/en/docs
-      const cloud = cw.cloud_cover ?? 0;
-      const wind = cw.wind_speed_10m ?? 0;
-      const precip = cw.precipitation ?? 0;
-
-      const isWindy = wind >= 20; // km/h
-      let condition = "clear";
-      if (precip > 0) {
-        // quick heuristic: lighter precip (<1) = drizzle → ‘rain’; use code to detect snow
-        if ([71, 73, 75, 77, 85, 86].includes(code)) condition = "snow";
-        else condition = "rain";
-      } else if (cloud >= 60) {
-        condition = isWindy ? "windy" : "clouds";
-      } else if (isWindy) {
-        condition = "windy";
-      } else {
-        condition = "clear";
-      }
+      const cw = data.current_weather || {};
+      const code = cw.weathercode ?? 0;
+      const wind = cw.windspeed ?? 0;
+      const condition = mapWMOToCondition(code, wind);
       return { condition, wind };
     }
 
@@ -74,18 +69,16 @@ export default function WeatherVisual({
         if (cancelled) return;
         const w = await getWeather(loc);
         if (cancelled) return;
-        setWx(w);
+        setWx(force ? { condition: force, wind: w.wind } : w);
       } catch {
-        // fallback: clear calm
-        if (!cancelled) setWx({ condition: "clear", wind: 0 });
+        if (!cancelled) setWx({ condition: force || "clear", wind: 0 });
       }
     })();
 
-    return () => {
-      cancelled = true;
-    };
-  }, [fallback.lat, fallback.lon]);
+    return () => { cancelled = true; };
+  }, [fallback.lat, fallback.lon, force]);
 
+  // ---- Canvas animation (unchanged core, just uses wx.condition / wx.wind) ----
   useEffect(() => {
     if (prefersReduce) return;
 
@@ -97,8 +90,10 @@ export default function WeatherVisual({
     let particles = [];
     let W = canvas.clientWidth;
     let H = canvas.clientHeight;
-    // handle DPR for crispness
     const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+
+    function rand(a, b) { return a + Math.random() * (b - a); }
+
     function resize() {
       W = canvas.clientWidth;
       H = canvas.clientHeight;
@@ -108,14 +103,11 @@ export default function WeatherVisual({
       initParticles();
     }
 
-    function rand(a, b) { return a + Math.random() * (b - a); }
-
     function initParticles() {
       const countBase = Math.floor(Math.min(180, (W * H) / 4500));
       particles = [];
 
       if (wx.condition === "clear") {
-        // soft twinkle stars
         for (let i = 0; i < Math.max(30, countBase * 0.5); i++) {
           particles.push({
             kind: "star",
@@ -127,7 +119,6 @@ export default function WeatherVisual({
           });
         }
       } else if (wx.condition === "clouds") {
-        // drifting puffs
         for (let i = 0; i < Math.max(14, countBase * 0.12); i++) {
           particles.push({
             kind: "cloud",
@@ -166,7 +157,6 @@ export default function WeatherVisual({
           });
         }
       } else if (wx.condition === "windy") {
-        // streaks / leaves
         for (let i = 0; i < Math.max(80, countBase * 0.6); i++) {
           particles.push({
             kind: "streak",
@@ -184,10 +174,9 @@ export default function WeatherVisual({
       ctx.clearRect(0, 0, W, H);
 
       if (wx.condition === "clear") {
-        // faint gradient sky
         const g = ctx.createLinearGradient(0, 0, 0, H);
-        g.addColorStop(0, "rgba(15,23,42,0)");      // top transparent
-        g.addColorStop(1, "rgba(148,163,184,0.06)"); // bottom faint
+        g.addColorStop(0, "rgba(15,23,42,0)");
+        g.addColorStop(1, "rgba(148,163,184,0.06)");
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, W, H);
       }
@@ -201,7 +190,6 @@ export default function WeatherVisual({
           ctx.fill();
         } else if (p.kind === "cloud") {
           ctx.fillStyle = `rgba(148,163,184,${p.a})`;
-          // simple blobby cloud
           ctx.beginPath();
           ctx.ellipse(p.x, p.y, p.w * 0.5, p.h * 0.5, 0, 0, Math.PI * 2);
           ctx.ellipse(p.x - p.w * 0.25, p.y + 3, p.w * 0.35, p.h * 0.42, 0, 0, Math.PI * 2);
@@ -260,11 +248,7 @@ export default function WeatherVisual({
   }, [wx.condition, wx.wind, prefersReduce]);
 
   return (
-    <div
-      className="relative mx-auto mb-8 w-full max-w-4xl"
-      aria-hidden="true"
-      style={{ pointerEvents: "none" }}
-    >
+    <div className="relative mx-auto mb-8 w-full max-w-4xl" aria-hidden="true" style={{ pointerEvents: "none" }}>
       <canvas
         ref={canvasRef}
         style={{ width: "100%", height }}
