@@ -13,3 +13,54 @@
   html, body { @apply bg-slate-950 text-slate-100; }
   header, footer { @apply bg-slate-950 border-slate-900; }
 }
+
+/* === HeroVisual animations === */
+@keyframes spin-slower { to { transform: rotate(360deg); } }
+@keyframes spin-slow   { to { transform: rotate(-360deg); } }
+@keyframes spin-mid    { to { transform: rotate(360deg); } }
+
+@keyframes float-y  { 0% { transform: translateY(0px); } 50% { transform: translateY(-6px);} 100% { transform: translateY(0px);} }
+@keyframes float-y2 { 0% { transform: translateY(0px); } 50% { transform: translateY(7px);}  100% { transform: translateY(0px);} }
+@keyframes float-y3 { 0% { transform: translateY(0px); } 50% { transform: translateY(-4px);} 100% { transform: translateY(0px);} }
+
+.spin-slower { animation: spin-slower 32s linear infinite; transform-origin: center; }
+.spin-slow   { animation: spin-slow   22s linear infinite; transform-origin: center; }
+.spin-mid    { animation: spin-mid    14s linear infinite; transform-origin: center; }
+
+.float-y  { animation: float-y  5.5s ease-in-out infinite; }
+.float-y2 { animation: float-y2 6.5s ease-in-out infinite; }
+.float-y3 { animation: float-y3 4.8s ease-in-out infinite; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .spin-slower, .spin-slow, .spin-mid,
+  .float-y, .float-y2, .float-y3 {
+    animation: none !important;
+  }
+}
+
+/* ensure transforms work on SVG elements */
+.spin-slower, .spin-slow, .spin-mid {
+  transform-origin: center;
+  transform-box: fill-box;    /* <-- key for SVG */
+  will-change: transform;
+}
+
+@keyframes spin-slower { to { transform: rotate(360deg); } }
+@keyframes spin-slow   { to { transform: rotate(-360deg); } }
+@keyframes spin-mid    { to { transform: rotate(360deg); } }
+
+@keyframes float-y  { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-6px) } }
+@keyframes float-y2 { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(7px) } }
+@keyframes float-y3 { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-4px) } }
+
+.spin-slower { animation: spin-slower 32s linear infinite; }
+.spin-slow   { animation: spin-slow   22s linear infinite; }
+.spin-mid    { animation: spin-mid    14s linear infinite; }
+.float-y     { animation: float-y  5.5s ease-in-out infinite; }
+.float-y2    { animation: float-y2 6.5s ease-in-out infinite; }
+.float-y3    { animation: float-y3 4.8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .spin-slower, .spin-slow, .spin-mid, .float-y, .float-y2, .float-y3 { animation: none !important; }
+}
