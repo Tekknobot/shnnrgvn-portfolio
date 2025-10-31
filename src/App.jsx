@@ -13,7 +13,7 @@ export default function App(){
       <main className="container">
         <section className="hero">
           <p className="kicker">Technologist • Programmer • Creative Producer</p>
-          <h1 className="title">I’m <span className="mono">Shanna Ragavan</span> — I build interactive applications and tools that feel fast, clean, and human-centered.</h1>
+          <h1 className="title">I’m <span className="mono">Shanna</span> — I build interactive applications and tools that feel fast, clean, and human-centered.</h1>
           <p className="subtitle">
             Godot (C#), React, and creative coding. I translate design specs into polished, functional experiences.
             Below is a focused case study on my live Geopolitical Dashboard, plus two utility apps for NBA/NFL matchups.
