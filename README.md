@@ -1,18 +1,20 @@
+# Geo Portfolio (React + Vite)
 
-# shnnrgvn — Minimal Portfolio (Home + About)
+A minimalist, fast portfolio focused on a single case study: **Geopolitical Dashboard**.
+No heavy visualizations included — just narrative, structure, and polished UI.
 
-Dark, centered, mobile-first portfolio with only **Home** and **About**.
-- No Links page
-- No Resume link
-- No Contact CTA
-
-## Edit content
-- `src/data/profile.json` – name, headline, summary, skills, socials
-
-## Run
-npm install
+## Quickstart
+```bash
+npm i
 npm run dev
+```
 
-## Build & preview
-npm run build
-npm run preview
+## Customize
+- Update copy in `src/App.jsx` and `src/components/CaseStudy.jsx`
+- Replace the Contact email (`mailto:` link) in `Contact.jsx`
+- Change site title and meta in `index.html`
+- Add screenshots to `/public` and drop them into the case study if desired
+
+## Deploy
+- One-click deploy on Vercel or Netlify.
+- `npm run build` then serve `dist/`.
