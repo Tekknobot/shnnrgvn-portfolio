@@ -13,7 +13,7 @@ export default function App(){
       <main className="container">
         <section className="hero">
           <p className="kicker">Technologist • Programmer • Creative Producer</p>
-          <h1 className="title">I’m <span className="mono">Shanna</span> — I build interactive applications and tools that feel fast, clean, and human-centered.</h1>
+          <h1 className="title">I’m <span className="mono">Shanna Ragavan</span> — I build interactive applications and tools that feel fast, clean, and human-centered.</h1>
           <p className="subtitle">
             Godot (C#), React, and creative coding. I translate design specs into polished, functional experiences.
             Below is a focused case study on my live Geopolitical Dashboard, plus two utility apps for NBA/NFL matchups.
@@ -97,6 +97,17 @@ export default function App(){
                   "Built for analysts who need quick situational awareness."
                 ]}
                 meta={["React", "Leaflet", "REST APIs", "Performance"]}
+              />
+              <ProjectCard
+                title="Zillatronics — Game Projects (Unity & Godot)"
+                href="https://zillatronics.itch.io/"
+                desc="A hub for my playable prototypes and small games built in Unity (C#) and Godot — a mix of mechanics experiments, game jam entries, and interactive art hosted on itch.io."
+                points={[
+                  "Browser builds when possible (WebGL / Godot Web export).",
+                  "Focus on tight mechanics, feel, and rapid prototyping.",
+                  "Occasional dev notes and iteration logs."
+                ]}
+                meta={["Unity (C#)", "Godot", "itch.io", "Prototypes"]}
               />
             </div>
           </div>
