@@ -13,7 +13,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-3xl md:text-5xl font-extrabold tracking-tight"
           >
-            Hi, I’m <span className="text-brand-600">Shanna</span>
+            Hi, I’m <span className="text-brand-600">Shanna.</span>
           </motion.h1>
           <p className="mt-4 text-slate-600 max-w-prose">
             Frontend engineer focused on delightful, accessible experiences. I build
