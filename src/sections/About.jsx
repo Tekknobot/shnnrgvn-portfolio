@@ -42,31 +42,47 @@ export default function About() {
         title="A little about me"
         description="I’m a versatile technologist, creative, and producer who builds interactive applications with Godot, C#, React, and a wide range of supporting technologies."
       />
-      <div className="container grid md:grid-cols-3 gap-6">
-        <div className="card md:col-span-2">
-          <div className="card-pad space-y-3 text-slate-700 leading-relaxed">
-            <p>
-              As a programmer, I translate complex design specifications into
-              polished, functional solutions. I studied Graphic Design, and my
-              programming foundation comes from two years of high-school Computer
-              Science—skills I deepened starting in 2014.
-            </p>
-            <p>
-              Beyond software, I’m a Music Producer and Graphic Designer / Creative
-              Director—composing, arranging, and recording original tracks in Ableton.
-            </p>
-          </div>
-        </div>
 
-        {/* Pizza cloud card */}
+      <div className="container space-y-6">
+        {/* Pizza cloud stacked on top */}
         <div className="card">
           <div className="card-pad space-y-3">
             <h3 className="font-semibold text-slate-800">Pizza Cloud</h3>
             <p className="text-sm text-slate-600">
-              A little visual nod to my personal branding. The pizza icon shows up
-              everywhere—from the favicon to this playful cloud.
+              A small visual nod to my personal branding. The pizza icon shows up
+              everywhere—from the favicon to this playful cloud of slices.
             </p>
             <PizzaCloud />
+          </div>
+        </div>
+
+        {/* Original two panels below */}
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="card md:col-span-2">
+            <div className="card-pad space-y-3 text-slate-700 leading-relaxed">
+              <p>
+                As a programmer, I translate complex design specifications into
+                polished, functional solutions. I studied Graphic Design, and my
+                programming foundation comes from two years of high-school Computer
+                Science—skills I deepened starting in 2014.
+              </p>
+              <p>
+                Beyond software, I’m a Music Producer and Graphic Designer / Creative
+                Director—composing, arranging, and recording original tracks in Ableton.
+              </p>
+            </div>
+          </div>
+
+          <div className="card">
+            <div className="card-pad">
+              <h3 className="font-semibold">Highlights</h3>
+              <ul className="mt-3 space-y-2 text-sm text-slate-700">
+                <li>• Godot & C# gameplay and tooling</li>
+                <li>• React UI engineering & performance</li>
+                <li>• Graphic Design background (brand & layout)</li>
+                <li>• Music production in Ableton (composition & recording)</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
