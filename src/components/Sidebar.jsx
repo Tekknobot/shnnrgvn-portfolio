@@ -14,7 +14,11 @@ export function Sidebar() {
     <div className="h-full flex flex-col justify-between p-6">
       <div>
         <a href="#home" className="inline-flex items-center gap-2 mb-6">
-          <div className="size-10 rounded-xl bg-brand-600 text-white grid place-items-center font-bold">P</div>
+            <img
+            src="/pizzza-icon.png"
+            alt="Site icon"
+            className="h-10 w-10 rounded-xl object-cover"
+            />
           <div>
             <div className="font-semibold leading-tight">Shanna Ragavan</div>
             <div className="text-xs text-slate-500">Frontend Engineer</div>

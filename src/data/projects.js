@@ -14,8 +14,8 @@ const projects = [
       "Browse the NBA or NFL schedule month by month, tap any game to see recent form, a light win probability estimate (“Model edge”), and quick matchup notes. Clean, mobile-friendly, and fun to explore.",
     tags: ["React", "Vite", "Sports", "PWA", "Mobile"],
     links: [
-      { href: "https://pivt.vercel.app/all", label: "NBA Calendar", icon: "external" },
-      { href: "https://snappcount.vercel.app/weeks", label: "Matchup Helper", icon: "external" }
+      { href: "https://pivt.vercel.app/all", label: "NBA", icon: "external" },
+      { href: "https://snappcount.vercel.app/weeks", label: "NFL", icon: "external" }
     ]
   },
   {

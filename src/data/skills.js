@@ -3,12 +3,9 @@ export default [
   "React",
   "Next.js",
   "Node.js",
-  "Express",
-  "PostgreSQL",
   "TailwindCSS",
   "Vite",
-  "Jest",
-  "Playwright",
-  "CI/CD",
-  "AWS"
+  "Unity",
+  "C#",
+  "Godot"
 ];
