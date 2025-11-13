@@ -121,11 +121,22 @@ export default function About() {
                 As a programmer, I translate complex design specifications into
                 polished, functional solutions. I studied Graphic Design, and my
                 programming foundation comes from two years of high-school Computer
-                Science—skills I deepened starting in 2014.
+                Science—skills I deepened starting in 2014. I love the moment where
+                structure and creativity meet: taking an idea and shaping it into an
+                interactive experience that simply feels right.
+              </p>
+              <p>
+                I’m quick to prototype, comfortable iterating in public, and drawn to
+                projects where I can combine logic, motion, and visual storytelling.
+                Whether it’s a sports tool, a geopolitical dashboard, or a tiny game
+                mechanic, I enjoy building systems that communicate clearly and invite
+                people to explore.
               </p>
               <p>
                 Beyond software, I’m a Music Producer and Graphic Designer / Creative
                 Director—composing, arranging, and recording original tracks in Ableton.
+                A lot of my work is driven by rhythm and aesthetic instinct, which tends
+                to bleed into how I design interfaces and interactions.
               </p>
             </div>
           </div>
