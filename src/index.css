@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+
+/* Smooth scroll for anchor links */
+html { scroll-behavior: smooth; }
+
+/* Reusable card */
+.card { @apply rounded-2xl shadow-soft bg-white border border-slate-100; }
+.card-pad { @apply p-5 md:p-6; }
+
+/* Section spacing */
+.section { @apply py-16 md:py-24; }
