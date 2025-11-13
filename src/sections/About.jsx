@@ -7,21 +7,21 @@ function PizzaCloud() {
 
   // Each icon gets a size, opacity, rotation and "strength" for parallax
   const icons = [
-    { size: "w-8",  opacity: "opacity-80", strength: 100,  rotate: -12 },
-    { size: "w-10", opacity: "opacity-90", strength: 180,  rotate: 6 },
-    { size: "w-12", opacity: "opacity-100", strength: 240, rotate: -4 },
-    { size: "w-9",  opacity: "opacity-70", strength: 140, rotate: 10 },
-    { size: "w-14", opacity: "opacity-100", strength: 280, rotate: -8 },
-    { size: "w-11", opacity: "opacity-80", strength: 200, rotate: 3 },
-    { size: "w-8",  opacity: "opacity-70", strength: 120, rotate: -2 },
-    { size: "w-10", opacity: "opacity-90", strength: 160, rotate: 5 },
-    { size: "w-9",  opacity: "opacity-80", strength: 130, rotate: -6 },
-    { size: "w-8",  opacity: "opacity-80", strength: 90,  rotate: 4 },
-    { size: "w-10", opacity: "opacity-90", strength: 190, rotate: -10 },
-    { size: "w-11", opacity: "opacity-75", strength: 220, rotate: 8 },
-    { size: "w-9",  opacity: "opacity-85", strength: 150, rotate: -5 },
-    { size: "w-8",  opacity: "opacity-70", strength: 110, rotate: 2 },
-    { size: "w-12", opacity: "opacity-95", strength: 260, rotate: -7 },
+    { size: "w-80",  opacity: "opacity-80", strength: 100,  rotate: -12 },
+    { size: "w-100", opacity: "opacity-90", strength: 180,  rotate: 6 },
+    { size: "w-120", opacity: "opacity-100", strength: 240, rotate: -4 },
+    { size: "w-90",  opacity: "opacity-70", strength: 140, rotate: 10 },
+    { size: "w-140", opacity: "opacity-100", strength: 280, rotate: -8 },
+    { size: "w-110", opacity: "opacity-80", strength: 200, rotate: 3 },
+    { size: "w-80",  opacity: "opacity-70", strength: 120, rotate: -2 },
+    { size: "w-100", opacity: "opacity-90", strength: 160, rotate: 5 },
+    { size: "w-90",  opacity: "opacity-80", strength: 130, rotate: -6 },
+    { size: "w-80",  opacity: "opacity-80", strength: 90,  rotate: 4 },
+    { size: "w-100", opacity: "opacity-90", strength: 190, rotate: -10 },
+    { size: "w-110", opacity: "opacity-75", strength: 220, rotate: 8 },
+    { size: "w-90",  opacity: "opacity-85", strength: 150, rotate: -5 },
+    { size: "w-80",  opacity: "opacity-70", strength: 110, rotate: 2 },
+    { size: "w-120", opacity: "opacity-95", strength: 260, rotate: -7 },
   ];
 
   function handleMouseMove(e) {
