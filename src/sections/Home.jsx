@@ -22,7 +22,6 @@ export default function Home() {
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
             <a href="#projects" className="card text-center py-3 font-semibold hover:shadow-md">View Work</a>
             <a href="#contact" className="card text-center py-3 font-semibold hover:shadow-md">Contact</a>
-            <a href="/resume.pdf" className="card text-center py-3 font-semibold hover:shadow-md" target="_blank" rel="noreferrer">Resume</a>
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-4 text-slate-600">
