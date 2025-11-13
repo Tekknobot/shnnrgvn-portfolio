@@ -41,7 +41,9 @@ export default function ProjectCard({ title, description, tags = [], links, live
           </div>
         </div>
 
-        <p className="mt-2 text-slate-600">{description}</p>
+        <p className="mt-2 text-slate-600 whitespace-pre-line">
+          {description}
+        </p>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {tags.map((t) => (
