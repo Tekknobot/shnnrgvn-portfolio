@@ -10,20 +10,16 @@ import Contact from "./sections/Contact.jsx";
 export default function App() {
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-[280px_1fr]">
-      {/* Desktop sidebar */}
       <aside className="hidden lg:block border-r border-slate-100 sticky top-0 h-screen">
         <Sidebar />
       </aside>
 
-      {/* Main content */}
       <main className="relative">
         <Home />
         <About />
         <Projects />
         <Skills />
         <Contact />
-
-        {/* Mobile bottom nav */}
         <div className="lg:hidden sticky bottom-0 z-50">
           <BottomNav />
         </div>
