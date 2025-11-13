@@ -1,33 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SectionHeader from "../components/SectionHeader.jsx";
 
 function PizzaCloud() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
+  const [time, setTime] = useState(0);
 
-  // Each icon gets a size, opacity, rotation and "strength" for parallax
+  // Keep this running so the pizzas "breathe" even without hover
+  useEffect(() => {
+    let frame;
+    const loop = () => {
+      setTime((t) => t + 0.03); // adjust speed here
+      frame = requestAnimationFrame(loop);
+    };
+    loop();
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  // size in px so you can use 80/100/120, etc.
   const icons = [
-    { size: "w-80",  opacity: "opacity-80", strength: 100,  rotate: -12 },
-    { size: "w-100", opacity: "opacity-90", strength: 180,  rotate: 6 },
-    { size: "w-120", opacity: "opacity-100", strength: 240, rotate: -4 },
-    { size: "w-90",  opacity: "opacity-70", strength: 140, rotate: 10 },
-    { size: "w-140", opacity: "opacity-100", strength: 280, rotate: -8 },
-    { size: "w-110", opacity: "opacity-80", strength: 200, rotate: 3 },
-    { size: "w-80",  opacity: "opacity-70", strength: 120, rotate: -2 },
-    { size: "w-100", opacity: "opacity-90", strength: 160, rotate: 5 },
-    { size: "w-90",  opacity: "opacity-80", strength: 130, rotate: -6 },
-    { size: "w-80",  opacity: "opacity-80", strength: 90,  rotate: 4 },
-    { size: "w-100", opacity: "opacity-90", strength: 190, rotate: -10 },
-    { size: "w-110", opacity: "opacity-75", strength: 220, rotate: 8 },
-    { size: "w-90",  opacity: "opacity-85", strength: 150, rotate: -5 },
-    { size: "w-80",  opacity: "opacity-70", strength: 110, rotate: 2 },
-    { size: "w-120", opacity: "opacity-95", strength: 260, rotate: -7 },
+    { size: 80,  opacity: "opacity-80", strength: 100,  rotate: -12 },
+    { size: 100, opacity: "opacity-90", strength: 180,  rotate: 6 },
+    { size: 120, opacity: "opacity-100", strength: 240, rotate: -4 },
+    { size: 90,  opacity: "opacity-70", strength: 140, rotate: 10 },
+    { size: 140, opacity: "opacity-100", strength: 280, rotate: -8 },
+    { size: 110, opacity: "opacity-80", strength: 200, rotate: 3 },
+    { size: 80,  opacity: "opacity-70", strength: 120, rotate: -2 },
+    { size: 100, opacity: "opacity-90", strength: 160, rotate: 5 },
+    { size: 90,  opacity: "opacity-80", strength: 130, rotate: -6 },
+    { size: 80,  opacity: "opacity-80", strength: 90,  rotate: 4 },
+    { size: 100, opacity: "opacity-90", strength: 190, rotate: -10 },
+    { size: 110, opacity: "opacity-75", strength: 220, rotate: 8 },
+    { size: 90,  opacity: "opacity-85", strength: 150, rotate: -5 },
+    { size: 80,  opacity: "opacity-70", strength: 110, rotate: 2 },
+    { size: 120, opacity: "opacity-95", strength: 260, rotate: -7 },
   ];
 
   function handleMouseMove(e) {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5 to 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5; // -0.5 to 0.5
+    const x = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5 → 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5;  // -0.5 → 0.5
     setMousePos({ x, y });
     setHovered(true);
   }
@@ -47,8 +59,15 @@ function PizzaCloud() {
         <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_#fee4a1,_transparent_55%),_radial-gradient(circle_at_bottom,_#e0e7ff,_transparent_55%)]" />
         <div className="relative h-full flex flex-wrap items-center justify-center gap-4 px-4">
           {icons.map((icon, i) => {
-            const tx = (hovered ? mousePos.x : 0) * icon.strength;
-            const ty = (hovered ? mousePos.y : 0) * icon.strength;
+            // idle float based on time + index
+            const idleX = Math.sin(time * 0.8 + i) * 8;
+            const idleY = Math.cos(time * 0.6 + i) * 5;
+
+            // strong parallax when hovered
+            const intensity = hovered ? icon.strength : icon.strength * 0.3;
+            const tx = mousePos.x * intensity + idleX;
+            const ty = mousePos.y * intensity + idleY;
+
             const transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${icon.rotate}deg)`;
 
             return (
@@ -56,8 +75,12 @@ function PizzaCloud() {
                 key={i}
                 src="/pizzza-icon.png"
                 alt="Pizza icon"
-                className={`${icon.size} ${icon.opacity} drop-shadow-md transition-transform duration-300`}
-                style={{ transform }}
+                className={`${icon.opacity} drop-shadow-md transition-transform duration-150 ease-out`}
+                style={{
+                  transform,
+                  width: icon.size,
+                  height: icon.size,
+                }}
               />
             );
           })}
@@ -84,7 +107,7 @@ export default function About() {
             <h3 className="font-semibold text-slate-800">Pizza Cloud</h3>
             <p className="text-sm text-slate-600">
               A small visual nod to my personal branding. Move your cursor over this
-              card to wake up the pizza cloud.
+              card to wake up the pizza cloud—it's always idling, even when you’re not.
             </p>
             <PizzaCloud />
           </div>
