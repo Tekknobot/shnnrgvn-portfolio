@@ -18,6 +18,14 @@ export default function Home() {
           <p className="mt-4 text-slate-600 max-w-prose">
             Frontend engineer focused on delightful, accessible experiences. I build
             performant interfaces with React, TypeScript, and a keen eye for mobile.
+            <br /><br />
+            I prototype quickly, iterate fast, and love turning rough concepts into
+            polished interactions. My work blends design, engineering, and a bit of
+            creative experimentation—from sports tools to geopolitical dashboards to
+            game-driven UI ideas.
+            <br /><br />
+            I especially enjoy projects that sit at the intersection of data,
+            storytelling, and interactive design.
           </p>
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
             <a href="#projects" className="card text-center py-3 font-semibold hover:shadow-md">View Work</a>
