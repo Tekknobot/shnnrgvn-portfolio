@@ -45,15 +45,23 @@ export default function Contact() {
             <h3 className="font-semibold">Availability</h3>
             <p className="text-sm">
               Typically available for discovery calls on weekdays. Send a quick
-              note with your timeline and I’ll reply promptly.
+              note with your timeline and what you’re building, and I’ll reply promptly.
             </p>
             <ul className="text-sm list-disc pl-5 space-y-1">
-              <li>Frontend (React, TypeScript)</li>
-              <li>Interactive apps (Godot, C#)</li>
-              <li>Creative direction & music production</li>
+              <li>Frontend (React, TypeScript, Tailwind)</li>
+              <li>Interactive apps & tools (Godot, C#)</li>
+              <li>Rapid prototyping of dashboards & data experiences</li>
+              <li>Experimental interfaces (sports, geopolitics, creative tools)</li>
+              <li>Game feel, 2D pixel-art aesthetics & audio-driven design</li>
+              <li>Creative direction & music production (Ableton)</li>
             </ul>
+            <p className="text-xs text-slate-500">
+              I’m especially excited about projects that mix interaction, data,
+              and sound—or that need a fast prototype to explore an idea.
+            </p>
           </div>
         </div>
+        
       </div>
     </section>
   );
