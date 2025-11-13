@@ -1,6 +1,6 @@
 export default [
   // Core frontend
-  "JavaScript (ES6+)",
+  "JavaScript",
   "TypeScript",
   "React",
   "Vite",
