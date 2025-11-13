@@ -121,9 +121,7 @@ export default function About() {
                 As a programmer, I translate complex design specifications into
                 polished, functional solutions. I studied Graphic Design, and my
                 programming foundation comes from two years of high-school Computer
-                Science—skills I deepened starting in 2014. I love the moment where
-                structure and creativity meet: taking an idea and shaping it into an
-                interactive experience that simply feels right.
+                Science—skills I deepened starting in 2014.
               </p>
               <p>
                 I’m quick to prototype, comfortable iterating in public, and drawn to
