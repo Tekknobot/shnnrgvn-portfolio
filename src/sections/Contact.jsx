@@ -26,7 +26,7 @@ export default function Contact() {
               </a>
 
               <a
-                href="https://www.linkedin.com/in/shnnrgvn"
+                href="https://www.linkedin.com/in/shnnrgvn/"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 bg-[#0A66C2] text-white font-semibold hover:opacity-90"
