@@ -21,7 +21,7 @@ export function Sidebar() {
             />
           <div>
             <div className="font-semibold leading-tight">Shanna Ragavan</div>
-            <div className="text-xs text-slate-500">Frontend Engineer</div>
+            <div className="text-xs text-slate-500">Frontend / Game Dev</div>
           </div>
         </a>
 
