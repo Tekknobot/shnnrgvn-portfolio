@@ -1,32 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import SectionHeader from "../components/SectionHeader.jsx";
 
 function PizzaCloud() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
+
+  // Each icon gets a size, opacity, rotation and "strength" for parallax
   const icons = [
-    { size: "w-8",  rotate: "-rotate-6",  opacity: "opacity-80" },
-    { size: "w-10", rotate: "rotate-3",   opacity: "opacity-90" },
-    { size: "w-12", rotate: "-rotate-2",  opacity: "opacity-100" },
-    { size: "w-9",  rotate: "rotate-6",   opacity: "opacity-70" },
-    { size: "w-14", rotate: "-rotate-3",  opacity: "opacity-100" },
-    { size: "w-11", rotate: "rotate-2",   opacity: "opacity-80" },
-    { size: "w-8",  rotate: "-rotate-1",  opacity: "opacity-70" },
-    { size: "w-10", rotate: "rotate-1",   opacity: "opacity-90" },
-    { size: "w-9",  rotate: "-rotate-4",  opacity: "opacity-80" },
+    { size: "w-8",  opacity: "opacity-80", strength: 10,  rotate: -12 },
+    { size: "w-10", opacity: "opacity-90", strength: 18,  rotate: 6 },
+    { size: "w-12", opacity: "opacity-100", strength: 24, rotate: -4 },
+    { size: "w-9",  opacity: "opacity-70", strength: 14, rotate: 10 },
+    { size: "w-14", opacity: "opacity-100", strength: 28, rotate: -8 },
+    { size: "w-11", opacity: "opacity-80", strength: 20, rotate: 3 },
+    { size: "w-8",  opacity: "opacity-70", strength: 12, rotate: -2 },
+    { size: "w-10", opacity: "opacity-90", strength: 16, rotate: 5 },
+    { size: "w-9",  opacity: "opacity-80", strength: 13, rotate: -6 },
+    { size: "w-8",  opacity: "opacity-80", strength: 9,  rotate: 4 },
+    { size: "w-10", opacity: "opacity-90", strength: 19, rotate: -10 },
+    { size: "w-11", opacity: "opacity-75", strength: 22, rotate: 8 },
+    { size: "w-9",  opacity: "opacity-85", strength: 15, rotate: -5 },
+    { size: "w-8",  opacity: "opacity-70", strength: 11, rotate: 2 },
+    { size: "w-12", opacity: "opacity-95", strength: 26, rotate: -7 },
   ];
 
+  function handleMouseMove(e) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5 to 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5; // -0.5 to 0.5
+    setMousePos({ x, y });
+    setHovered(true);
+  }
+
+  function handleMouseLeave() {
+    setHovered(false);
+    setMousePos({ x: 0, y: 0 });
+  }
+
   return (
-    <div className="relative h-52 sm:h-56 md:h-64">
+    <div
+      className="relative h-52 sm:h-56 md:h-64"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-brand-50 via-white to-amber-50 border border-slate-100 shadow-soft overflow-hidden">
         <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top,_#fee4a1,_transparent_55%),_radial-gradient(circle_at_bottom,_#e0e7ff,_transparent_55%)]" />
         <div className="relative h-full flex flex-wrap items-center justify-center gap-4 px-4">
-          {icons.map((icon, i) => (
-            <img
-              key={i}
-              src="/pizzza-icon.png"
-              alt="Pizza icon"
-              className={`${icon.size} ${icon.rotate} ${icon.opacity} drop-shadow-md`}
-            />
-          ))}
+          {icons.map((icon, i) => {
+            const tx = (hovered ? mousePos.x : 0) * icon.strength;
+            const ty = (hovered ? mousePos.y : 0) * icon.strength;
+            const transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${icon.rotate}deg)`;
+
+            return (
+              <img
+                key={i}
+                src="/pizzza-icon.png"
+                alt="Pizza icon"
+                className={`${icon.size} ${icon.opacity} drop-shadow-md transition-transform duration-300`}
+                style={{ transform }}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
@@ -49,8 +83,8 @@ export default function About() {
           <div className="card-pad space-y-3">
             <h3 className="font-semibold text-slate-800">Pizza Cloud</h3>
             <p className="text-sm text-slate-600">
-              A small visual nod to my personal branding. The pizza icon shows up
-              everywhere—from the favicon to this playful cloud of slices.
+              A small visual nod to my personal branding. Move your cursor over this
+              card to wake up the pizza cloud.
             </p>
             <PizzaCloud />
           </div>
