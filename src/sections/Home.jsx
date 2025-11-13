@@ -13,7 +13,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-3xl md:text-5xl font-extrabold tracking-tight"
           >
-            Hi, I’m <span className="text-brand-600">Your Name</span>
+            Hi, I’m <span className="text-brand-600">Shanna</span>
           </motion.h1>
           <p className="mt-4 text-slate-600 max-w-prose">
             Frontend engineer focused on delightful, accessible experiences. I build
@@ -27,8 +27,8 @@ export default function Home() {
 
           <div className="mt-6 flex flex-wrap items-center gap-4 text-slate-600">
             <span className="inline-flex items-center gap-2"><MapPin size={16}/>City, Country</span>
-            <a className="inline-flex items-center gap-2 hover:text-slate-900" href="tel:+123456789"><Phone size={16}/>+1 234 567 89</a>
-            <a className="inline-flex items-center gap-2 hover:text-slate-900" href="mailto:you@example.com"><Mail size={16}/>you@example.com</a>
+            <a className="inline-flex items-center gap-2 hover:text-slate-900" href="tel:+123456789"><Phone size={16}/>+1 416 275 0743</a>
+            <a className="inline-flex items-center gap-2 hover:text-slate-900" href="mailto:you@example.com"><Mail size={16}/>shanna.ragavan@gmail.com</a>
           </div>
         </div>
 
@@ -39,10 +39,11 @@ export default function Home() {
           className="card aspect-square md:aspect-[4/3]"
         >
           <div className="card-pad h-full grid place-items-center">
-            {/* Replace with your photo or illustration */}
-            <div className="size-40 rounded-full bg-brand-100 grid place-items-center text-brand-700 text-3xl font-bold">
-              YN
-            </div>
+            <img
+            src="/pizzza-icon.png"
+            alt="Shanna Ragavan profile"
+            className="h-40 w-40 rounded-full object-cover ring-4 ring-brand-100"
+            />
           </div>
         </motion.div>
       </div>
