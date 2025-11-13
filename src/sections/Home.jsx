@@ -26,7 +26,7 @@ export default function Home() {
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-4 text-slate-600">
-            <span className="inline-flex items-center gap-2"><MapPin size={16}/>City, Country</span>
+            <span className="inline-flex items-center gap-2"><MapPin size={16}/>Toronto, Canada</span>
             <a className="inline-flex items-center gap-2 hover:text-slate-900" href="tel:+123456789"><Phone size={16}/>+1 416 275 0743</a>
             <a className="inline-flex items-center gap-2 hover:text-slate-900" href="mailto:you@example.com"><Mail size={16}/>shanna.ragavan@gmail.com</a>
           </div>
