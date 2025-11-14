@@ -44,8 +44,8 @@ export default function Contact() {
           <div className="card-pad space-y-3 text-slate-700">
             <h3 className="font-semibold">Availability</h3>
             <p className="text-sm">
-              Typically available for discovery calls on weekdays. Send a quick
-              note with your timeline and what you’re building, and I’ll reply promptly.
+              Available for discovery calls on weekdays. Send a quick
+              note with your timeline and what you’re building or working on, and I’ll reply promptly.
             </p>
             <ul className="text-sm list-disc pl-5 space-y-1">
               <li>Frontend (React, TypeScript, Tailwind)</li>
