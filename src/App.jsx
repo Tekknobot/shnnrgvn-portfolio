@@ -15,8 +15,7 @@ export default function App() {
         <Sidebar />
       </aside>
 
-      <main className="relative cursor-none">
-        <CustomCursor />
+      <main className="relative">
         <Home />
         <About />
         <Projects />
