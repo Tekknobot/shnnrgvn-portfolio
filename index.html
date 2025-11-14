@@ -3,19 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>My Portfolio</title>
 
-    <!-- Favicon -->
+    <title>Shanna Ragavan – Frontend Engineer & Game Developer in Toronto</title>
+
+    <meta
+      name="description"
+      content="Shanna Ragavan is a Toronto-based frontend engineer and game developer building interactive applications, dashboards, and 2D game experiences with React, TypeScript, Godot, C#, and modern web tools."
+    />
+
+    <!-- Basic SEO keywords (not as important as good copy, but harmless) -->
+    <meta
+      name="keywords"
+      content="Shanna Ragavan, frontend engineer Toronto, game developer Toronto, React developer, TypeScript, Godot, C#, interactive dashboards, sports tools, geopolitical dashboard"
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://shnnrgvn-portfolio.vercel.app/" />
+
+    <!-- Favicon / app icon -->
     <link rel="icon" type="image/png" href="/pizzza-icon.png" />
-
-    <!-- iOS home-screen icon -->
     <link rel="apple-touch-icon" href="/pizzza-icon.png" />
 
-    <!-- Social share preview (optional, helps when you post links) -->
-    <meta property="og:image" content="/pizzza-icon.png" />
-    <meta name="twitter:image" content="/pizzza-icon.png" />
+    <!-- Open Graph / social preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Shanna Ragavan – Frontend Engineer & Game Developer" />
+    <meta
+      property="og:description"
+      content="Toronto-based frontend engineer and game developer building interactive dashboards, sports tools, and 2D experiences with React, TypeScript, Godot, and C#."
+    />
+    <meta property="og:url" content="https://shnnrgvn-portfolio.vercel.app/" />
+    <meta property="og:image" content="https://shnnrgvn-portfolio.vercel.app/pizzza-icon.png" />
 
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Shanna Ragavan – Frontend Engineer & Game Developer" />
+    <meta
+      name="twitter:description"
+      content="Frontend engineer and game dev in Toronto, building interactive applications, dashboards, and playful tools."
+    />
+    <meta name="twitter:image" content="https://shnnrgvn-portfolio.vercel.app/pizzza-icon.png" />
+
+    <!-- Structured data: Person / portfolio -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Shanna Ragavan",
+        "jobTitle": "Frontend Engineer & Game Developer",
+        "url": "https://shnnrgvn-portfolio.vercel.app/",
+        "image": "https://shnnrgvn-portfolio.vercel.app/pizzza-icon.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Toronto",
+          "addressCountry": "Canada"
+        },
+        "knowsAbout": [
+          "Frontend development",
+          "React",
+          "TypeScript",
+          "Interactive dashboards",
+          "Geopolitical dashboards",
+          "Sports tools",
+          "Game development",
+          "Godot",
+          "Unity",
+          "C#",
+          "2D pixel art",
+          "Music production"
+        ],
+        "sameAs": [
+          "https://linkedin.com/in/shnnrgvn",
+          "https://zillatronics.itch.io"
+        ]
+      }
+    </script>
   </head>
+
   <body class="bg-white text-slate-900">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
