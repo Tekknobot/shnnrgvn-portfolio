@@ -20,7 +20,7 @@ const projects = [
     title: "NBA/NFL Calendar & Matchup Helpers",
     description:
       "Browse NBA or NFL schedules month-by-month, tap any game, and instantly see:\n\n"
-      + "• Recent form\n"
+      + "• Recent form (last 10 games)\n"
       + "• Light win-probability estimate (“Model edge”)\n"
       + "• Matchup notes and quick comparisons\n\n"
       + "Clean, mobile-friendly, and fun to explore.",
