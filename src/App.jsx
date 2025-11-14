@@ -6,6 +6,7 @@ import About from "./sections/About.jsx";
 import Projects from "./sections/Projects.jsx";
 import Skills from "./sections/Skills.jsx";
 import Contact from "./sections/Contact.jsx";
+import CustomCursor from "./components/CustomCursor.jsx";
 
 export default function App() {
   return (
@@ -14,7 +15,8 @@ export default function App() {
         <Sidebar />
       </aside>
 
-      <main className="relative">
+      <main className="relative cursor-none">
+        <CustomCursor />
         <Home />
         <About />
         <Projects />
