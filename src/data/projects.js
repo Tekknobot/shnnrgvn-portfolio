@@ -17,9 +17,9 @@ const projects = [
   },
 
   {
-    title: "NBA/NFL Calendar & Matchup Helper",
+    title: "NBA/NFL Calendar & Matchup Helpers",
     description:
-      "Browse NBA or NFL schedules month-by-month, tap any game, and instantly see:\n"
+      "Browse NBA or NFL schedules month-by-month, tap any game, and instantly see:\n\n"
       + "• Recent form\n"
       + "• Light win-probability estimate (“Model edge”)\n"
       + "• Matchup notes and quick comparisons\n\n"
@@ -34,7 +34,7 @@ const projects = [
   {
     title: "Indie Game Development (Unity C# & Godot)",
     description:
-      "Crafting small games and interactive experiences with a focus on:\n"
+      "Crafting small games and interactive experiences with a focus on:\n\n"
       + "• Retro 2D pixel-art aesthetics\n"
       + "• Audio-driven mechanics\n"
       + "• Gameplay prototyping and iteration\n\n"
