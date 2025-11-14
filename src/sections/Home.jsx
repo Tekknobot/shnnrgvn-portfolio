@@ -16,7 +16,7 @@ export default function Home() {
             Hi, I’m <span className="text-brand-600">Shanna.</span>
           </motion.h1>
           <p className="mt-4 text-slate-600 max-w-prose">
-            Frontend engineer focused on delightful, accessible experiences. I build
+            Frontend programmer focused on delightful, accessible experiences. I build
             performant interfaces with React, TypeScript, and a keen eye for mobile.
             <br /><br />
             I prototype quickly, iterate fast, and love turning rough concepts into
