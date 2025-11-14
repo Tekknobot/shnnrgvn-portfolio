@@ -17,7 +17,7 @@ export default function Home() {
           </motion.h1>
           <p className="mt-4 text-slate-600 max-w-prose">
             Frontend programmer focused on delightful, accessible experiences. I build
-            performant interfaces with React, TypeScript, and a keen eye for mobile.
+            performant interfaces with React, TypeScript, and a keen eye for mobile. I'm also a Game Dev.
             <br /><br />
             I prototype quickly, iterate fast, and love turning rough concepts into
             polished interactions. My work blends design, engineering, and a bit of
