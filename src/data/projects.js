@@ -21,7 +21,7 @@ const projects = [
     description:
       "Browse NBA or NFL schedules month-by-month, tap any game, and instantly see:\n\n"
       + "• Recent form (last 10 games)\n"
-      + "• Light win-probability estimate (“Model edge”)\n"
+      + "• Light win-probability estimate\n"
       + "• Matchup notes and quick comparisons\n\n"
       + "Clean, mobile-friendly, and fun to explore.",
     tags: ["React", "Vite", "Sports", "PWA", "Mobile"],
