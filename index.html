@@ -460,7 +460,32 @@
       }
     }
 
-    /********** ABOUT **********/
+    /* ABOUT section background image + heavy tint */
+    #about {
+      position: relative;
+      margin-top: 80px; /* keep the spacing you already use for sections */
+      padding: 40px 24px;
+      border-radius: 20px;
+      overflow: hidden;
+
+      background-image:
+        linear-gradient(120deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.88)),
+        url("images/jaffna.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-blend-mode: multiply;
+      border: 1px solid var(--border);
+    }
+
+    /* Make sure the text sits above the background */
+    #about .section-label,
+    #about .section-title,
+    #about .about-text {
+      position: relative;
+      z-index: 1;
+    }
+
     .about-text {
       font-size: 15px;
       color: var(--grey);
