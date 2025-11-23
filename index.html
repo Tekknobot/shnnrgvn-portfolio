@@ -202,7 +202,7 @@
     .hero {
       margin-top: 80px;
       position: relative;
-      overflow: hidden;
+      overflow: visible; /* let taller slides show fully */
     }
 
     .hero-title {
@@ -252,20 +252,21 @@
 
     .hero-carousel {
       position: relative;
-      min-height: 260px; /* keeps space reserved for slides */
+      min-height: 260px; /* baseline height; grows with active slide */
     }
 
     .hero-slide {
-      position: absolute;
-      inset: 0;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.7s ease;
+      position: absolute;
+      inset: 0;
     }
 
     .hero-slide.is-active {
       opacity: 1;
       pointer-events: auto;
+      position: relative; /* active slide participates in layout; no clipping */
     }
 
     /********** MARQUEE **********/
@@ -897,15 +898,15 @@
     function startMainAnimations() {
       if (!window.gsap) return;
 
-      // Minimal, clean intro: fade/slide the full headline
-      gsap.from(".hero-title", {
+      // Minimal, clean intro: fade/slide the full headline (active slide only)
+      gsap.from(".hero-slide.is-active .hero-title", {
         opacity: 0,
         y: 30,
         duration: 1.1,
         ease: "power3.out"
       });
 
-      gsap.to(".hero-sub", {
+      gsap.to(".hero-slide.is-active .hero-sub", {
         opacity: 1,
         y: 0,
         duration: 1.2,
@@ -955,7 +956,7 @@
     window.addEventListener("load", () => {
       initWebGL();
       initNav();
-      initHeroCarousel();   // <-- add this line
+      initHeroCarousel();
       startMainAnimations();
 
       if (window.feather) {
