@@ -410,36 +410,162 @@
       margin-top: 14px;
     }
 
-    /********** RESUME SECTION **********/
-    .resume-grid {
+    /********** RESUME / SNAPSHOT **********/
+    #resume {
+      margin-top: 80px;
+    }
+
+    .resume-wrapper {
       display: flex;
-      flex-wrap: wrap;
-      gap: 32px;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    /* LEFT: NAME + SKILLS */
+    .resume-sidebar {
+      flex: 0 0 260px;
+      max-width: 280px;
+    }
+
+    .resume-name {
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: 40px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.06em;
+      margin-bottom: 6px;
+    }
+
+    .resume-role {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .resume-sidebar-section {
+      margin-top: 40px;
+    }
+
+    .resume-sidebar-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .resume-sidebar-line {
+      flex: 0 0 20px;
+      height: 1px;
+      background: var(--fg);
+    }
+
+    .resume-skills-list {
+      margin-top: 14px;
+      list-style: none;
+      padding: 0;
       font-size: 14px;
       color: var(--grey);
     }
 
-    .resume-column {
-      flex: 1 1 260px;
-      min-width: 0;
+    .resume-skills-list li + li {
+      margin-top: 6px;
     }
 
-    .resume-column h3 {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 8px;
+    /* RIGHT: CONTACT + EXPERIENCE */
+    .resume-main {
+      flex: 1 1 auto;
+      min-width: 0;
+      font-size: 14px;
+      color: var(--grey);
+    }
+
+    /* top contact block with lines above and below */
+    .resume-contact-card {
+      border-top: 1px solid var(--fg);
+      border-bottom: 1px solid var(--fg);
+      padding: 18px 0 14px;
+      margin-bottom: 30px;
+    }
+
+    .resume-contact-name {
+      font-size: 18px;
+      font-weight: 600;
       color: var(--fg);
     }
 
-    .resume-column ul {
+    .resume-contact-role {
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 11px;
+      color: var(--grey);
+    }
+
+    .resume-contact-row {
+      margin-top: 8px;
+    }
+
+    .resume-contact-row a {
+      text-decoration: none;
+    }
+
+    .resume-contact-row a:hover {
+      text-decoration: underline;
+    }
+
+    /* short summary paragraph */
+    .resume-summary {
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+
+    /* experience blocks */
+    .resume-experience-section + .resume-experience-section {
+      margin-top: 28px;
+    }
+
+    .resume-experience-heading {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--fg);
+      margin-bottom: 4px;
+    }
+
+    .resume-experience-meta {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--grey);
+      margin-bottom: 10px;
+    }
+
+    .resume-experience-list {
       list-style: none;
       padding: 0;
       margin: 0;
+      line-height: 1.7;
     }
 
-    .resume-column li {
-      margin-bottom: 6px;
+    .resume-experience-list li + li {
+      margin-top: 6px;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      .resume-wrapper {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .resume-sidebar {
+        max-width: 100%;
+      }
     }
 
     /********** ICON LINKS **********/
@@ -763,42 +889,83 @@
       <h2 class="section-title">Resume Snapshot</h2>
       <div class="divider"></div>
 
-      <div class="resume-grid">
-        <div class="resume-column">
-          <h3>Skills</h3>
-          <ul>
-            <li>Front-end: HTML, CSS, modern JavaScript</li>
-            <li>Layouts & UI: responsive design, component-based thinking</li>
-            <li>Tools: Git, GitHub, VS Code, basic design tooling</li>
-            <li>Workflow: design systems, UX-focused iterations, accessibility-aware</li>
-          </ul>
-        </div>
+      <div class="resume-wrapper">
+        <!-- LEFT COLUMN -->
+        <aside class="resume-sidebar">
+          <div class="resume-name">Shanna<br>Ragavan</div>
+          <div class="resume-role">Front-End Web Developer</div>
 
-        <div class="resume-column">
-          <h3>Independent Work</h3>
-          <ul>
-            <li><strong>WebDesk</strong> — Desktop-style browser home screen.</li>
-            <li><strong>Geopolitics Dashboard</strong> — Interface for scanning and comparing events.</li>
-            <li>End-to-end: from idea → wireframe → build → polish.</li>
-            <li>Self-directed learning and experimentation with real projects.</li>
-            <li>
-              Game development as a hobby — small experiments and prototypes on
-              <a class="itch-link" href="https://zillatronics.itch.io" target="_blank" rel="noreferrer">zillatronics.itch.io</a>.
-            </li>
-          </ul>
-        </div>
+          <div class="resume-sidebar-section">
+            <div class="resume-sidebar-heading">
+              <span class="resume-sidebar-line"></span>
+              <span>Skills</span>
+            </div>
+            <ul class="resume-skills-list">
+              <li>Front-end: HTML, CSS, modern JavaScript</li>
+              <li>Responsive layouts &amp; component-based UI</li>
+              <li>Design-system thinking &amp; accessibility aware</li>
+              <li>Git, GitHub, VS Code, basic design tooling</li>
+              <li>UX-focused iterations &amp; detail-oriented polish</li>
+            </ul>
+          </div>
+        </aside>
 
-        <div class="resume-column">
-          <h3>Currently</h3>
-          <ul>
-            <li>Building more small, focused web tools and interfaces.</li>
-            <li>Learning deeper JavaScript, React, and front-end architecture.</li>
-            <li>Open to junior / entry-level front-end roles and internships.</li>
-            <li>Looking for teams that care about UI quality and thoughtful details.</li>
-          </ul>
+        <!-- RIGHT COLUMN -->
+        <div class="resume-main">
+          <!-- CONTACT CARD -->
+          <div class="resume-contact-card">
+            <div class="resume-contact-name">Shanna Ragavan</div>
+            <div class="resume-contact-role">Front-End Web Developer · Toronto, Canada</div>
+
+            <div class="resume-contact-row">
+              <a href="mailto:shanna.ragavan@gmail.com">shanna.ragavan@gmail.com</a>
+            </div>
+            <div class="resume-contact-row">
+              <a href="https://www.linkedin.com/in/shnnrgvn/" target="_blank" rel="noreferrer">
+                linkedin.com/in/shnnrgvn
+              </a>
+            </div>
+          </div>
+
+          <!-- SHORT SUMMARY -->
+          <p class="resume-summary">
+            Front-end web developer with a background in graphic design, focused on clean interfaces,
+            component-based layouts, and thoughtful details. Comfortable taking a project from idea to
+            prototype to polished build, using modern JavaScript, responsive design, and AI-assisted
+            workflows to move quickly without sacrificing quality.
+          </p>
+
+          <!-- EXPERIENCE: INDEPENDENT WORK -->
+          <div class="resume-experience-section">
+            <h3 class="resume-experience-heading">Independent Work</h3>
+            <p class="resume-experience-meta">Self-directed projects · Ongoing</p>
+            <ul class="resume-experience-list">
+              <li><strong>WebDesk</strong> — Desktop-style browser home screen for organizing tools and links.</li>
+              <li><strong>Geopolitics Dashboard</strong> — Interface for scanning and comparing events in a global context.</li>
+              <li>End-to-end approach: idea → wireframe → build → refine visual details and interactions.</li>
+              <li>Self-directed learning and experimentation using real projects instead of tutorials alone.</li>
+              <li>
+                Game development as a hobby — small experiments and prototypes on
+                <a class="itch-link" href="https://zillatronics.itch.io" target="_blank" rel="noreferrer">zillatronics.itch.io</a>.
+              </li>
+            </ul>
+          </div>
+
+          <!-- EXPERIENCE: CURRENTLY -->
+          <div class="resume-experience-section">
+            <h3 class="resume-experience-heading">Currently</h3>
+            <p class="resume-experience-meta">Focus · 2025</p>
+            <ul class="resume-experience-list">
+              <li>Building more small, focused web tools and interfaces.</li>
+              <li>Deepening knowledge of JavaScript, React, and front-end architecture.</li>
+              <li>Open to junior / entry-level front-end roles and internships.</li>
+              <li>Looking for teams that care about UI quality and thoughtful, polished details.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
+
 
     <!-- PRICING -->
     <section id="pricing">
