@@ -883,7 +883,7 @@
   </div>
 
   <script>
-    let scene, camera, renderer, points, clock, starPositions, numStars;
+    let scene, camera, renderer, points, clock, numStars;
 
     function initWebGL() {
       const canvas = document.getElementById("bg-canvas");
@@ -900,50 +900,50 @@
 
       scene = new THREE.Scene();
 
-      // Fixed camera, looking straight ahead
+      // Fixed camera, straight ahead
       camera = new THREE.PerspectiveCamera(
         70,
         window.innerWidth / window.innerHeight,
         0.1,
         1000
       );
-      camera.position.z = 10;
+      camera.position.z = 5;
+      camera.lookAt(0, 0, 0);
 
       renderer = new THREE.WebGLRenderer({
         canvas,
-        alpha: true,
+        alpha: false,     // solid background so we see it for sure
         antialias: true
       });
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
-
-      // Make sure background is solid black so stars really pop
-      renderer.setClearColor(0x000000, 1);
+      renderer.setClearColor(0x000000, 1); // black
 
       // --- STARFIELD SETUP ---
-      numStars = 2000; // more stars = denser field
-      starPositions = new Float32Array(numStars * 3);
+      numStars = 1500;
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(numStars * 3);
 
-      const spread = 120; // how far out stars appear in X/Y
-      const depth = 200;  // how deep the starfield goes along Z
+      const spread = 40;   // tighter so more appear in center
+      const depth = 80;    // shallower so recycling feels fast
 
       for (let i = 0; i < numStars; i++) {
         const i3 = i * 3;
 
-        // Random X/Y inside a square-ish area
-        starPositions[i3 + 0] = (Math.random() - 0.5) * spread;
-        starPositions[i3 + 1] = (Math.random() - 0.5) * spread;
+        // X/Y around center
+        positions[i3 + 0] = (Math.random() - 0.5) * spread;
+        positions[i3 + 1] = (Math.random() - 0.5) * spread;
 
-        // Z is in front of the camera (negative = “far away”)
-        starPositions[i3 + 2] = -Math.random() * depth;
+        // Z in front of camera (negative)
+        positions[i3 + 2] = -Math.random() * depth;
       }
 
-      const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute("position", new THREE.BufferAttribute(starPositions, 3));
+      geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
       const material = new THREE.PointsMaterial({
-        color: 0xffffff,
-        size: 2.4,          // bigger so you definitely see them
+        color: 0xffffff,     // WHITE stars
+        size: 3.5,           // big chunky pixels
+        sizeAttenuation: false, // same screen size regardless of depth
         transparent: true,
         opacity: 1,
         depthWrite: false
@@ -954,26 +954,25 @@
 
       clock = new THREE.Clock();
 
-      // --- ANIMATE (90s SCREENSAVER STYLE) ---
       function animate() {
         requestAnimationFrame(animate);
 
         const delta = clock.getDelta();
-        const speed = 60; // faster so motion is obvious
+        const speed = 35; // tweak if you want faster/slower
 
-        const positions = points.geometry.attributes.position.array;
+        const pos = points.geometry.attributes.position.array;
 
         for (let i = 0; i < numStars; i++) {
           const i3 = i * 3;
 
-          // Move star toward the camera (in +Z)
-          positions[i3 + 2] += speed * delta;
+          // fly toward camera
+          pos[i3 + 2] += speed * delta;
 
-          // If it passes the camera, recycle it far away again
-          if (positions[i3 + 2] > camera.position.z) {
-            positions[i3 + 0] = (Math.random() - 0.5) * spread;
-            positions[i3 + 1] = (Math.random() - 0.5) * spread;
-            positions[i3 + 2] = -depth;
+          // recycle when past camera
+          if (pos[i3 + 2] > camera.position.z) {
+            pos[i3 + 0] = (Math.random() - 0.5) * spread;
+            pos[i3 + 1] = (Math.random() - 0.5) * spread;
+            pos[i3 + 2] = -depth;
           }
         }
 
@@ -1004,7 +1003,7 @@
 
       letters.forEach((letter, index) => {
         letter.addEventListener("mouseenter", () => {
-          const maxDistance = 6; // how far the ripple spreads
+          const maxDistance = 6;
 
           for (let offset = 0; offset <= maxDistance; offset++) {
             const left = letters[index - offset];
@@ -1014,8 +1013,6 @@
               if (!el) return;
 
               const delay = offset * 0.04;
-
-              // get the current/base color so we can ripple back to it via yoyo
               const baseColor = getComputedStyle(el).color;
 
               gsap.fromTo(
@@ -1055,7 +1052,6 @@
         });
       });
 
-      // header style on scroll
       const onScroll = () => {
         if (window.scrollY > 10) {
           headerEl.classList.add("header-scrolled");
@@ -1065,13 +1061,12 @@
       };
 
       window.addEventListener("scroll", onScroll);
-      onScroll(); // init state
+      onScroll();
     }
 
     function startMainAnimations() {
       if (!window.gsap) return;
 
-      // Minimal, clean intro: fade/slide the full headline
       gsap.from(".hero-title", {
         opacity: 0,
         y: 30,
@@ -1087,7 +1082,6 @@
         ease: "power2.out"
       });
 
-      // Parallax sphere
       gsap.to(".hero-parallax", {
         y: 80,
         duration: 6,
@@ -1096,7 +1090,6 @@
         yoyo: true
       });
 
-      // Section entrance
       if (window.ScrollTrigger) {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -1122,7 +1115,6 @@
         });
       }
 
-      // NEW: ripple hover effect on hero letters
       initHeroRipple();
     }
 
