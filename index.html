@@ -887,7 +887,16 @@
 
     function initWebGL() {
       const canvas = document.getElementById("bg-canvas");
-      if (!canvas || !window.THREE) return;
+      if (!canvas) {
+        console.warn("No #bg-canvas element found");
+        return;
+      }
+      if (!window.THREE) {
+        console.warn("THREE.js not loaded");
+        return;
+      }
+
+      console.log("initWebGL running ✅");
 
       scene = new THREE.Scene();
 
@@ -908,12 +917,15 @@
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
 
+      // Make sure background is solid black so stars really pop
+      renderer.setClearColor(0x000000, 1);
+
       // --- STARFIELD SETUP ---
-      numStars = 1200;
+      numStars = 2000; // more stars = denser field
       starPositions = new Float32Array(numStars * 3);
 
-      const spread = 80;   // how far out stars appear in X/Y
-      const depth = 300;   // how deep the starfield goes along Z
+      const spread = 120; // how far out stars appear in X/Y
+      const depth = 200;  // how deep the starfield goes along Z
 
       for (let i = 0; i < numStars; i++) {
         const i3 = i * 3;
@@ -931,9 +943,9 @@
 
       const material = new THREE.PointsMaterial({
         color: 0xffffff,
-        size: 1.3,
+        size: 2.4,          // bigger so you definitely see them
         transparent: true,
-        opacity: 0.9,
+        opacity: 1,
         depthWrite: false
       });
 
@@ -947,7 +959,7 @@
         requestAnimationFrame(animate);
 
         const delta = clock.getDelta();
-        const speed = 40; // tweak this for faster/slower starfield
+        const speed = 60; // faster so motion is obvious
 
         const positions = points.geometry.attributes.position.array;
 
