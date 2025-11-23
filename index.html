@@ -206,6 +206,38 @@
 
     .arrow { opacity: 0.6; }
 
+    /********** RESUME SECTION **********/
+    .resume-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      font-size: 14px;
+      color: var(--grey);
+    }
+
+    .resume-column {
+      flex: 1 1 260px;
+      min-width: 0;
+    }
+
+    .resume-column h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      color: var(--fg);
+    }
+
+    .resume-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .resume-column li {
+      margin-bottom: 6px;
+    }
+
     /********** FOOTER **********/
     footer {
       margin-top: 100px;
@@ -220,6 +252,7 @@
     @media (max-width: 768px) {
       body { padding: 16px; }
       header { flex-direction: column; gap: 4px; }
+      .resume-grid { flex-direction: column; }
     }
   </style>
 </head>
@@ -283,7 +316,7 @@
 
       <p class="hero-sub">
         I’m a front-end web developer focused on clean interfaces, fast experiences, and small details
-        that make products feel thought-through. I work with modern JavaScript, design systems,
+        that make products feel intentional. I work with modern JavaScript, design systems,
         and AI-assisted workflows — using AI to explore concepts, prototype faster, and refine the final UI —
         so teams can move from idea to polished web experience quickly.
       </p>
@@ -329,6 +362,45 @@
         </div>
         <div class="arrow">↗</div>
       </article>
+    </section>
+
+    <!-- RESUME / SNAPSHOT -->
+    <section>
+      <p class="section-label">Overview</p>
+      <h2 class="section-title">Resume Snapshot</h2>
+      <div class="divider"></div>
+
+      <div class="resume-grid">
+        <div class="resume-column">
+          <h3>Skills</h3>
+          <ul>
+            <li>Front-end: HTML, CSS, modern JavaScript</li>
+            <li>Layouts & UI: responsive design, component-based thinking</li>
+            <li>Tools: Git, GitHub, VS Code, basic design tooling</li>
+            <li>Workflow: design systems, UX-focused iterations, accessibility-aware</li>
+          </ul>
+        </div>
+
+        <div class="resume-column">
+          <h3>Independent Work</h3>
+          <ul>
+            <li><strong>WebDesk</strong> — Desktop-style browser home screen.</li>
+            <li><strong>Geopolitics Dashboard</strong> — Interface for scanning and comparing events.</li>
+            <li>End-to-end: from idea → wireframe → build → polish.</li>
+            <li>Self-directed learning and experimentation with real projects.</li>
+          </ul>
+        </div>
+
+        <div class="resume-column">
+          <h3>Currently</h3>
+          <ul>
+            <li>Building more small, focused web tools and interfaces.</li>
+            <li>Learning deeper JavaScript, React, and front-end architecture.</li>
+            <li>Open to junior / entry-level front-end roles and internships.</li>
+            <li>Looking for teams that care about UI quality and thoughtful details.</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- FOOTER -->
