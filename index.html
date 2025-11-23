@@ -369,20 +369,32 @@
     }
 
     /********** PROJECTS **********/
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+
     .project {
-      border-bottom: 1px solid var(--border);
-      padding: 18px 0;
+      border: 1px solid var(--border);
+      padding: 18px 18px 16px;
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       cursor: pointer;
-      transition: 0.3s ease;
-      gap: 10px;
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+      background: rgba(5, 5, 5, 0.9);
     }
 
     .project:hover {
       background: var(--hover);
-      transform: translateX(4px);
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
     }
 
     .project-content {
@@ -402,7 +414,7 @@
     }
 
     .project-media {
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     .project-thumb {
@@ -435,23 +447,18 @@
       margin-left: 8px;
     }
 
-
-    /* Mobile: stack text + thumbnails */
-    @media (max-width: 768px) {
-      .project {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .project-media {
-        flex: none;
-        max-width: 100%;
-        width: 100%;
+    /* Responsive: 2 columns on medium, 1 on small */
+    @media (max-width: 1000px) {
+      .projects-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-top: 12px;
       }
     }
 
+    @media (max-width: 640px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     /********** ABOUT **********/
     .about-text {
@@ -888,46 +895,55 @@
       <h2 class="section-title">Projects</h2>
       <div class="divider"></div>
 
-      <!-- WEBdesk -->
-      <article class="project" onclick="window.open('https://webdesk-os.vercel.app/')">
-        <div class="project-content">
-          <div class="project-title">
-            WebDesk — Desktop-Style Home Screen
-            <span class="arrow">↗</span>
-          </div>
-          <div class="project-meta">
-            A desktop-style home screen for your browser. Clean, app-like layout for bookmarks and daily tools.
-          </div>
+      <div class="projects-grid">
+        <!-- WEBdesk -->
+        <article class="project" onclick="window.open('https://webdesk-os.vercel.app/')">
+          <div class="project-content">
+            <div class="project-title">
+              WebDesk — Desktop-Style Home Screen
+              <span class="arrow">↗</span>
+            </div>
+            <div class="project-meta">
+              A desktop-style home screen for your browser. Clean, app-like layout for bookmarks and daily tools.
+            </div>
 
-          <div class="project-media" aria-hidden="true">
-            <div class="project-thumb">
-              <img src="images/webdesk-01.png" alt="WebDesk home screen layout preview" />
+            <div class="project-media" aria-hidden="true">
+              <div class="project-thumb">
+                <img src="images/webdesk-01.png" alt="WebDesk home screen layout preview" />
+              </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- Geopolitics Dashboard -->
-      <article class="project" onclick="window.open('https://geopol-dashboard.vercel.app/')">
-        <div class="project-content">
-          <div class="project-title">
-            Geopolitics Analysis Dashboard
-            <span class="arrow">↗</span>
-          </div>
-          <div class="project-meta">
-            Interface for scanning local events and viewing them in global context. Built around clarity, hierarchy,
-            and fast reading for analysts and decision-makers.
-          </div>
+        <!-- Geopolitics Dashboard -->
+        <article class="project" onclick="window.open('https://geopol-dashboard.vercel.app/')">
+          <div class="project-content">
+            <div class="project-title">
+              Geopolitics Analysis Dashboard
+              <span class="arrow">↗</span>
+            </div>
+            <div class="project-meta">
+              Interface for scanning local events and viewing them in global context. Built around clarity, hierarchy,
+              and fast reading for analysts and decision-makers.
+            </div>
 
-          <div class="project-media" aria-hidden="true">
-            <div class="project-thumb">
-              <img src="images/geopol-01.png" alt="Overview of geopolitics dashboard main view" />
+            <div class="project-media" aria-hidden="true">
+              <div class="project-thumb">
+                <img src="images/geopol-01.png" alt="Overview of geopolitics dashboard main view" />
+              </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
 
+        <!-- (Optional) third card placeholder for when you add another project -->
+        <!--
+        <article class="project">
+          ...
+        </article>
+        -->
+      </div>
     </section>
+
 
     <!-- ABOUT ME -->
     <section id="about">
