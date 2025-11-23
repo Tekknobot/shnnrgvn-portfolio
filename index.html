@@ -374,14 +374,20 @@
       padding: 18px 0;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       cursor: pointer;
       transition: 0.3s ease;
+      gap: 24px;
     }
 
     .project:hover {
       background: var(--hover);
       transform: translateX(4px);
+    }
+
+    .project-content {
+      flex: 1 1 0;
+      min-width: 0;
     }
 
     .project-title {
@@ -396,7 +402,61 @@
       margin-top: 4px;
     }
 
-    .arrow { opacity: 0.6; }
+    /* Thumbnail strip on the right */
+    .project-media {
+      flex: 0 0 220px;
+      max-width: 240px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .project-thumb {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #050505;
+    }
+
+    .project-thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      opacity: 0.9;
+      transition:
+        transform 0.4s ease,
+        opacity 0.3s ease;
+    }
+
+    .project:hover .project-thumb img {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+
+    .arrow {
+      opacity: 0.6;
+      font-size: 18px;
+      margin-left: 8px;
+    }
+
+    /* Mobile: stack text + thumbnails */
+    @media (max-width: 768px) {
+      .project {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .project-media {
+        flex: none;
+        max-width: 100%;
+        width: 100%;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 12px;
+      }
+    }
+
 
     /********** ABOUT **********/
     .about-text {
@@ -835,25 +895,47 @@
 
       <!-- WEBdesk -->
       <article class="project" onclick="window.open('https://webdesk-os.vercel.app/')">
-        <div>
-          <div class="project-title">WebDesk — Desktop-Style Home Screen</div>
+        <div class="project-content">
+          <div class="project-title">
+            WebDesk — Desktop-Style Home Screen
+            <span class="arrow">↗</span>
+          </div>
           <div class="project-meta">
             A desktop-style home screen for your browser. Clean, app-like layout for bookmarks and daily tools.
           </div>
         </div>
-        <div class="arrow">↗</div>
+
+        <div class="project-media" aria-hidden="true">
+          <div class="project-thumb">
+            <img src="images/webdesk-01.png" alt="WebDesk home screen layout preview" />
+          </div>
+          <div class="project-thumb">
+            <img src="images/webdesk-01.png" alt="WebDesk window and tile details" />
+          </div>
+        </div>
       </article>
 
       <!-- Geopolitics Dashboard -->
       <article class="project" onclick="window.open('https://geopol-dashboard.vercel.app/')">
-        <div>
-          <div class="project-title">Geopolitics Analysis Dashboard</div>
+        <div class="project-content">
+          <div class="project-title">
+            Geopolitics Analysis Dashboard
+            <span class="arrow">↗</span>
+          </div>
           <div class="project-meta">
             Interface for scanning local events and viewing them in global context. Built around clarity, hierarchy,
             and fast reading for analysts and decision-makers.
           </div>
         </div>
-        <div class="arrow">↗</div>
+
+        <div class="project-media" aria-hidden="true">
+          <div class="project-thumb">
+            <img src="images/geopol-01.png" alt="Overview of geopolitics dashboard main view" />
+          </div>
+          <div class="project-thumb">
+            <img src="images/geopol-02.png" alt="Detail view of event cards and maps" />
+          </div>
+        </div>
       </article>
     </section>
 
