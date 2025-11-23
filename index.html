@@ -217,6 +217,13 @@
       display: block;
     }
 
+    /* Ensure all hero lines (including GAME / MUSIC) share the same tight kerning */
+    .hero-slide[data-slide="game"] .hero-line,
+    .hero-slide[data-slide="music"] .hero-line {
+      text-transform: uppercase;
+      letter-spacing: -0.16em;
+    }
+
     .hero-letter {
       display: inline-block;
       will-change: transform;
@@ -253,7 +260,6 @@
     .hero-carousel {
       position: relative;
       min-height: 260px; /* baseline height; grows with active slide */
-      letter-spacing: -0.16em;
     }
 
     .hero-slide {
@@ -580,6 +586,13 @@
           </p>
         </div>
       </div>
+
+      <div class="hero-nav" aria-label="Hero navigation">
+        <button class="hero-dot is-active" data-target="0">WEB</button>
+        <button class="hero-dot" data-target="1">GAME</button>
+        <button class="hero-dot" data-target="2">MUSIC</button>
+      </div>
+
     </section>
 
     <!-- MARQUEE -->
