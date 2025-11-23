@@ -203,6 +203,73 @@
       margin-top: 80px;
       position: relative;
       overflow: hidden;
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .hero-main {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .hero-skills {
+      flex: 0 0 280px;
+      max-width: 320px;
+      border: 1px solid var(--border);
+      background: rgba(5, 5, 5, 0.9);
+      padding: 18px 18px 16px;
+      border-radius: 16px;
+      font-size: 13px;
+      color: var(--grey);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-skills-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--fg);
+      margin-bottom: 10px;
+    }
+
+    .hero-skills-group {
+      margin-bottom: 12px;
+    }
+
+    .hero-skills-group:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .hero-skills-group h3 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .hero-skills-group ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .hero-skills-group li {
+      margin-bottom: 3px;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+
+      .hero-skills {
+        flex: none;
+        max-width: 100%;
+        margin-top: 24px;
+      }
     }
 
     .hero-title {
@@ -485,53 +552,86 @@
     <section class="hero">
       <div class="hero-parallax"></div>
 
-      <!-- HEADLINE: FRONT END / WEB / DEVELOPMENT -->
-      <h1 class="hero-title" aria-label="Front End Web Development">
-        <!-- LINE 1: FRONT END -->
-        <span class="hero-line">
-          <span class="hero-letter">F</span>
-          <span class="hero-letter">R</span>
-          <span class="hero-letter">O</span>
-          <span class="hero-letter">N</span>
-          <span class="hero-letter">T</span>
+      <div class="hero-main">
+        <!-- HEADLINE: FRONT END / WEB / DEVELOPMENT -->
+        <h1 class="hero-title" aria-label="Front End Web Development">
+          <!-- LINE 1: FRONT END -->
+          <span class="hero-line">
+            <span class="hero-letter">F</span>
+            <span class="hero-letter">R</span>
+            <span class="hero-letter">O</span>
+            <span class="hero-letter">N</span>
+            <span class="hero-letter">T</span>
 
-          <span class="hero-space"></span>
+            <span class="hero-space"></span>
 
-          <span class="hero-letter">E</span>
-          <span class="hero-letter">N</span>
-          <span class="hero-letter">D</span>
-        </span>
+            <span class="hero-letter">E</span>
+            <span class="hero-letter">N</span>
+            <span class="hero-letter">D</span>
+          </span>
 
-        <!-- LINE 2: WEB -->
-        <span class="hero-line">
-          <span class="hero-letter">W</span>
-          <span class="hero-letter">E</span>
-          <span class="hero-letter">B</span>
-        </span>
+          <!-- LINE 2: WEB -->
+          <span class="hero-line">
+            <span class="hero-letter">W</span>
+            <span class="hero-letter">E</span>
+            <span class="hero-letter">B</span>
+          </span>
 
-        <!-- LINE 3: DEVELOPMENT -->
-        <span class="hero-line">
-          <span class="hero-letter">D</span>
-          <span class="hero-letter">E</span>
-          <span class="hero-letter">V</span>
-          <span class="hero-letter">E</span>
-          <span class="hero-letter">L</span>
-          <span class="hero-letter">O</span>
-          <span class="hero-letter">P</span>
-          <span class="hero-letter">M</span>
-          <span class="hero-letter">E</span>
-          <span class="hero-letter">N</span>
-          <span class="hero-letter">T</span>
-        </span>
-      </h1>
+          <!-- LINE 3: DEVELOPMENT -->
+          <span class="hero-line">
+            <span class="hero-letter">D</span>
+            <span class="hero-letter">E</span>
+            <span class="hero-letter">V</span>
+            <span class="hero-letter">E</span>
+            <span class="hero-letter">L</span>
+            <span class="hero-letter">O</span>
+            <span class="hero-letter">P</span>
+            <span class="hero-letter">M</span>
+            <span class="hero-letter">E</span>
+            <span class="hero-letter">N</span>
+            <span class="hero-letter">T</span>
+          </span>
+        </h1>
 
-      <p class="hero-sub">
-        I’m a front-end web developer based in Toronto, Canada — focused on clean interfaces, fast experiences,
-        and the small details that make products feel intentional. I work with modern JavaScript, design systems,
-        and AI-assisted workflows — using AI to explore concepts, prototype faster, and refine the final UI —
-        so teams can move from idea to polished web experience quickly.
-      </p>
+        <p class="hero-sub">
+          I’m a front-end web developer based in Toronto, Canada — focused on clean interfaces, fast experiences,
+          and the small details that make products feel intentional. I work with modern JavaScript, design systems,
+          and AI-assisted workflows — using AI to explore concepts, prototype faster, and refine the final UI —
+          so teams can move from idea to polished web experience quickly.
+        </p>
+      </div>
 
+      <!-- SKILLS / STACKS PANEL -->
+      <aside class="hero-skills" aria-label="Technical skills and stacks">
+        <div class="hero-skills-title">Stacks</div>
+
+        <div class="hero-skills-group">
+          <h3>Game Development</h3>
+          <ul>
+            <li>Unity (C#) — prototyping and gameplay systems</li>
+            <li>Godot Engine — 2D & 3D scene-based workflows</li>
+            <li>Level design, camera feel, player feedback</li>
+          </ul>
+        </div>
+
+        <div class="hero-skills-group">
+          <h3>Web / Front-End</h3>
+          <ul>
+            <li>HTML, modern CSS, JavaScript</li>
+            <li>Responsive layouts & component-based UI</li>
+            <li>Design-system thinking & accessibility awareness</li>
+          </ul>
+        </div>
+
+        <div class="hero-skills-group">
+          <h3>Tools & Workflow</h3>
+          <ul>
+            <li>Git & GitHub for version control</li>
+            <li>VS Code as main editor</li>
+            <li>AI-assisted experimentation and iteration</li>
+          </ul>
+        </div>
+      </aside>
     </section>
 
     <!-- MARQUEE -->
