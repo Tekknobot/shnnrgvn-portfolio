@@ -330,7 +330,7 @@
         and AI-assisted workflows — using AI to explore concepts, prototype faster, and refine the final UI —
         so teams can move from idea to polished web experience quickly.
       </p>
-      
+
     </section>
 
     <!-- MARQUEE -->
@@ -518,6 +518,50 @@
       });
     }
 
+    function initHeroRipple() {
+      if (!window.gsap) return;
+
+      const letters = Array.from(document.querySelectorAll(".hero-letter"));
+      if (!letters.length) return;
+
+      const rootStyles = getComputedStyle(document.documentElement);
+      const accentColor = (rootStyles.getPropertyValue("--accent") || "#b7b7b7").trim();
+
+      letters.forEach((letter, index) => {
+        letter.addEventListener("mouseenter", () => {
+          const maxDistance = 6; // how far the ripple spreads
+
+          for (let offset = 0; offset <= maxDistance; offset++) {
+            const left = letters[index - offset];
+            const right = letters[index + offset];
+
+            [left, right].forEach((el) => {
+              if (!el) return;
+
+              const delay = offset * 0.04;
+
+              // get the current/base color so we can ripple back to it via yoyo
+              const baseColor = getComputedStyle(el).color;
+
+              gsap.fromTo(
+                el,
+                { color: baseColor, y: 0 },
+                {
+                  color: accentColor,
+                  y: -6,
+                  duration: 0.22,
+                  yoyo: true,
+                  repeat: 1,
+                  ease: "power2.out",
+                  delay
+                }
+              );
+            });
+          }
+        });
+      });
+    }
+
     function startMainAnimations() {
       if (!window.gsap) return;
 
@@ -571,6 +615,9 @@
           scrollTrigger: ".divider"
         });
       }
+
+      // NEW: ripple hover effect on hero letters
+      initHeroRipple();
     }
 
     window.addEventListener("load", () => {
