@@ -454,6 +454,61 @@
       height: 16px;
     }
 
+    /* PRICING SECTION */
+    .pricing-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .pricing-card {
+      flex: 1 1 260px;
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: 16px;
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(12px);
+      transition: 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      background: var(--hover);
+      transform: translateY(-4px);
+    }
+
+    .pricing-title {
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+
+    .pricing-price {
+      font-size: 26px;
+      margin-bottom: 14px;
+      color: var(--accent);
+    }
+
+    .pricing-desc {
+      font-size: 14px;
+      color: var(--grey);
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .pricing-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      color: var(--grey);
+    }
+
+    .pricing-list li {
+      margin-bottom: 8px;
+    }
+
     /********** FOOTER **********/
     footer {
       margin-top: 100px;
@@ -613,7 +668,7 @@
             <li>Design-system thinking & accessibility awareness</li>
           </ul>
         </div>
-                
+
         <div class="hero-skills-group">
           <h3>Game Development</h3>
           <ul>
@@ -742,6 +797,68 @@
             <li>Looking for teams that care about UI quality and thoughtful details.</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <p class="section-label">Services</p>
+      <h2 class="section-title">Pricing</h2>
+      <div class="divider"></div>
+
+      <div class="pricing-grid">
+
+        <!-- CARD 1 -->
+        <div class="pricing-card">
+          <h3 class="pricing-title">Static Portfolio Site</h3>
+          <div class="pricing-price">$300</div>
+          <p class="pricing-desc">
+            A clean, fast, single-page portfolio built around your work. Ideal for artists,
+            creators, students, and anyone who wants a polished personal site.
+          </p>
+          <ul class="pricing-list">
+            <li>Responsive layout for all screens</li>
+            <li>Custom typography + color system</li>
+            <li>Optimized animations and transitions</li>
+            <li>Contact links + social embeds</li>
+            <li>Deployment included (Vercel/Netlify)</li>
+          </ul>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="pricing-card">
+          <h3 class="pricing-title">Small Multi-Page Site</h3>
+          <div class="pricing-price">$500</div>
+          <p class="pricing-desc">
+            A focused 2–5 page website — ideal for small studios, indie games, musicians,
+            personal brands, and product landing pages.
+          </p>
+          <ul class="pricing-list">
+            <li>Multi-page navigation system</li>
+            <li>Custom layouts & sections</li>
+            <li>Light animations + visual polish</li>
+            <li>SEO-friendly semantic markup</li>
+            <li>Hosting & deployment included</li>
+          </ul>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="pricing-card">
+          <h3 class="pricing-title">Fully Custom Experience</h3>
+          <div class="pricing-price">$1200+</div>
+          <p class="pricing-desc">
+            A fully custom interface — interactive elements, animations, deeper visual design,
+            and handcrafted UI pieces built around your project.
+          </p>
+          <ul class="pricing-list">
+            <li>Custom motion design & micro-interactions</li>
+            <li>Component-based UI architecture</li>
+            <li>Tailored layout & art direction</li>
+            <li>Optional CMS or content tools</li>
+            <li>Ongoing updates available</li>
+          </ul>
+        </div>
+
       </div>
     </section>
 
