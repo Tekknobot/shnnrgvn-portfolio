@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shanna Ragavan — Front-End Web Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- THREE.js for 3D / WebGL -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js" defer></script>
+
+  <style>
+    /********** THEME **********/
+    :root {
+      --bg: #000;
+      --fg: #f7f7f7;
+      --grey: #888;
+      --accent: #b7b7b7;
+      --border: #191919;
+      --hover: #111;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Space Grotesk", sans-serif;
+      overflow-x: hidden;
+      padding: 24px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    /********** BACKGROUND CANVAS (3D) **********/
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /********** CURSOR ORB **********/
+    .cursor-orb {
+      position: fixed;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 900;
+      mix-blend-mode: screen;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1), transparent 70%);
+      opacity: 0.7;
+      filter: blur(4px);
+    }
+
+    /********** HEADER **********/
+    header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    header div { opacity: 0.8; }
+
+    /********** HERO **********/
+    .hero {
+      margin-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-title {
+      font-family: "Oswald", system-ui, sans-serif;
+      font-size: clamp(64px, 14vw, 120px);
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: -0.16em; /* tighter kerning */
+    }
+
+    .hero-line {
+      display: block;
+    }
+
+    .hero-letter {
+      display: inline-block;
+      will-change: transform;
+    }
+
+    .hero-space {
+      display: inline-block;
+      width: 0.14em; /* narrower spaces for tight feel */
+    }
+
+    .hero-sub {
+      margin-top: 24px;
+      font-size: 16px;
+      color: var(--grey);
+      max-width: 640px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-parallax {
+      position: absolute;
+      top: -40px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, #222 0%, #000 70%);
+      border-radius: 50%;
+      filter: blur(30px);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /********** MARQUEE **********/
+    .marquee {
+      margin-top: 80px;
+      border-block: 1px solid var(--border);
+      overflow: hidden;
+      padding-block: 14px;
+      position: relative;
+    }
+
+    .marquee-inner {
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: marquee 16s linear infinite;
+    }
+
+    .marquee span { padding: 0 40px; color: var(--grey); }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /********** SECTIONS **********/
+    section { margin-top: 80px; }
+
+    .section-label {
+      font-size: 12px;
+      color: var(--grey);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      letter-spacing: 0.15em;
+      opacity: 0;
+    }
+
+    .section-title {
+      font-size: 26px;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      width: 0%;
+      margin: 30px 0;
+    }
+
+    /********** PROJECTS **********/
+    .project {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .project:hover {
+      background: var(--hover);
+      transform: translateX(4px);
+    }
+
+    .project-title {
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .project-meta {
+      font-size: 13px;
+      color: var(--grey);
+      letter-spacing: 0.12em;
+      margin-top: 4px;
+    }
+
+    .arrow { opacity: 0.6; }
+
+    /********** FOOTER **********/
+    footer {
+      margin-top: 100px;
+      font-size: 14px;
+      color: var(--grey);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    footer .links { display: flex; gap: 16px; }
+
+    @media (max-width: 768px) {
+      body { padding: 16px; }
+      header { flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- WEBGL BACKGROUND -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- CURSOR ORB -->
+  <div class="cursor-orb"></div>
+
+  <div class="layout">
+
+    <!-- HEADER -->
+    <header>
+      <div>Shanna Ragavan</div>
+      <div>Front-End Web Developer</div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-parallax"></div>
+
+      <!-- HEADLINE: FRONT END / WEB / DEVELOPMENT -->
+      <h1 class="hero-title" aria-label="Front End Web Development">
+        <!-- LINE 1: FRONT END -->
+        <span class="hero-line">
+          <span class="hero-letter">F</span>
+          <span class="hero-letter">R</span>
+          <span class="hero-letter">O</span>
+          <span class="hero-letter">N</span>
+          <span class="hero-letter">T</span>
+
+          <span class="hero-space"></span>
+
+          <span class="hero-letter">E</span>
+          <span class="hero-letter">N</span>
+          <span class="hero-letter">D</span>
+        </span>
+
+        <!-- LINE 2: WEB -->
+        <span class="hero-line">
+          <span class="hero-letter">W</span>
+          <span class="hero-letter">E</span>
+          <span class="hero-letter">B</span>
+        </span>
+
+        <!-- LINE 3: DEVELOPMENT -->
+        <span class="hero-line">
+          <span class="hero-letter">D</span>
+          <span class="hero-letter">E</span>
+          <span class="hero-letter">V</span>
+          <span class="hero-letter">E</span>
+          <span class="hero-letter">L</span>
+          <span class="hero-letter">O</span>
+          <span class="hero-letter">P</span>
+          <span class="hero-letter">M</span>
+          <span class="hero-letter">E</span>
+          <span class="hero-letter">N</span>
+          <span class="hero-letter">T</span>
+        </span>
+      </h1>
+
+      <p class="hero-sub">
+        I’m a front-end web developer focused on clean interfaces, fast experiences, and small details
+        that make products feel thought-through. I work with modern JavaScript, design systems,
+        and AI-assisted workflows — using AI to explore concepts, prototype faster, and refine the final UI —
+        so teams can move from idea to polished web experience quickly.
+      </p>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-inner">
+        <span>Front-End Web Development</span>
+        <span>Interfaces · Dashboards · Tools</span>
+        <span>Design Systems · Components</span>
+        <span>AI-Assisted Prototyping · Modern Stack</span>
+        <span>Front-End Web Development</span>
+        <span>Interfaces · Dashboards · Tools</span>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <section>
+      <p class="section-label">Featured</p>
+      <h2 class="section-title">Projects</h2>
+      <div class="divider"></div>
+
+      <!-- WEBdesk -->
+      <article class="project" onclick="window.open('https://webdesk-os.vercel.app/')">
+        <div>
+          <div class="project-title">WebDesk — Desktop-Style Home Screen</div>
+          <div class="project-meta">
+            A desktop-style home screen for your browser. Clean, app-like layout for bookmarks and daily tools.
+          </div>
+        </div>
+        <div class="arrow">↗</div>
+      </article>
+
+      <!-- Geopolitics Dashboard -->
+      <article class="project" onclick="window.open('https://geopol-dashboard.vercel.app/')">
+        <div>
+          <div class="project-title">Geopolitics Analysis Dashboard</div>
+          <div class="project-meta">
+            Interface for scanning local events and viewing them in global context. Built around clarity, hierarchy,
+            and fast reading for analysts and decision-makers.
+          </div>
+        </div>
+        <div class="arrow">↗</div>
+      </article>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div>
+        Contact me:<br>
+        <a href="mailto:shanna.ragavan@gmail.com">shanna.ragavan@gmail.com</a>
+      </div>
+
+      <div class="links">
+        <a href="https://www.linkedin.com/in/shnnrgvn/" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    let scene, camera, renderer, points, clock;
+
+    function initWebGL() {
+      const canvas = document.getElementById("bg-canvas");
+      if (!canvas || !window.THREE) return;
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      camera.position.z = 60;
+
+      renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true
+      });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      const geometry = new THREE.BufferGeometry();
+      const numParticles = 1000;
+      const positions = new Float32Array(numParticles * 3);
+
+      for (let i = 0; i < numParticles; i++) {
+        const i3 = i * 3;
+        positions[i3 + 0] = (Math.random() - 0.5) * 200;
+        positions[i3 + 1] = (Math.random() - 0.5) * 200;
+        positions[i3 + 2] = (Math.random() - 0.5) * 200;
+      }
+
+      geometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(positions, 3)
+      );
+
+      const material = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 0.9,
+        transparent: true,
+        opacity: 0.7,
+        depthWrite: false
+      });
+
+      points = new THREE.Points(geometry, material);
+      scene.add(points);
+
+      clock = new THREE.Clock();
+
+      const mouse = { x: 0, y: 0 };
+      window.addEventListener("mousemove", (e) => {
+        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const t = clock.getElapsedTime();
+        if (points) {
+          points.rotation.y = t * 0.03;
+          points.rotation.x = Math.sin(t * 0.2) * 0.15;
+        }
+
+        camera.position.x += (mouse.x * 10 - camera.position.x) * 0.05;
+        camera.position.y += (mouse.y * 8 - camera.position.y) * 0.05;
+        camera.lookAt(scene.position);
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      window.addEventListener("resize", () => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      });
+    }
+
+    function initCursorOrb() {
+      const orb = document.querySelector(".cursor-orb");
+      if (!orb || !window.gsap) return;
+
+      const xTo = gsap.quickTo(orb, "x", { duration: 0.3, ease: "power3.out" });
+      const yTo = gsap.quickTo(orb, "y", { duration: 0.3, ease: "power3.out" });
+
+      window.addEventListener("mousemove", (e) => {
+        const x = e.clientX - orb.offsetWidth / 2;
+        const y = e.clientY - orb.offsetHeight / 2;
+        xTo(x);
+        yTo(y);
+      });
+    }
+
+    function startMainAnimations() {
+      if (!window.gsap) return;
+
+      // Minimal, clean intro: fade/slide the full headline
+      gsap.from(".hero-title", {
+        opacity: 0,
+        y: 30,
+        duration: 1.1,
+        ease: "power3.out"
+      });
+
+      gsap.to(".hero-sub", {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        delay: 0.4,
+        ease: "power2.out"
+      });
+
+      // Parallax sphere
+      gsap.to(".hero-parallax", {
+        y: 80,
+        duration: 6,
+        ease: "none",
+        repeat: -1,
+        yoyo: true
+      });
+
+      // Section entrance
+      if (window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to(".section-label", {
+          opacity: 1,
+          duration: 0.8,
+          scrollTrigger: ".section-label"
+        });
+
+        gsap.to(".section-title", {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: ".section-title"
+        });
+
+        gsap.to(".divider", {
+          width: "100%",
+          duration: 1,
+          ease: "power2.inOut",
+          scrollTrigger: ".divider"
+        });
+      }
+    }
+
+    window.addEventListener("load", () => {
+      initWebGL();
+      initCursorOrb();
+      startMainAnimations();
+    });
+  </script>
+
+</body>
+</html>
