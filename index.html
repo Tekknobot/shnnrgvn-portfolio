@@ -472,6 +472,112 @@
       margin-top: 14px;
     }
 
+    /********** CASE STUDIES **********/
+    .case-studies-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .case-study {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 20px 18px;
+      background: rgba(5, 5, 5, 0.9);
+      backdrop-filter: blur(12px);
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .case-study:hover {
+      background: var(--hover);
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .case-study-title {
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+
+    .case-study-meta {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--grey);
+      margin-bottom: 12px;
+    }
+
+    .case-study-body {
+      font-size: 14px;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+
+    .case-study-body p + p {
+      margin-top: 10px;
+    }
+
+    .case-study-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+
+    .case-study-list li + li {
+      margin-top: 6px;
+    }
+
+    .case-study-tag {
+      display: inline-block;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .case-study-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .case-study-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .case-study-link .arrow {
+      margin-left: 0;
+      font-size: 16px;
+    }
+
+    /* mobile */
+    @media (max-width: 800px) {
+      .case-study {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
     /********** RESUME / SNAPSHOT **********/
     #resume {
       margin-top: 80px;
@@ -983,6 +1089,129 @@
           and a belief that great digital work comes from caring about the details — the small choices that make an experience
           feel polished. The story isn’t finished yet, but this is the strongest chapter I’ve written so far.
         </p>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section id="case-studies">
+      <p class="section-label">Process</p>
+      <h2 class="section-title">Case Studies</h2>
+      <div class="divider"></div>
+
+      <div class="case-studies-grid">
+
+        <!-- CASE STUDY: WebDesk -->
+        <article class="case-study">
+          <div>
+            <h3 class="case-study-title">WebDesk — Desktop-Style Home Screen</h3>
+            <p class="case-study-meta">Role · Front-End Developer &amp; UI Design</p>
+            <div class="case-study-body">
+              <p>
+                WebDesk started as a way to make the browser feel more like an operating system:
+                a calm, organized “home base” for links and tools instead of a blank new tab.
+              </p>
+              <p>
+                I focused on clear hierarchy, a desktop-like grid, and small motion details that
+                make opening panels and cards feel smooth but not distracting. The layout is
+                fully responsive, so the interface feels structured on large monitors and still
+                usable on smaller laptop screens.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="case-study-tags">
+              <span class="case-study-tag">Interface Design</span>
+              <span class="case-study-tag">Responsive Layout</span>
+              <span class="case-study-tag">Component Thinking</span>
+            </div>
+            <ul class="case-study-list">
+              <li><strong>Goal:</strong> Create a calm, desktop-style starting point for daily browsing.</li>
+              <li><strong>Approach:</strong> Card-based layout, subtle hover states, and consistent spacing system.</li>
+              <li><strong>What I worked on:</strong> Layout, visual design, animations, and front-end implementation.</li>
+              <li><strong>Result:</strong> A focused, app-like home screen that feels familiar and easy to scan.</li>
+            </ul>
+            <a href="https://webdesk-os.vercel.app/" target="_blank" rel="noreferrer" class="case-study-link">
+              <span>View live project</span>
+              <span class="arrow">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CASE STUDY: Geopolitics Dashboard -->
+        <article class="case-study">
+          <div>
+            <h3 class="case-study-title">Geopolitics Analysis Dashboard</h3>
+            <p class="case-study-meta">Role · Front-End Developer &amp; UX Layout</p>
+            <div class="case-study-body">
+              <p>
+                This dashboard explores how local events can be viewed in a global context for analysts.
+                The challenge was to display a lot of information without overwhelming the user.
+              </p>
+              <p>
+                I split the interface into clear regions: filters and controls, event lists, and
+                contextual detail views. Each section is designed to support fast scanning, with
+                typographic hierarchy and spacing doing most of the visual work.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="case-study-tags">
+              <span class="case-study-tag">Dashboards</span>
+              <span class="case-study-tag">Information Hierarchy</span>
+              <span class="case-study-tag">Data UI</span>
+            </div>
+            <ul class="case-study-list">
+              <li><strong>Goal:</strong> Help users move from raw events to clear, high-level understanding.</li>
+              <li><strong>Approach:</strong> Strong hierarchy, sectioned layout, and clear visual separation of states.</li>
+              <li><strong>What I worked on:</strong> Structure, layout, and interface polish for key views.</li>
+              <li><strong>Result:</strong> A dashboard that feels dense but readable, with clear paths to insight.</li>
+            </ul>
+            <a href="https://geopol-dashboard.vercel.app/" target="_blank" rel="noreferrer" class="case-study-link">
+              <span>View live project</span>
+              <span class="arrow">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CASE STUDY: NFL Calendar & Matchup Helper -->
+        <article class="case-study">
+          <div>
+            <h3 class="case-study-title">NFL Calendar &amp; Matchup Helper</h3>
+            <p class="case-study-meta">Role · Front-End Developer &amp; Interaction Design</p>
+            <div class="case-study-body">
+              <p>
+                This project focuses on quickly browsing NFL games by week and day, then drilling into
+                specific matchups. The main constraint was making it feel fast and natural on mobile.
+              </p>
+              <p>
+                I designed a simple flow: pick a week, pick a day, see a clean agenda-style list of
+                games. From there, tapping a matchup reveals details like kickoff time and status in
+                a layout that still feels compact and thumb-friendly.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="case-study-tags">
+              <span class="case-study-tag">Mobile-First</span>
+              <span class="case-study-tag">Interaction Design</span>
+              <span class="case-study-tag">Sports UI</span>
+            </div>
+            <ul class="case-study-list">
+              <li><strong>Goal:</strong> Make checking upcoming games feel quick and low-friction on mobile.</li>
+              <li><strong>Approach:</strong> Step-by-step navigation (week → day → game) and clear typography.</li>
+              <li><strong>What I worked on:</strong> Mobile layout, micro-interactions, and front-end build.</li>
+              <li><strong>Result:</strong> A simple tool that feels more like an app than a static schedule page.</li>
+            </ul>
+            <a href="https://snappcount.vercel.app/weeks" target="_blank" rel="noreferrer" class="case-study-link">
+              <span>View live project</span>
+              <span class="arrow">↗</span>
+            </a>
+          </div>
+        </article>
+
       </div>
     </section>
 
