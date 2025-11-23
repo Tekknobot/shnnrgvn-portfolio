@@ -250,6 +250,24 @@
       box-shadow: 0 0 120px rgba(0, 0, 0, 0.9); /* optional soft glow, no gradient */
     }
 
+    .hero-carousel {
+      position: relative;
+      min-height: 260px; /* keeps space reserved for slides */
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.7s ease;
+    }
+
+    .hero-slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
     /********** MARQUEE **********/
     .marquee {
       margin-top: 80px;
@@ -485,53 +503,81 @@
     <section class="hero">
       <div class="hero-parallax"></div>
 
-      <!-- HEADLINE: FRONT END / WEB / DEVELOPMENT -->
-      <h1 class="hero-title" aria-label="Front End Web Development">
-        <!-- LINE 1: FRONT END -->
-        <span class="hero-line">
-          <span class="hero-letter">F</span>
-          <span class="hero-letter">R</span>
-          <span class="hero-letter">O</span>
-          <span class="hero-letter">N</span>
-          <span class="hero-letter">T</span>
+      <div class="hero-carousel">
+        <!-- SLIDE 1: FRONT END WEB DEVELOPMENT -->
+        <div class="hero-slide is-active" data-slide="web">
+          <!-- HEADLINE: FRONT END / WEB / DEVELOPMENT -->
+          <h1 class="hero-title" aria-label="Front End Web Development">
+            <!-- LINE 1: FRONT END -->
+            <span class="hero-line">
+              <span class="hero-letter">F</span>
+              <span class="hero-letter">R</span>
+              <span class="hero-letter">O</span>
+              <span class="hero-letter">N</span>
+              <span class="hero-letter">T</span>
 
-          <span class="hero-space"></span>
+              <span class="hero-space"></span>
 
-          <span class="hero-letter">E</span>
-          <span class="hero-letter">N</span>
-          <span class="hero-letter">D</span>
-        </span>
+              <span class="hero-letter">E</span>
+              <span class="hero-letter">N</span>
+              <span class="hero-letter">D</span>
+            </span>
 
-        <!-- LINE 2: WEB -->
-        <span class="hero-line">
-          <span class="hero-letter">W</span>
-          <span class="hero-letter">E</span>
-          <span class="hero-letter">B</span>
-        </span>
+            <!-- LINE 2: WEB -->
+            <span class="hero-line">
+              <span class="hero-letter">W</span>
+              <span class="hero-letter">E</span>
+              <span class="hero-letter">B</span>
+            </span>
 
-        <!-- LINE 3: DEVELOPMENT -->
-        <span class="hero-line">
-          <span class="hero-letter">D</span>
-          <span class="hero-letter">E</span>
-          <span class="hero-letter">V</span>
-          <span class="hero-letter">E</span>
-          <span class="hero-letter">L</span>
-          <span class="hero-letter">O</span>
-          <span class="hero-letter">P</span>
-          <span class="hero-letter">M</span>
-          <span class="hero-letter">E</span>
-          <span class="hero-letter">N</span>
-          <span class="hero-letter">T</span>
-        </span>
-      </h1>
+            <!-- LINE 3: DEVELOPMENT -->
+            <span class="hero-line">
+              <span class="hero-letter">D</span>
+              <span class="hero-letter">E</span>
+              <span class="hero-letter">V</span>
+              <span class="hero-letter">E</span>
+              <span class="hero-letter">L</span>
+              <span class="hero-letter">O</span>
+              <span class="hero-letter">P</span>
+              <span class="hero-letter">M</span>
+              <span class="hero-letter">E</span>
+              <span class="hero-letter">N</span>
+              <span class="hero-letter">T</span>
+            </span>
+          </h1>
 
-      <p class="hero-sub">
-        I’m a front-end web developer based in Toronto, Canada — focused on clean interfaces, fast experiences,
-        and the small details that make products feel intentional. I work with modern JavaScript, design systems,
-        and AI-assisted workflows — using AI to explore concepts, prototype faster, and refine the final UI —
-        so teams can move from idea to polished web experience quickly.
-      </p>
+          <p class="hero-sub">
+            I’m a front-end web developer based in Toronto, Canada — focused on clean interfaces, fast experiences,
+            and the small details that make products feel intentional. I work with modern JavaScript, design systems,
+            and AI-assisted workflows — using AI to explore concepts, prototype faster, and refine the final UI —
+            so teams can move from idea to polished web experience quickly.
+          </p>
+        </div>
 
+        <!-- SLIDE 2: GAME DEVELOPMENT -->
+        <div class="hero-slide" data-slide="game">
+          <h1 class="hero-title" aria-label="Game Development">
+            <span class="hero-line">GAME</span>
+            <span class="hero-line">DEVELOPMENT</span>
+          </h1>
+
+          <p class="hero-sub">
+            Game development experiments and prototypes — working with Unity, C#, Godot, and building for iOS and Android.
+          </p>
+        </div>
+
+        <!-- SLIDE 3: MUSIC PRODUCTION -->
+        <div class="hero-slide" data-slide="music">
+          <h1 class="hero-title" aria-label="Music Production">
+            <span class="hero-line">MUSIC</span>
+            <span class="hero-line">PRODUCTION</span>
+          </h1>
+
+          <p class="hero-sub">
+            Music production as a parallel craft — Ableton, house music, lofi, boom bap, hip-hop, and electronic sounds.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- MARQUEE -->
@@ -826,6 +872,28 @@
       onScroll(); // init state
     }
 
+    function initHeroCarousel() {
+      const slides = Array.from(document.querySelectorAll(".hero-slide"));
+      if (!slides.length) return;
+
+      let current = 0;
+      const total = slides.length;
+      const intervalMs = 5000; // 5 seconds per slide
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("is-active", i === index);
+        });
+      }
+
+      showSlide(current);
+
+      setInterval(() => {
+        current = (current + 1) % total;
+        showSlide(current);
+      }, intervalMs);
+    }
+
     function startMainAnimations() {
       if (!window.gsap) return;
 
@@ -887,6 +955,7 @@
     window.addEventListener("load", () => {
       initWebGL();
       initNav();
+      initHeroCarousel();   // <-- add this line
       startMainAnimations();
 
       if (window.feather) {
