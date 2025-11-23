@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Odd Finds General Store | Bloordale Vintage & Curiosities</title>
+  <meta name="description" content="Odd Finds General Store in Bloordale, Toronto – a cozy neighbourhood shop for vintage treasures, curiosities, and home goods." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo-lockup">
+        <span class="logo-mark">OF</span>
+        <div class="logo-text">
+          <span class="logo-title">Odd Finds</span>
+          <span class="logo-subtitle">General Store · Bloordale</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#featured">Featured Finds</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#visit">Visit Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="hero-kicker">Bloordale · Toronto</p>
+          <h1>Vintage treasures, curious objects, and everyday oddities.</h1>
+          <p class="hero-body">
+            Odd Finds General Store is a cozy neighbourhood shop for the pieces you
+            didn’t know you were looking for – vintage, second-hand, and small-batch goods
+            with character.
+          </p>
+          <div class="hero-cta">
+            <a href="#featured" class="btn primary">Browse featured finds</a>
+            <a href="#visit" class="btn ghost">Store hours &amp; location</a>
+          </div>
+        </div>
+        <div class="hero-image-card">
+          <div class="hero-image-placeholder">
+            <img src="assets/hero-storefront.jpg"
+                 alt="Interior of Odd Finds General Store in Bloordale" />
+          </div>
+          <div class="hero-tag">
+            <span class="tag-label">New this week</span>
+            <p class="tag-text">Handpicked pieces added to the shelves every weekend.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container two-column">
+        <div>
+          <h2>About Odd Finds</h2>
+          <p>
+            Tucked along Bloor Street West in Bloordale, Odd Finds General Store is a
+            neighbourhood spot for the delightfully unexpected: vintage glassware,
+            second-hand books, art prints, candles, textiles, and one-off curiosities.
+          </p>
+          <p>
+            Every item on the shelf is handpicked – chosen for its story, its patina,
+            or just because it made us smile. We believe in giving objects a second life,
+            supporting local makers, and keeping our corner of the city a little bit weird.
+          </p>
+        </div>
+        <div class="about-card">
+          <h3>What you’ll find</h3>
+          <ul class="pill-list">
+            <li>Vintage &amp; second-hand homewares</li>
+            <li>Retro decor &amp; artwork</li>
+            <li>Books, zines &amp; printed matter</li>
+            <li>Local maker goods &amp; gifts</li>
+            <li>Seasonal pop-ups &amp; mini markets</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Finds -->
+    <section class="section section-alt" id="featured">
+      <div class="container">
+        <div class="section-header">
+          <h2>Featured Finds</h2>
+          <p>Just a small sample of the kinds of pieces you might spot on our shelves.</p>
+        </div>
+        <div class="grid featured-grid">
+          <article class="card">
+            <div class="card-image">
+              <img src="assets/featured-lamp.jpg"
+                   alt="Mid-century ceramic lamp at Odd Finds General Store" />
+            </div>
+            <div class="card-body">
+              <h3>Mid-century ceramic lamp</h3>
+              <p>Warm amber glaze, perfect for bedside reading or a cozy corner.</p>
+              <p class="card-meta">One of a kind · In store only</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-image">
+              <img src="assets/featured-glassware.jpg"
+                   alt="Vintage glassware set on display at Odd Finds" />
+            </div>
+            <div class="card-body">
+              <h3>Vintage glassware set</h3>
+              <p>
+                Mismatched glasses with just the right amount of charm for your next dinner party.
+              </p>
+              <p class="card-meta">Rotating selection · Ask in store</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-image">
+              <img src="assets/featured-candles.jpg"
+                   alt="Local maker candles arranged on wooden shelves" />
+            </div>
+            <div class="card-body">
+              <h3>Local maker candles</h3>
+              <p>Small-batch, hand-poured candles inspired by Toronto neighbourhoods.</p>
+              <p class="card-meta">Limited runs · Seasonally updated</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <h2>In-store Moments</h2>
+          <p>
+            Use this space to showcase real photography from the shop – shelves, displays,
+            close-ups of favourite pieces, and the overall vibe.
+          </p>
+        </div>
+        <div class="grid gallery-grid">
+          <div class="gallery-item">
+            <img src="assets/gallery-shop-wide.jpg"
+                 alt="Wide view of Odd Finds General Store interior" />
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery-shelf-closeup.jpg"
+                 alt="Close-up of vintage items on a shelf" />
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery-books.jpg"
+                 alt="Second-hand books and zines at Odd Finds" />
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery-window.jpg"
+                 alt="Window display at Odd Finds General Store" />
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery-textiles.jpg"
+                 alt="Folded textiles and linens on display" />
+          </div>
+          <div class="gallery-item">
+            <img src="assets/gallery-customer.jpg"
+                 alt="Customer browsing shelves at Odd Finds" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visit Us -->
+    <section class="section section-alt" id="visit">
+      <div class="container two-column">
+        <div>
+          <h2>Visit Us</h2>
+          <p class="lead">
+            Drop by, browse the shelves, and see what odd (and perfect) thing finds you.
+          </p>
+          <div class="info-block">
+            <h3>Location</h3>
+            <p>
+              Odd Finds General Store<br />
+              Bloordale, Bloor St W<br />
+              Toronto, Ontario
+            </p>
+          </div>
+          <div class="info-block">
+            <h3>Hours</h3>
+            <ul class="hours-list">
+              <li><span>Mon – Tue</span><span>Closed</span></li>
+              <li><span>Wed – Fri</span><span>12:00 – 7:00</span></li>
+              <li><span>Saturday</span><span>11:00 – 7:00</span></li>
+              <li><span>Sunday</span><span>11:00 – 5:00</span></li>
+            </ul>
+            <p class="small-note">Hours are flexible for special events &amp; pop-ups.</p>
+          </div>
+        </div>
+        <div>
+          <div class="map-card">
+            <div class="map-embed-placeholder">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.4523250803513!2d-79.43990202356682!3d43.65956177110189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34435075b7c7%3A0xde7e2af26a50720a!2sOdd%20Finds%20General%20Store!5e0!3m2!1sen!2sca!4v1763926737536!5m2!1sen!2sca"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <div class="contact-card">
+              <h3>Contact</h3>
+              <p>
+                <a href="mailto:hello@oddfinds.ca">hello@oddfinds.ca</a><br />
+                <span class="muted">Instagram:</span> <a href="#">@oddfindsgeneralstore</a>
+              </p>
+              <p class="small-note">DM or email for holds, questions, or vendor inquiries.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter / Updates -->
+    <section class="section section-newsletter">
+      <div class="container newsletter-inner">
+        <div>
+          <h2>Stay in the loop</h2>
+          <p>
+            New arrivals, mini markets, and special late-night shopping events –
+            get updates a couple times a month.
+          </p>
+        </div>
+        <form class="newsletter-form" action="#" method="post">
+          <label class="sr-only" for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          <button type="submit" class="btn primary">Get updates</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Odd Finds General Store · Bloordale, Toronto</p>
+      <p class="footer-extra">Site design by Shanna Ragavan · Built with HTML &amp; CSS</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
