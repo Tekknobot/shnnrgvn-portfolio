@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Great Painting – Painting Contractors</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The Great Painting – Portuguese painting contractors with over 30 years of craftsmanship in residential and commercial projects." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f2ec;
+      --bg-alt: #faf7f2;
+      --accent: #c46a3a;      /* terracotta */
+      --accent-soft: #f0d3bf;
+      --ink: #1e1b18;
+      --ink-soft: #66625a;
+      --border-soft: #e1ddd3;
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth; /* fluid navigation */
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top left, #fdf7ef 0, var(--bg) 45%, #f7f0e6 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 24px 72px;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-soft);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand-title {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      padding: 8px 14px;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(6px);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    nav a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.2s ease-out;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 32px;
+      margin: 32px 0 40px;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-weight: 400;
+      font-size: clamp(1.8rem, 3vw, 2.2rem);
+      margin-bottom: 10px;
+    }
+
+    .hero-lead {
+      color: var(--ink-soft);
+      max-width: 34rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-highlight {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+
+    .badge {
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: linear-gradient(#fff7f0, #f5eadf);
+      padding: 10px 16px;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0;
+      min-width: 160px;
+    }
+
+    .badge-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .badge-value {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    .hero-right {
+      border-radius: 28px;
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(145deg, var(--bg-alt), #ffffff);
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hero-tagline {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 1.1rem;
+    }
+
+    .hero-list {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+    }
+
+    .hero-list li::before {
+      content: "•";
+      margin-right: 8px;
+      color: var(--accent);
+    }
+
+    .hero-footer {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+
+    .hero-media {
+      margin-top: 10px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #d4cfc6;
+      border: 1px solid var(--border-soft);
+      height: 190px;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Sections */
+
+    section {
+      padding: 32px 0;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 18px;
+      gap: 16px;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-weight: 400;
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .section-body {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      max-width: 44rem;
+    }
+
+    /* Jobs Slideshow */
+
+    .jobs-slideshow {
+      margin-top: 26px;
+      border-radius: 24px;
+      border: 1px solid var(--border-soft);
+      background: var(--card-bg);
+      padding: 18px 18px 20px;
+    }
+
+    .job-card {
+      display: none;
+      padding: 4px 2px 0;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .job-card.is-active {
+      display: flex;
+    }
+
+    .job-title-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .job-title {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 1.1rem;
+    }
+
+    .job-meta {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      white-space: nowrap;
+    }
+
+    .job-description {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+    }
+
+    .job-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+      font-size: 0.76rem;
+    }
+
+    .job-tag {
+      border-radius: 999px;
+      background: var(--bg-alt);
+      padding: 4px 10px;
+      border: 1px solid var(--border-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .job-images {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .thumb {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      background: #ddd;
+      height: 230px;
+      cursor: zoom-in;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #555;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .thumb:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .thumb::after {
+      content: "View";
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      font-size: 0.7rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.55);
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .jobs-controls {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+
+    .jobs-arrows {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .jobs-arrow {
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: #f8f3ec;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .jobs-arrow:hover {
+      background: #f1e4d7;
+    }
+
+    .jobs-status {
+      margin-left: auto;
+    }
+
+    /* Gallery – horizontal strip on all screens */
+
+    .gallery-row {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+
+    .gallery-note {
+      max-width: 480px;
+    }
+
+    .gallery-thumbs {
+      margin-top: 4px;
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 8px 0 4px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .gallery-thumb {
+      position: relative;
+      flex: 0 0 min(260px, 70vw); /* big on mobile, tiles on desktop */
+      height: 200px;
+      border-radius: 20px;
+      background: #d5d0c7;
+      border: 1px solid var(--border-soft);
+      cursor: zoom-in;
+      overflow: hidden;
+      scroll-snap-align: center;
+    }
+
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.25s ease;
+    }
+
+    .gallery-thumb::after {
+      content: attr(data-caption);
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      max-width: 80%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .gallery-thumb:hover img {
+      transform: scale(1.05);
+    }
+
+    /* optional: hide horizontal scrollbar on WebKit */
+    .gallery-thumbs::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Contact */
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 26px;
+      margin-top: 16px;
+    }
+
+    .contact-details p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+
+    .contact-details strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    footer {
+      padding-top: 24px;
+      border-top: 1px solid var(--border-soft);
+      margin-top: 32px;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    /* Lightbox */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 10, 5, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      max-width: 900px;
+      width: 100%;
+      max-height: 100%;
+    }
+
+    .lightbox-img-wrap {
+      border-radius: 18px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .lightbox-img-wrap img {
+      display: block;
+      max-height: calc(100vh - 120px);
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .lightbox-meta {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      color: #f3eee3;
+      font-size: 0.9rem;
+    }
+
+    .lightbox-close {
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* Hamburger toggle (hidden on desktop) */
+    .nav-toggle {
+      display: none;
+      position: relative;
+      width: 30px;
+      height: 22px;
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .nav-toggle-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--ink);
+      transition: transform 0.2s ease, opacity 0.2s ease, top 0.2s ease, bottom 0.2s ease;
+    }
+
+    .nav-toggle-line:nth-child(1) { top: 0; }
+    .nav-toggle-line:nth-child(2) { top: 10px; }
+    .nav-toggle-line:nth-child(3) { bottom: 0; }
+
+    /* When menu is open, animate into an X */
+    .nav-open .nav-toggle-line:nth-child(1) {
+      top: 10px;
+      transform: rotate(45deg);
+    }
+
+    .nav-open .nav-toggle-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-open .nav-toggle-line:nth-child(3) {
+      bottom: 10px;
+      transform: rotate(-45deg);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 780px) {
+      header {
+        align-items: flex-start;
+      }
+
+      .header-meta {
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* show hamburger on mobile */
+      .nav-toggle {
+        display: inline-flex;
+        margin-left: auto;
+      }
+
+      /* mobile nav: hidden by default */
+      #site-nav {
+        display: none;
+        flex-basis: 100%;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+        font-size: 0.78rem;
+      }
+
+      /* when body has .nav-open, show nav */
+      .nav-open #site-nav {
+        display: flex;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .jobs-controls {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .jobs-status {
+        margin-left: 0;
+      }
+
+      .hero-media {
+        height: 160px;
+      }
+    }
+
+    #paint-layer {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Painting layer lives behind the layout -->
+  <canvas id="paint-layer"></canvas>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-title">The Great Painting</div>
+        <div class="brand-subtitle">Portuguese Painting Contractors · Est. 1993</div>
+      </div>
+
+      <div class="header-meta">
+        <div class="pill">Serving homes &amp; businesses for 30+ years</div>
+
+        <!-- Hamburger button (mobile) -->
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
+        </button>
+
+        <nav id="site-nav">
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="about">
+        <div>
+          <h1 class="hero-title">Quietly transforming walls into stories of home.</h1>
+          <p class="hero-lead">
+            The Great Painting is a family-run Portuguese painting company bringing
+            careful craftsmanship and warm, timeless colour to every space we touch.
+            From classic exteriors to precise interior detailing, we approach each job
+            as if it were our own home.
+          </p>
+
+          <div class="hero-highlight">
+            <div class="badge">
+              <div class="badge-label">Experience</div>
+              <div class="badge-value">30+ Years</div>
+            </div>
+            <div>
+              Respected locally for reliability, thoughtful preparation, and finishes that
+              age gracefully — never rushed, always meticulous.
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-right">
+          <div class="hero-tagline">Inspired by Portuguese light and coastal colour.</div>
+          <ul class="hero-list">
+            <li>Interior &amp; exterior repaints</li>
+            <li>Heritage homes and trim work</li>
+            <li>Commercial and multi-unit projects</li>
+            <li>Colour consultations tailored to your space</li>
+          </ul>
+          <div class="hero-footer">
+            Fully insured · Neat &amp; respectful crew · Clean edges, no shortcuts.
+          </div>
+          <div class="hero-media">
+            <img src="images/hero-portuguese-light.jpg" alt="Sunlit Portuguese-style facade with warm painted walls and shutters" />
+          </div>
+        </aside>
+      </section>
+
+      <!-- Work / Jobs -->
+      <section id="work">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Selected projects</div>
+            <h2 class="section-title">Recent Work</h2>
+          </div>
+          <div class="section-body">
+            A glimpse into some of the homes and spaces we’ve had the privilege to repaint.
+            Click any photo to enlarge.
+          </div>
+        </div>
+
+        <div class="jobs-slideshow" aria-label="Recent work slideshow">
+          <article class="job-card is-active" data-index="0">
+            <div class="job-title-row">
+              <h3 class="job-title">Sunwashed Heritage Facade</h3>
+              <div class="job-meta">Little Portugal · Residential exterior</div>
+            </div>
+            <p class="job-description">
+              Complete exterior repaint of a 1920s brick home. We restored trim,
+              refreshed the stucco, and introduced a soft, sun-baked palette inspired
+              by Portuguese villages.
+            </p>
+            <div class="job-tags">
+              <span class="job-tag">Exterior</span>
+              <span class="job-tag">Heritage</span>
+              <span class="job-tag">Brush &amp; Roll</span>
+            </div>
+            <div class="job-images">
+              <button class="thumb" data-full="images/job1-1.jpg" data-caption="Front elevation · After">
+                <img src="images/job1-1.jpg" alt="Front elevation · After" />
+              </button>
+              <button class="thumb" data-full="images/job1-2.jpg" data-caption="Detail of restored trim and window surrounds">
+                <img src="images/job1-2.jpg" alt="Detail of restored trim and window surrounds" />
+              </button>
+            </div>
+          </article>
+
+          <article class="job-card" data-index="1">
+            <div class="job-title-row">
+              <h3 class="job-title">Calm Interior in Warm Whites</h3>
+              <div class="job-meta">Riverside · Interior repaint</div>
+            </div>
+            <p class="job-description">
+              A full main-floor refresh with layered whites and soft neutral tones,
+              balancing natural light and existing finishes for a calm, modern feel.
+            </p>
+            <div class="job-tags">
+              <span class="job-tag">Interior</span>
+              <span class="job-tag">Living spaces</span>
+              <span class="job-tag">Low VOC</span>
+            </div>
+            <div class="job-images">
+              <button class="thumb" data-full="images/job2-1.jpg" data-caption="Open-concept living / dining space">
+                <img src="images/job2-1.jpg" alt="Open-concept living / dining space" />
+              </button>
+              <button class="thumb" data-full="images/job2-2.jpg" data-caption="Soft contrast on doors and trims">
+                <img src="images/job2-2.jpg" alt="Soft contrast on doors and trims" />
+              </button>
+            </div>
+          </article>
+
+          <article class="job-card" data-index="2">
+            <div class="job-title-row">
+              <h3 class="job-title">Neighbourhood Café Refresh</h3>
+              <div class="job-meta">Downtown · Commercial</div>
+            </div>
+            <p class="job-description">
+              Interior and exterior coating for a family-owned café — rich coastal
+              blues, clean walls, and durable finishes to handle everyday traffic.
+            </p>
+            <div class="job-tags">
+              <span class="job-tag">Commercial</span>
+              <span class="job-tag">Feature colour</span>
+              <span class="job-tag">After hours</span>
+            </div>
+            <div class="job-images">
+              <button class="thumb" data-full="images/job3-1.jpg" data-caption="Exterior storefront in deep blue">
+                <img src="images/job3-1.jpg" alt="Exterior storefront in deep blue" />
+              </button>
+              <button class="thumb" data-full="images/job3-2.jpg" data-caption="Interior bar area and seating">
+                <img src="images/job3-2.jpg" alt="Interior bar area and seating" />
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <div class="jobs-controls">
+          <div class="jobs-arrows">
+            <button class="jobs-arrow" type="button" data-dir="prev">Previous</button>
+            <button class="jobs-arrow" type="button" data-dir="next">Next</button>
+          </div>
+          <div class="jobs-status">
+            Project <span id="job-current">1</span> of <span id="job-total">3</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section id="gallery">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Details &amp; moments</div>
+            <h2 class="section-title">Photo Gallery</h2>
+          </div>
+          <p class="section-body">
+            Texture, edges, light on fresh colour — a closer look at the finishing
+            work that sets our projects apart.
+          </p>
+        </div>
+
+        <div class="gallery-row">
+          <div class="gallery-note">
+            Click any image to see it larger. Think of this as a sketchbook of moments
+            from different homes and spaces we’ve worked in.
+          </div>
+          <div class="gallery-thumbs">
+            <button class="gallery-thumb" data-full="images/detail1.jpg" data-caption="Hand-brushed trim">
+              <img src="images/detail1.jpg" alt="Hand-brushed trim in warm white" />
+            </button>
+            <button class="gallery-thumb" data-full="images/detail2.jpg" data-caption="Tile &amp; colour">
+              <img src="images/detail2.jpg" alt="Accent wall inspired by Portuguese tiles" />
+            </button>
+            <button class="gallery-thumb" data-full="images/detail3.jpg" data-caption="Clean lines">
+              <img src="images/detail3.jpg" alt="Clean lines where wall meets ceiling" />
+            </button>
+            <button class="gallery-thumb" data-full="images/detail4.jpg" data-caption="Exterior detail">
+              <img src="images/detail4.jpg" alt="Restored exterior window surrounds" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Reach out</div>
+            <h2 class="section-title">Contact</h2>
+          </div>
+          <p class="section-body">
+            Tell us a little about your project and we’ll follow up with a friendly call
+            and a clear, straightforward estimate.
+          </p>
+        </div>
+
+        <div class="contact-layout">
+          <div class="contact-details">
+            <p><strong>Phone</strong> · (555) 347-9182</p>
+            <p><strong>Email</strong> · hello@thegreatpainting.com</p>
+            <p><strong>Address</strong> · 214 Avenida do Sol, Riverside, ON</p>
+            <p><strong>Hours</strong> · Mon–Sat · 8:00am–5:30pm</p>
+            <br />
+            <p>
+              Serving: Riverside, Little Portugal, West Side, and surrounding neighbourhoods.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> The Great Painting – All rights reserved.</div>
+      <div>Rooted in Portuguese craftsmanship · Proudly local.</div>
+    </footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <div class="lightbox-img-wrap">
+        <img id="lightbox-img" src="" alt="" />
+      </div>
+      <div class="lightbox-meta">
+        <div id="lightbox-caption"></div>
+        <button class="lightbox-close" id="lightbox-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Cursor painting layer
+    (function () {
+      const canvas = document.getElementById("paint-layer");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+
+      let dpr = window.devicePixelRatio || 1;
+
+      function resizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        dpr = window.devicePixelRatio || 1;
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, rect.width, rect.height);
+      }
+
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      let painting = false;
+
+      function paint(x, y) {
+        const radius = 90;
+
+        const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+        gradient.addColorStop(0, "rgba(255, 255, 255, 0.55)");
+        gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      document.addEventListener("pointerdown", (e) => {
+        painting = true;
+        const rect = canvas.getBoundingClientRect();
+        paint(e.clientX - rect.left, e.clientY - rect.top);
+      });
+
+      document.addEventListener("pointerup", () => {
+        painting = false;
+      });
+
+      document.addEventListener("pointermove", (e) => {
+        if (!painting) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        paint(x, y);
+      });
+    })();
+
+    // Dynamic year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const lightboxClose = document.getElementById("lightbox-close");
+
+    function openLightbox(src, caption) {
+      lightboxImg.src = src;
+      lightboxCaption.textContent = caption || "";
+      lightbox.classList.add("open");
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightboxImg.src = "";
+      lightboxCaption.textContent = "";
+    }
+
+    document.querySelectorAll(".thumb, .gallery-thumb").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const src = btn.getAttribute("data-full");
+        const caption = btn.getAttribute("data-caption") || "";
+        if (src) openLightbox(src, caption);
+      });
+    });
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox || event.target === lightboxClose) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.classList.contains("open")) {
+        closeLightbox();
+      }
+    });
+
+    // Jobs slideshow
+    (function () {
+      const cards = Array.from(document.querySelectorAll(".jobs-slideshow .job-card"));
+      const totalSpan = document.getElementById("job-total");
+      const currentSpan = document.getElementById("job-current");
+      const buttons = document.querySelectorAll(".jobs-arrow");
+
+      if (!cards.length) return;
+
+      const total = cards.length;
+      totalSpan.textContent = total;
+
+      let currentIndex = 0;
+
+      function show(index) {
+        currentIndex = (index + total) % total;
+        cards.forEach((card, i) => {
+          card.classList.toggle("is-active", i === currentIndex);
+        });
+        currentSpan.textContent = currentIndex + 1;
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const dir = btn.getAttribute("data-dir");
+          if (dir === "prev") show(currentIndex - 1);
+          else show(currentIndex + 1);
+        });
+      });
+
+      show(0);
+    })();
+
+    // Mobile nav toggle
+    (function () {
+      const navToggle = document.querySelector(".nav-toggle");
+      const body = document.body;
+      if (!navToggle) return;
+
+      navToggle.addEventListener("click", () => {
+        const isOpen = body.classList.toggle("nav-open");
+        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+
+      // Close nav when a link is clicked
+      document.querySelectorAll("#site-nav a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (body.classList.contains("nav-open")) {
+            body.classList.remove("nav-open");
+            navToggle.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
