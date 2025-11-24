@@ -295,10 +295,10 @@
 
     .job-title-row {
       display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      align-items: baseline;
-      margin-bottom: 4px;
+      flex-direction: column;   /* stack title + meta */
+      align-items: flex-start;  /* left-align both */
+      gap: 2px;                 /* small space between title + meta */
+      margin-bottom: 6px;
     }
 
     .job-title {
@@ -309,7 +309,7 @@
     .job-meta {
       font-size: 0.8rem;
       color: var(--ink-soft);
-      white-space: nowrap;
+      white-space: normal;      /* allow wrapping if needed */
     }
 
     .job-description {
