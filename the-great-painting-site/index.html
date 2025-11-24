@@ -49,6 +49,19 @@
       padding: 32px 24px 72px;
     }
 
+    .site-nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 20;           /* above content, below lightbox (1000) */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      background: var(--bg); /* so content doesn't show through behind it */
+    }
+
     header {
       display: flex;
       flex-direction: column;
@@ -690,18 +703,20 @@
   <!-- Painting layer lives behind the layout -->
   <canvas id="paint-layer"></canvas>
   <div class="page">
-    <!-- Hamburger button (mobile) -->
-    <button
-      class="nav-toggle"
-      type="button"
-      aria-label="Toggle navigation"
-      aria-expanded="false"
-      aria-controls="site-nav"
-    >
-      <span class="nav-toggle-line"></span>
-      <span class="nav-toggle-line"></span>
-      <span class="nav-toggle-line"></span>
-    </button>
+    <!-- Sticky nav bar -->
+    <div class="site-nav-bar">    
+      <!-- Hamburger button (mobile) -->
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+      </button>
 
     <nav id="site-nav">
       <a href="#about">About</a>
@@ -709,6 +724,7 @@
       <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
     </nav>
+  </div>  
         
     <header>
       <div class="brand">
