@@ -244,10 +244,10 @@
 
     .section-header {
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
+      flex-direction: column;   /* stack title + info text */
+      align-items: flex-start;  /* left align everything */
+      gap: 6px;
       margin-bottom: 18px;
-      gap: 16px;
     }
 
     .section-title {
