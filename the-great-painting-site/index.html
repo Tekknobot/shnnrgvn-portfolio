@@ -153,22 +153,27 @@
     }
 
     .nav-logo {
-      padding-bottom: 0;          /* no underline spacing */
-      margin-right: 24px;         /* space between logo and first link */
       display: flex;
       align-items: center;
+      padding-bottom: 0;       /* no underline spacing */
+      margin-right: 24px;      /* space between icon and first link */
     }
 
     .nav-logo::after {
-      display: none;              /* disable the hover underline bar for logo */
+      display: none;           /* no hover underline on the logo */
     }
 
-    .nav-logo img {
+    .nav-logo-icon {
       display: block;
-      height: 24px;               /* tweak size to taste */
+      height: 22px;            /* tweak size to taste */
       width: auto;
+      stroke: var(--ink-soft);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
-
+    
     /* Hero */
 
     .hero {
@@ -753,15 +758,24 @@
         <span class="nav-toggle-line"></span>
       </button>
 
-    <nav id="site-nav">
-      <a href="#top" class="nav-logo">
-        <img src="images/logo-mark.svg" alt="The Great Painting logo" />
-      </a>
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-    </nav>
+      <nav id="site-nav">
+        <a href="#top" class="nav-logo" aria-label="The Great Painting home">
+          <svg class="nav-logo-icon" viewBox="0 0 32 32" aria-hidden="true">
+            <!-- Roller head -->
+            <rect x="4" y="5" width="18" height="7" rx="2" />
+            <!-- Neck -->
+            <path d="M22 8 H25 C26.1 8 27 8.9 27 10 V14" />
+            <!-- Handle -->
+            <path d="M27 14 L27 22 C27 23.1 26.1 24 25 24 H22" />
+            <rect x="18" y="21" width="4" height="8" rx="1.2" />
+          </svg>
+        </a>
+
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
   </div>  
         
     <header>
