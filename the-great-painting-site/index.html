@@ -631,15 +631,14 @@
         gap: 12px;
       }
 
-      /* show hamburger on mobile */
+      /* hide hamburger on mobile too */
       .nav-toggle {
-        display: inline-flex;
-        margin-left: auto;
+        display: none;
       }
 
-      /* mobile nav: hidden by default */
+      /* mobile nav: always visible, stacked */
       #site-nav {
-        display: none;
+        display: flex;              /* <-- always shown */
         flex-basis: 100%;
         flex-direction: column;
         gap: 10px;
