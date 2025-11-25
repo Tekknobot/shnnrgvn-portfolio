@@ -455,6 +455,75 @@
       margin-left: auto;
     }
 
+    /* Services */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 8px;
+    }
+
+    .service-group {
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      background: var(--card-bg);
+      padding: 16px 18px 18px;
+    }
+
+    .service-title {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .service-body {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+
+    .service-list {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.86rem;
+      color: var(--ink-soft);
+    }
+
+    .service-list li {
+      position: relative;
+      padding-left: 14px;
+      margin-bottom: 4px;
+    }
+
+    .service-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+    }
+
+    .service-note {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      max-width: 40rem;
+    }
+
+    /* responsive for services grid */
+    @media (max-width: 960px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 780px) {
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
     /* Gallery – horizontal strip on all screens */
 
     .gallery-row {
@@ -761,6 +830,7 @@
       <nav id="site-nav">
         <a href="#about">About</a>
         <a href="#work">Work</a>
+        <a href="#services">Services</a>
         <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -916,6 +986,130 @@
           <div class="jobs-status">
             Project <span id="job-current">1</span> of <span id="job-total">3</span>
           </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section id="services">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">What we do</div>
+            <h2 class="section-title">Painting Services</h2>
+          </div>
+          <div class="section-body">
+            From quiet refreshes to full envelope repaints, we handle interiors,
+            exteriors, and small commercial spaces with careful prep and tidy,
+            reliable crews.
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <!-- Interior -->
+          <article class="service-group">
+            <h3 class="service-title">Interior Painting</h3>
+            <p class="service-body">
+              Light, clean interiors that feel calm and finished, with attention to
+              edges, trim, and existing finishes.
+            </p>
+            <ul class="service-list">
+              <li>Walls, ceilings, trim, and doors</li>
+              <li>Living rooms, bedrooms, hallways, and stairwells</li>
+              <li>Kitchen and bathroom repaints</li>
+              <li>Feature / accent walls and colour blocking</li>
+              <li>Cabinet and built-in repainting (spray or brush & roll)</li>
+              <li>Low-VOC options for sensitive homes</li>
+            </ul>
+          </article>
+
+          <!-- Exterior -->
+          <article class="service-group">
+            <h3 class="service-title">Exterior Painting</h3>
+            <p class="service-body">
+              Durable exterior work that respects your home’s character and stands
+              up to Toronto weather.
+            </p>
+            <ul class="service-list">
+              <li>Brick, stucco, siding, and wood cladding</li>
+              <li>Porches, soffits, fascia, and trim details</li>
+              <li>Front doors, garages, and shutters</li>
+              <li>Decks, fences, railings, and metalwork</li>
+              <li>Colour updates for curb appeal & resale</li>
+              <li>Season-appropriate scheduling and products</li>
+            </ul>
+          </article>
+
+          <!-- Prep & repairs -->
+          <article class="service-group">
+            <h3 class="service-title">Prep & Repairs</h3>
+            <p class="service-body">
+              Long-lasting paint jobs start with prep. We take time to fix surfaces
+              properly before the first coat goes on.
+            </p>
+            <ul class="service-list">
+              <li>Careful masking and protection of floors & furniture</li>
+              <li>Scraping, sanding, and feathering rough areas</li>
+              <li>Filling holes, cracks, and nail pops</li>
+              <li>Minor drywall repair and skim coating</li>
+              <li>Caulking gaps at trim and casings</li>
+              <li>Priming and stain / tannin blocking where needed</li>
+            </ul>
+          </article>
+
+          <!-- Details & finishes -->
+          <article class="service-group">
+            <h3 class="service-title">Details & Finishes</h3>
+            <p class="service-body">
+              Small details that make a home feel finished and thoughtfully put
+              together.
+            </p>
+            <ul class="service-list">
+              <li>Two-tone doors, frames, and baseboards</li>
+              <li>Stairs, handrails, and spindles</li>
+              <li>Window trims and sash touch-ups</li>
+              <li>Board-and-batten and wainscoting painting</li>
+              <li>Ceiling colour adjustments to soften light</li>
+              <li>Subtle sheens matched to how each room is used</li>
+            </ul>
+          </article>
+
+          <!-- Project types -->
+          <article class="service-group">
+            <h3 class="service-title">Project Types</h3>
+            <p class="service-body">
+              We work on homes and small businesses across Toronto and the GTA.
+            </p>
+            <ul class="service-list">
+              <li>Single-family homes and semi-detached houses</li>
+              <li>Condos, townhomes, and rental units</li>
+              <li>Heritage and older character properties</li>
+              <li>Cafés, bakeries, and small retail spaces</li>
+              <li>Offices, studios, and common areas</li>
+              <li>Turnover repaints between tenants or owners</li>
+            </ul>
+          </article>
+
+          <!-- Our process -->
+          <article class="service-group">
+            <h3 class="service-title">Our Process</h3>
+            <p class="service-body">
+              A simple, clear process so you always know what’s happening next.
+            </p>
+            <ul class="service-list">
+              <li>Quick conversation to understand your project</li>
+              <li>On-site visit and written, itemized estimate</li>
+              <li>Help with colour choices and finishes if needed</li>
+              <li>Scheduled start date with clear timelines</li>
+              <li>Daily site protection, ventilation, and clean-up</li>
+              <li>Walk-through at the end and touch-ups before we leave</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="service-note">
+          <strong>Not seeing your exact project?</strong>
+          We regularly handle one-off requests like stair refinishing, single-room
+          refreshes, and small commercial touch-ups. If paint is involved, we can
+          likely help—just ask in your initial message.
         </div>
       </section>
 
