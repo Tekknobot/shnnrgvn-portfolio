@@ -468,13 +468,50 @@
       border-radius: 18px;
       border: 1px solid var(--border-soft);
       background: var(--card-bg);
-      padding: 16px 18px 18px;
+      padding: 8px 18px 10px;
+    }
+
+    /* clickable header */
+    .service-header {
+      width: 100%;
+      border: 0;
+      background: none;
+      padding: 8px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
     }
 
     .service-title {
       font-family: "Playfair Display", "Times New Roman", serif;
       font-size: 1.05rem;
-      margin-bottom: 6px;
+    }
+
+    .service-toggle {
+      font-size: 1.1rem;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+    }
+
+    /* plus / minus via CSS */
+    .service-toggle::before {
+      content: "+";
+    }
+
+    .service-group.is-open .service-toggle::before {
+      content: "–";
+    }
+
+    .service-content {
+      padding: 4px 0 8px;
+    }
+
+    /* hidden by default, shown when group has .is-open (JS will add/remove + use hidden attr) */
+    .service-content[hidden] {
+      display: none;
     }
 
     .service-body {
@@ -1006,102 +1043,132 @@
         <div class="services-grid">
           <!-- Interior -->
           <article class="service-group">
-            <h3 class="service-title">Interior Painting</h3>
-            <p class="service-body">
-              Light, clean interiors that feel calm and finished, with attention to
-              edges, trim, and existing finishes.
-            </p>
-            <ul class="service-list">
-              <li>Walls, ceilings, trim, and doors</li>
-              <li>Living rooms, bedrooms, hallways, and stairwells</li>
-              <li>Kitchen and bathroom repaints</li>
-              <li>Feature / accent walls and colour blocking</li>
-              <li>Cabinet and built-in repainting (spray or brush & roll)</li>
-              <li>Low-VOC options for sensitive homes</li>
-            </ul>
+            <button class="service-header" type="button">
+              <h3 class="service-title">Interior Painting</h3>
+              <span class="service-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="service-content">
+              <p class="service-body">
+                Light, clean interiors that feel calm and finished, with attention to
+                edges, trim, and existing finishes.
+              </p>
+              <ul class="service-list">
+                <li>Walls, ceilings, trim, and doors</li>
+                <li>Living rooms, bedrooms, hallways, and stairwells</li>
+                <li>Kitchen and bathroom repaints</li>
+                <li>Feature / accent walls and colour blocking</li>
+                <li>Cabinet and built-in repainting (spray or brush &amp; roll)</li>
+                <li>Low-VOC options for sensitive homes</li>
+              </ul>
+            </div>
           </article>
 
           <!-- Exterior -->
           <article class="service-group">
-            <h3 class="service-title">Exterior Painting</h3>
-            <p class="service-body">
-              Durable exterior work that respects your home’s character and stands
-              up to Toronto weather.
-            </p>
-            <ul class="service-list">
-              <li>Brick, stucco, siding, and wood cladding</li>
-              <li>Porches, soffits, fascia, and trim details</li>
-              <li>Front doors, garages, and shutters</li>
-              <li>Decks, fences, railings, and metalwork</li>
-              <li>Colour updates for curb appeal & resale</li>
-              <li>Season-appropriate scheduling and products</li>
-            </ul>
+            <button class="service-header" type="button">
+              <h3 class="service-title">Exterior Painting</h3>
+              <span class="service-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="service-content">
+              <p class="service-body">
+                Durable exterior work that respects your home’s character and stands
+                up to Toronto weather.
+              </p>
+              <ul class="service-list">
+                <li>Brick, stucco, siding, and wood cladding</li>
+                <li>Porches, soffits, fascia, and trim details</li>
+                <li>Front doors, garages, and shutters</li>
+                <li>Decks, fences, railings, and metalwork</li>
+                <li>Colour updates for curb appeal &amp; resale</li>
+                <li>Season-appropriate scheduling and products</li>
+              </ul>
+            </div>
           </article>
 
           <!-- Prep & repairs -->
           <article class="service-group">
-            <h3 class="service-title">Prep & Repairs</h3>
-            <p class="service-body">
-              Long-lasting paint jobs start with prep. We take time to fix surfaces
-              properly before the first coat goes on.
-            </p>
-            <ul class="service-list">
-              <li>Careful masking and protection of floors & furniture</li>
-              <li>Scraping, sanding, and feathering rough areas</li>
-              <li>Filling holes, cracks, and nail pops</li>
-              <li>Minor drywall repair and skim coating</li>
-              <li>Caulking gaps at trim and casings</li>
-              <li>Priming and stain / tannin blocking where needed</li>
-            </ul>
+            <button class="service-header" type="button">
+              <h3 class="service-title">Prep &amp; Repairs</h3>
+              <span class="service-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="service-content">
+              <p class="service-body">
+                Long-lasting paint jobs start with prep. We take time to fix surfaces
+                properly before the first coat goes on.
+              </p>
+              <ul class="service-list">
+                <li>Careful masking and protection of floors &amp; furniture</li>
+                <li>Scraping, sanding, and feathering rough areas</li>
+                <li>Filling holes, cracks, and nail pops</li>
+                <li>Minor drywall repair and skim coating</li>
+                <li>Caulking gaps at trim and casings</li>
+                <li>Priming and stain / tannin blocking where needed</li>
+              </ul>
+            </div>
           </article>
 
           <!-- Details & finishes -->
           <article class="service-group">
-            <h3 class="service-title">Details & Finishes</h3>
-            <p class="service-body">
-              Small details that make a home feel finished and thoughtfully put
-              together.
-            </p>
-            <ul class="service-list">
-              <li>Two-tone doors, frames, and baseboards</li>
-              <li>Stairs, handrails, and spindles</li>
-              <li>Window trims and sash touch-ups</li>
-              <li>Board-and-batten and wainscoting painting</li>
-              <li>Ceiling colour adjustments to soften light</li>
-              <li>Subtle sheens matched to how each room is used</li>
-            </ul>
+            <button class="service-header" type="button">
+              <h3 class="service-title">Details &amp; Finishes</h3>
+              <span class="service-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="service-content">
+              <p class="service-body">
+                Small details that make a home feel finished and thoughtfully put
+                together.
+              </p>
+              <ul class="service-list">
+                <li>Two-tone doors, frames, and baseboards</li>
+                <li>Stairs, handrails, and spindles</li>
+                <li>Window trims and sash touch-ups</li>
+                <li>Board-and-batten and wainscoting painting</li>
+                <li>Ceiling colour adjustments to soften light</li>
+                <li>Subtle sheens matched to how each room is used</li>
+              </ul>
+            </div>
           </article>
 
           <!-- Project types -->
           <article class="service-group">
-            <h3 class="service-title">Project Types</h3>
-            <p class="service-body">
-              We work on homes and small businesses across Toronto and the GTA.
-            </p>
-            <ul class="service-list">
-              <li>Single-family homes and semi-detached houses</li>
-              <li>Condos, townhomes, and rental units</li>
-              <li>Heritage and older character properties</li>
-              <li>Cafés, bakeries, and small retail spaces</li>
-              <li>Offices, studios, and common areas</li>
-              <li>Turnover repaints between tenants or owners</li>
-            </ul>
+            <button class="service-header" type="button">
+              <h3 class="service-title">Project Types</h3>
+              <span class="service-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="service-content">
+              <p class="service-body">
+                We work on homes and small businesses across Toronto and the GTA.
+              </p>
+              <ul class="service-list">
+                <li>Single-family homes and semi-detached houses</li>
+                <li>Condos, townhomes, and rental units</li>
+                <li>Heritage and older character properties</li>
+                <li>Cafés, bakeries, and small retail spaces</li>
+                <li>Offices, studios, and common areas</li>
+                <li>Turnover repaints between tenants or owners</li>
+              </ul>
+            </div>
           </article>
 
           <!-- Our process -->
           <article class="service-group">
-            <h3 class="service-title">Our Process</h3>
-            <p class="service-body">
-              A simple, clear process so you always know what’s happening next.
-            </p>
-            <ul class="service-list">
-              <li>Quick conversation to understand your project</li>
-              <li>On-site visit and written, itemized estimate</li>
-              <li>Help with colour choices and finishes if needed</li>
-              <li>Scheduled start date with clear timelines</li>
-              <li>Daily site protection, ventilation, and clean-up</li>
-              <li>Walk-through at the end and touch-ups before we leave</li>
-            </ul>
+            <button class="service-header" type="button">
+              <h3 class="service-title">Our Process</h3>
+              <span class="service-toggle" aria-hidden="true"></span>
+            </button>
+            <div class="service-content">
+              <p class="service-body">
+                A simple, clear process so you always know what’s happening next.
+              </p>
+              <ul class="service-list">
+                <li>Quick conversation to understand your project</li>
+                <li>On-site visit and written, itemized estimate</li>
+                <li>Help with colour choices and finishes if needed</li>
+                <li>Scheduled start date with clear timelines</li>
+                <li>Daily site protection, ventilation, and clean-up</li>
+                <li>Walk-through at the end and touch-ups before we leave</li>
+              </ul>
+            </div>
           </article>
         </div>
 
@@ -1360,6 +1427,28 @@
         });
       });
     })();
+
+    // Services accordion
+    (function () {
+      const groups = document.querySelectorAll(".service-group");
+
+      groups.forEach((group, index) => {
+        const header = group.querySelector(".service-header");
+        const content = group.querySelector(".service-content");
+        if (!header || !content) return;
+
+        // start collapsed
+        content.hidden = true;
+        header.setAttribute("aria-expanded", "false");
+
+        header.addEventListener("click", () => {
+          const isOpen = group.classList.toggle("is-open");
+          content.hidden = !isOpen;
+          header.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+      });
+    })();
+
   </script>
 </body>
 </html>
