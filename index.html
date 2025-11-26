@@ -869,6 +869,18 @@
       flex-wrap: wrap;
     }
 
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     @media (max-width: 768px) {
       body { padding: 16px; }
 
@@ -915,6 +927,30 @@
       text-decoration: underline;
     }
   </style>
+
+  <!-- Structured Data: Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shanna Ragavan",
+    "jobTitle": "Front-End Web Developer",
+    "description": "Front-end web developer based in Toronto, Canada, focusing on clean interfaces, dashboards, and tools.",
+    "url": "https://shnnrgvn-portfolio.vercel.app/",
+    "email": "mailto:shanna.ragavan@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Toronto",
+      "addressRegion": "ON",
+      "addressCountry": "CA"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/shnnrgvn/",
+      "https://zillatronics.itch.io/"
+    ]
+  }
+  </script>
+  
 </head>
 
 <body>
@@ -951,6 +987,9 @@
       <div class="hero-parallax"></div>
 
       <div class="hero-main">
+        <!-- SEO-friendly name heading (visually hidden) -->
+        <h1 class="visually-hidden">Shanna Ragavan — Front-End Web Developer in Toronto, Canada</h1>
+
         <!-- HEADLINE: FRONT END / WEB / DEVELOPMENT -->
         <h1 class="hero-title" aria-label="Front End Web Development">
           <!-- LINE 1: FRONT END -->
