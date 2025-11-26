@@ -1911,7 +1911,7 @@
 
       letters.forEach((letter, index) => {
         letter.addEventListener("mouseenter", () => {
-          const maxDistance = 6; // how far the ripple spreads
+          const maxDistance = 6;
 
           for (let offset = 0; offset <= maxDistance; offset++) {
             const left = letters[index - offset];
@@ -1921,8 +1921,6 @@
               if (!el) return;
 
               const delay = offset * 0.04;
-
-              // get the current/base color so we can ripple back to it via yoyo
               const baseColor = getComputedStyle(el).color;
 
               gsap.fromTo(
@@ -1962,7 +1960,6 @@
         });
       });
 
-      // header style on scroll
       const onScroll = () => {
         if (window.scrollY > 10) {
           headerEl.classList.add("header-scrolled");
@@ -1972,13 +1969,12 @@
       };
 
       window.addEventListener("scroll", onScroll);
-      onScroll(); // init state
+      onScroll();
     }
 
     function startMainAnimations() {
       if (!window.gsap) return;
 
-      // Minimal, clean intro: fade/slide the full headline
       gsap.from(".hero-title", {
         opacity: 0,
         y: 30,
@@ -1994,7 +1990,6 @@
         ease: "power2.out"
       });
 
-      // Parallax sphere
       gsap.to(".hero-parallax", {
         y: 80,
         duration: 6,
@@ -2003,7 +1998,6 @@
         yoyo: true
       });
 
-      // Section entrance
       if (window.ScrollTrigger) {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -2029,8 +2023,51 @@
         });
       }
 
-      // NEW: ripple hover effect on hero letters
       initHeroRipple();
+    }
+
+    /* NEW: Projects accordion */
+    function initProjectsAccordion() {
+      const projects = Array.from(document.querySelectorAll(".project"));
+      if (!projects.length) return;
+
+      projects.forEach((project) => {
+        const header = project.querySelector(".project-header");
+        const body = project.querySelector(".project-body");
+        if (!header || !body) return;
+
+        body.hidden = true;
+        header.setAttribute("aria-expanded", "false");
+
+        header.addEventListener("click", () => {
+          const isOpening = !project.classList.contains("is-open");
+
+          // close others
+          projects.forEach((other) => {
+            if (other === project) return;
+            other.classList.remove("is-open");
+            const otherBody = other.querySelector(".project-body");
+            const otherHeader = other.querySelector(".project-header");
+            if (otherBody) otherBody.hidden = true;
+            if (otherHeader) otherHeader.setAttribute("aria-expanded", "false");
+          });
+
+          project.classList.toggle("is-open", isOpening);
+          body.hidden = !isOpening;
+          header.setAttribute("aria-expanded", isOpening ? "true" : "false");
+        });
+
+        // internal “View live” buttons
+        project.querySelectorAll("[data-project-link]").forEach((btn) => {
+          btn.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const url = btn.getAttribute("data-project-link") || project.dataset.link;
+            if (url) {
+              window.open(url, "_blank", "noopener");
+            }
+          });
+        });
+      });
     }
 
     window.addEventListener("load", () => {
