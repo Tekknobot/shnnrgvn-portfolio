@@ -1948,22 +1948,22 @@
 
     function initKeywordSphere() {
       const canvas = document.getElementById("keywords-sphere");
-      const container = canvas?.parentElement;
-      if (!canvas || !container || !window.THREE) return;
+      const container = canvas && canvas.parentElement;
+      if (!canvas || !container || typeof THREE === "undefined") return;
 
-      const width = container.clientWidth;
-      const height = container.clientHeight;
+      const width = container.clientWidth || 600;
+      const height = container.clientHeight || 260;
 
       // Scene, camera, renderer
       keywordScene = new THREE.Scene();
 
       keywordCamera = new THREE.PerspectiveCamera(
-        50,
+        45,
         width / height,
         0.1,
         1000
       );
-      keywordCamera.position.z = 45;
+      keywordCamera.position.z = 35;
 
       keywordRenderer = new THREE.WebGLRenderer({
         canvas,
@@ -1975,6 +1975,15 @@
 
       keywordGroup = new THREE.Group();
       keywordScene.add(keywordGroup);
+
+      // ---- faint wireframe sphere so you always see *something* ----
+      const sphereGeo = new THREE.SphereGeometry(15, 32, 32);
+      const sphereMat = new THREE.MeshBasicMaterial({
+        wireframe: true,
+        color: 0x333333
+      });
+      const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
+      keywordGroup.add(sphereMesh);
 
       // Keywords pulled from your site’s focus
       const keywords = [
@@ -1997,28 +2006,35 @@
 
       // Helper: create a texture from text
       function createTextSprite(text) {
-        const canvas = document.createElement("canvas");
-        const size = 256;
-        canvas.width = size;
-        canvas.height = size;
-        const ctx = canvas.getContext("2d");
+        const c = document.createElement("canvas");
+        const size = 512;
+        c.width = size;
+        c.height = size;
+        const ctx = c.getContext("2d");
         if (!ctx) return null;
 
         ctx.clearRect(0, 0, size, size);
 
-        // match your aesthetic
-        ctx.fillStyle = "rgba(255,255,255,0.9)";
-        ctx.font = "bold 32px 'Space Grotesk', system-ui, sans-serif";
+        // background glow for legibility
+        ctx.fillStyle = "rgba(0,0,0,0.7)";
+        ctx.beginPath();
+        ctx.arc(size / 2, size / 2, size / 2.4, 0, Math.PI * 2);
+        ctx.fill();
+
+        // text
+        ctx.fillStyle = "rgba(255,255,255,0.95)";
+        ctx.font = "600 64px 'Space Grotesk', system-ui, sans-serif";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
 
-        // subtle glow
-        ctx.shadowColor = "rgba(0,0,0,0.8)";
-        ctx.shadowBlur = 10;
+        ctx.shadowColor = "rgba(0,0,0,0.9)";
+        ctx.shadowBlur = 18;
         ctx.fillText(text, size / 2, size / 2);
 
-        const texture = new THREE.CanvasTexture(canvas);
+        const texture = new THREE.CanvasTexture(c);
         texture.needsUpdate = true;
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
 
         const material = new THREE.SpriteMaterial({
           map: texture,
@@ -2026,22 +2042,22 @@
         });
 
         const sprite = new THREE.Sprite(material);
-        const scale = 7;
+        const scale = 10; // bigger so it’s obvious
         sprite.scale.set(scale, scale, 1);
 
         return sprite;
       }
 
-      // Place sprites on a sphere using a "Fibonacci sphere" distribution
-      const radius = 18;
+      // Place sprites on a sphere (Fibonacci sphere)
+      const radius = 15;
       const n = keywords.length;
 
       for (let i = 0; i < n; i++) {
         const sprite = createTextSprite(keywords[i]);
         if (!sprite) continue;
 
-        const phi = Math.acos(1 - 2 * (i + 0.5) / n);       // polar
-        const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5); // golden angle
+        const phi = Math.acos(1 - 2 * (i + 0.5) / n);
+        const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
 
         const x = radius * Math.cos(theta) * Math.sin(phi);
         const y = radius * Math.sin(theta) * Math.sin(phi);
@@ -2055,6 +2071,8 @@
       const mouse = { x: 0, y: 0 };
       window.addEventListener("mousemove", (e) => {
         const rect = container.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+
         const relX = (e.clientX - rect.left) / rect.width;
         const relY = (e.clientY - rect.top) / rect.height;
         mouse.x = relX * 2 - 1;
@@ -2065,8 +2083,8 @@
         requestAnimationFrame(animateKeywords);
 
         // base rotation
-        keywordGroup.rotation.y += 0.003;
-        keywordGroup.rotation.x += 0.0015;
+        keywordGroup.rotation.y += 0.004;
+        keywordGroup.rotation.x += 0.002;
 
         // small drift based on mouse
         keywordGroup.rotation.y += mouse.x * 0.002;
@@ -2079,9 +2097,8 @@
 
       // Resize handling
       window.addEventListener("resize", () => {
-        const w = container.clientWidth;
-        const h = container.clientHeight;
-        if (!w || !h) return;
+        const w = container.clientWidth || 600;
+        const h = container.clientHeight || 260;
 
         keywordCamera.aspect = w / h;
         keywordCamera.updateProjectionMatrix();
