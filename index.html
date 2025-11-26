@@ -1054,6 +1054,44 @@
       color: #ffe680;      /* slight brighten on hover */
       text-decoration: underline;
     }
+
+    /* KEYWORD SPHERE */
+    .keyword-orbit {
+      margin-top: 60px;
+      margin-bottom: 40px;
+      position: relative;
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, #111 0, #000 55%);
+      overflow: hidden;
+    }
+
+    .keyword-orbit-inner {
+      width: 100%;
+      max-width: 720px;
+      height: 100%;
+      position: relative;
+    }
+
+    #keywords-sphere {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* smaller height on mobile */
+    @media (max-width: 768px) {
+      .keyword-orbit {
+        height: 220px;
+        margin-top: 48px;
+        margin-bottom: 32px;
+      }
+    }
+
   </style>
 
   <!-- Structured Data: Person -->
@@ -1197,6 +1235,13 @@
           </ul>
         </div>
       </aside>
+    </section>
+
+    <!-- KEYWORD SPHERE -->
+    <section class="keyword-orbit" aria-label="Key skills and focus areas">
+      <div class="keyword-orbit-inner">
+        <canvas id="keywords-sphere"></canvas>
+      </div>
     </section>
 
     <!-- MARQUEE -->
@@ -1816,6 +1861,7 @@
 
   <script>
     let scene, camera, renderer, points, clock;
+    let keywordScene, keywordCamera, keywordRenderer, keywordGroup;
 
     function initWebGL() {
       const canvas = document.getElementById("bg-canvas");
@@ -1897,6 +1943,149 @@
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
         renderer.setSize(w, h);
+      });
+    }
+
+    function initKeywordSphere() {
+      const canvas = document.getElementById("keywords-sphere");
+      const container = canvas?.parentElement;
+      if (!canvas || !container || !window.THREE) return;
+
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+
+      // Scene, camera, renderer
+      keywordScene = new THREE.Scene();
+
+      keywordCamera = new THREE.PerspectiveCamera(
+        50,
+        width / height,
+        0.1,
+        1000
+      );
+      keywordCamera.position.z = 45;
+
+      keywordRenderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true
+      });
+      keywordRenderer.setPixelRatio(window.devicePixelRatio);
+      keywordRenderer.setSize(width, height);
+
+      keywordGroup = new THREE.Group();
+      keywordScene.add(keywordGroup);
+
+      // Keywords pulled from your site’s focus
+      const keywords = [
+        "Front-End",
+        "Web",
+        "Development",
+        "Dashboards",
+        "Tools",
+        "Interfaces",
+        "React",
+        "JavaScript",
+        "CSS",
+        "HTML",
+        "UI",
+        "UX",
+        "Prototyping",
+        "Game Dev",
+        "Toronto"
+      ];
+
+      // Helper: create a texture from text
+      function createTextSprite(text) {
+        const canvas = document.createElement("canvas");
+        const size = 256;
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return null;
+
+        ctx.clearRect(0, 0, size, size);
+
+        // match your aesthetic
+        ctx.fillStyle = "rgba(255,255,255,0.9)";
+        ctx.font = "bold 32px 'Space Grotesk', system-ui, sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        // subtle glow
+        ctx.shadowColor = "rgba(0,0,0,0.8)";
+        ctx.shadowBlur = 10;
+        ctx.fillText(text, size / 2, size / 2);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.needsUpdate = true;
+
+        const material = new THREE.SpriteMaterial({
+          map: texture,
+          transparent: true
+        });
+
+        const sprite = new THREE.Sprite(material);
+        const scale = 7;
+        sprite.scale.set(scale, scale, 1);
+
+        return sprite;
+      }
+
+      // Place sprites on a sphere using a "Fibonacci sphere" distribution
+      const radius = 18;
+      const n = keywords.length;
+
+      for (let i = 0; i < n; i++) {
+        const sprite = createTextSprite(keywords[i]);
+        if (!sprite) continue;
+
+        const phi = Math.acos(1 - 2 * (i + 0.5) / n);       // polar
+        const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5); // golden angle
+
+        const x = radius * Math.cos(theta) * Math.sin(phi);
+        const y = radius * Math.sin(theta) * Math.sin(phi);
+        const z = radius * Math.cos(phi);
+
+        sprite.position.set(x, y, z);
+        keywordGroup.add(sprite);
+      }
+
+      // Mouse-based gentle rotation
+      const mouse = { x: 0, y: 0 };
+      window.addEventListener("mousemove", (e) => {
+        const rect = container.getBoundingClientRect();
+        const relX = (e.clientX - rect.left) / rect.width;
+        const relY = (e.clientY - rect.top) / rect.height;
+        mouse.x = relX * 2 - 1;
+        mouse.y = -(relY * 2 - 1);
+      });
+
+      function animateKeywords() {
+        requestAnimationFrame(animateKeywords);
+
+        // base rotation
+        keywordGroup.rotation.y += 0.003;
+        keywordGroup.rotation.x += 0.0015;
+
+        // small drift based on mouse
+        keywordGroup.rotation.y += mouse.x * 0.002;
+        keywordGroup.rotation.x += mouse.y * 0.002;
+
+        keywordRenderer.render(keywordScene, keywordCamera);
+      }
+
+      animateKeywords();
+
+      // Resize handling
+      window.addEventListener("resize", () => {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        if (!w || !h) return;
+
+        keywordCamera.aspect = w / h;
+        keywordCamera.updateProjectionMatrix();
+        keywordRenderer.setSize(w, h);
       });
     }
 
@@ -2075,6 +2264,7 @@
       initNav();
       startMainAnimations();
       initProjectsAccordion();
+      initKeywordSphere();
 
       if (window.feather) {
         feather.replace();
