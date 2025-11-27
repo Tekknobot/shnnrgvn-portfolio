@@ -2539,16 +2539,6 @@
           header.setAttribute("aria-expanded", isOpen ? "true" : "false");
         });
       });
-
-      // Optional: open the first card by default
-      const first = cards[0];
-      if (first) {
-        const firstHeader = first.querySelector(".service-type-header");
-        const firstContent = first.querySelector(".service-type-content");
-        first.classList.add("is-open");
-        if (firstContent) firstContent.hidden = false;
-        if (firstHeader) firstHeader.setAttribute("aria-expanded", "true");
-      }
     }
 
     window.addEventListener("load", () => {
