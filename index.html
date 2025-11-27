@@ -1056,6 +1056,52 @@
       margin-top: 4px;
     }
 
+    /* Service Types – collapsible */
+
+    .service-type-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border: 0;
+      background: none;
+      padding: 0;
+      margin-bottom: 6px;
+      text-align: left;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .service-type-toggle {
+      font-size: 16px;
+      line-height: 1;
+      color: var(--grey);
+      transform: rotate(0deg);
+      transition: transform 0.2s ease;
+    }
+
+    /* Hide content when collapsed */
+    .service-type-content[hidden] {
+      display: none;
+    }
+
+    .service-type-content {
+      padding-top: 4px;
+    }
+
+    /* Open state */
+    .service-type-card.is-open {
+      background: var(--hover);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+      border-color: #262626;
+    }
+
+    .service-type-card.is-open .service-type-toggle {
+      transform: rotate(90deg);
+    }
+
+
     /* stack on smaller screens */
     @media (max-width: 900px) {
       .service-types-grid {
@@ -1940,68 +1986,95 @@
 
           <!-- TYPE 1: CREATIVE & PERSONAL BRANDS -->
           <div class="service-type-card">
-            <h4 class="service-type-label">Creative & Personal Brands</h4>
-            <p class="service-type-desc">
-              For individuals who need a clear, modern home for their work or services.
-            </p>
-            <ul class="service-type-list">
-              <li>Portfolios for designers, photographers, developers</li>
-              <li>Personal brands for coaches, writers, and consultants</li>
-              <li>“Link hubs” for streamers, creators, and artists</li>
-            </ul>
+            <button class="service-type-header" type="button">
+              <h4 class="service-type-label">Creative & Personal Brands</h4>
+              <span class="service-type-toggle" aria-hidden="true">›</span>
+            </button>
+            <div class="service-type-content">
+              <p class="service-type-desc">
+                For individuals who need a clear, modern home for their work or services.
+              </p>
+              <ul class="service-type-list">
+                <li>Portfolios for designers, photographers, developers</li>
+                <li>Personal brands for coaches, writers, and consultants</li>
+                <li>“Link hubs” for streamers, creators, and artists</li>
+              </ul>
+            </div>
           </div>
+
 
           <!-- TYPE 2: LOCAL SERVICES & SMALL BUSINESS -->
           <div class="service-type-card">
-            <h4 class="service-type-label">Local Services & Small Business</h4>
-            <p class="service-type-desc">
-              For small teams that need a simple, credible site clients can trust.
-            </p>
-            <ul class="service-type-list">
-              <li>Home services: contractors, painters, cleaners</li>
-              <li>Studios, salons, barbers, fitness trainers</li>
-              <li>Tutors, consultants, and solo practitioners</li>
-            </ul>
+            <button class="service-type-header" type="button">
+              <h4 class="service-type-label">Local Services & Small Business</h4>
+              <span class="service-type-toggle" aria-hidden="true">›</span>
+            </button>
+            <div class="service-type-content">
+              <p class="service-type-desc">
+                For small teams that need a simple, credible site clients can trust.
+              </p>
+              <ul class="service-type-list">
+                <li>Home services: contractors, painters, cleaners</li>
+                <li>Studios, salons, barbers, fitness trainers</li>
+                <li>Tutors, consultants, and solo practitioners</li>
+              </ul>
+            </div>
           </div>
+
 
           <!-- TYPE 3: PROFESSIONAL SERVICES (LAW, REAL ESTATE, ETC.) -->
           <div class="service-type-card">
-            <h4 class="service-type-label">Professional Services</h4>
-            <p class="service-type-desc">
-              For industries that need clarity, trust, and simple navigation — nothing flashy, just solid and professional.
-            </p>
-            <ul class="service-type-list">
-              <li>Real estate agents & small realty teams</li>
-              <li>Law firms & independent lawyers</li>
-              <li>Medical, dental, wellness & therapy practices</li>
-              <li>Accounting, tax prep & financial consultants</li>
-            </ul>
+            <button class="service-type-header" type="button">
+              <h4 class="service-type-label">Professional Services</h4>
+              <span class="service-type-toggle" aria-hidden="true">›</span>
+            </button>
+            <div class="service-type-content">
+              <p class="service-type-desc">
+                For industries that need clarity, trust, and simple navigation — nothing flashy, just solid and professional.
+              </p>
+              <ul class="service-type-list">
+                <li>Real estate agents & small realty teams</li>
+                <li>Law firms & independent lawyers</li>
+                <li>Medical, dental, wellness & therapy practices</li>
+                <li>Accounting, tax prep & financial consultants</li>
+              </ul>
+            </div>
           </div>
 
           <!-- TYPE 4: EVENTS, WEDDINGS & INVITATIONS -->
           <div class="service-type-card">
-            <h4 class="service-type-label">Events, Weddings & Invitations</h4>
-            <p class="service-type-desc">
-              Clean, shareable sites for announcements and important days.
-            </p>
-            <ul class="service-type-list">
-              <li>Wedding & engagement websites (with schedules & maps)</li>
-              <li>Event invites — birthdays, showers, celebrations</li>
-              <li>RSVP pages, FAQs, itinerary details</li>
-            </ul>
+            <button class="service-type-header" type="button">
+              <h4 class="service-type-label">Events, Weddings & Invitations</h4>
+              <span class="service-type-toggle" aria-hidden="true">›</span>
+            </button>
+            <div class="service-type-content">
+              <p class="service-type-desc">
+                Clean, shareable sites for announcements and important days.
+              </p>
+              <ul class="service-type-list">
+                <li>Wedding & engagement websites (with schedules & maps)</li>
+                <li>Event invites — birthdays, showers, celebrations</li>
+                <li>RSVP pages, FAQs, itinerary details</li>
+              </ul>
+            </div>
           </div>
 
           <!-- TYPE 5: INDIE GAMES, MUSIC & SIDE PROJECTS -->
           <div class="service-type-card">
-            <h4 class="service-type-label">Indie Games, Music & Projects</h4>
-            <p class="service-type-desc">
-              Simple launch pages for small creative projects outside mainstream platforms.
-            </p>
-            <ul class="service-type-list">
-              <li>Landing pages for indie games & prototypes</li>
-              <li>Music releases, EPs, album microsites</li>
-              <li>Concept tools & experimental web ideas</li>
-            </ul>
+            <button class="service-type-header" type="button">
+              <h4 class="service-type-label">Indie Games, Music & Projects</h4>
+              <span class="service-type-toggle" aria-hidden="true">›</span>
+            </button>
+            <div class="service-type-content">
+              <p class="service-type-desc">
+                Simple launch pages for small creative projects outside mainstream platforms.
+              </p>
+              <ul class="service-type-list">
+                <li>Landing pages for indie games & prototypes</li>
+                <li>Music releases, EPs, album microsites</li>
+                <li>Concept tools & experimental web ideas</li>
+              </ul>
+            </div>
           </div>
 
         </div>
@@ -2446,12 +2519,45 @@
       });
     }
 
+    function initServiceTypesAccordion() {
+      const cards = document.querySelectorAll(".service-type-card");
+      if (!cards.length) return;
+
+      cards.forEach((card) => {
+        const header = card.querySelector(".service-type-header");
+        const content = card.querySelector(".service-type-content");
+        if (!header || !content) return;
+
+        // Start collapsed
+        content.hidden = true;
+        header.setAttribute("aria-expanded", "false");
+
+        header.addEventListener("click", () => {
+          const isOpen = !card.classList.contains("is-open");
+          card.classList.toggle("is-open", isOpen);
+          content.hidden = !isOpen;
+          header.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
+      });
+
+      // Optional: open the first card by default
+      const first = cards[0];
+      if (first) {
+        const firstHeader = first.querySelector(".service-type-header");
+        const firstContent = first.querySelector(".service-type-content");
+        first.classList.add("is-open");
+        if (firstContent) firstContent.hidden = false;
+        if (firstHeader) firstHeader.setAttribute("aria-expanded", "true");
+      }
+    }
+
     window.addEventListener("load", () => {
       initWebGL();
       initNav();
       startMainAnimations();
       initProjectsAccordion();
       initKeywordSphere();
+      initServiceTypesAccordion();
 
       if (window.feather) {
         feather.replace();
