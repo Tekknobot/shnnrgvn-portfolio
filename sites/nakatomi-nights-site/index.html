@@ -233,14 +233,52 @@
       }
 
       .nav-inner {
-        flex-direction: column;
-        gap: 12px;
-        align-items: flex-start;
+        padding: 10px 16px;
+        gap: 0;
       }
 
-      nav ul {
-        flex-wrap: wrap;
-        justify-content: flex-start;
+      /* Show hamburger on mobile */
+      .nav-toggle {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Mobile nav dropdown */
+      header {
+        position: sticky;
+        top: 0;
+      }
+
+      header nav {
+        position: relative;
+        flex: 1;
+      }
+
+      header nav ul {
+        position: absolute;
+        top: 100%;
+        right: -16px;
+        left: -16px;
+        margin: 0;
+        padding: 16px 24px 20px;
+        list-style: none;
+        background: rgba(250, 247, 243, 0.98);
+        border-bottom: 1px solid var(--border);
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      /* When nav is open */
+      header.nav-open nav ul {
+        display: flex;
+      }
+
+      header nav li a {
+        font-size: 13px;
+        letter-spacing: 0.16em;
       }
     }
 
@@ -436,6 +474,38 @@
       }
     }
 
+    /* Hamburger button (hidden on desktop by default) */
+    .nav-toggle {
+      display: none;
+      border: none;
+      background: transparent;
+      padding: 4px;
+      margin-left: auto;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--fg);
+      border-radius: 999px;
+      transition: transform 160ms ease-out, opacity 160ms ease-out;
+    }
+
+    .nav-toggle span + span {
+      margin-top: 5px;
+    }
+
+    /* Animate into an "X" when open */
+    header.nav-open .nav-toggle span:first-child {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+
+    header.nav-open .nav-toggle span:last-child {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+
   </style>
 </head>
 
@@ -443,6 +513,13 @@
   <header>
     <div class="nav-inner">
       <div class="brand">NAKATOMI NIGHTS</div>
+
+      <!-- Mobile hamburger -->
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+
       <nav>
         <ul>
           <li><a href="#top">Home</a></li>
@@ -895,6 +972,26 @@
   </footer>
 
   <script>
+    // Mobile nav toggle
+    const headerEl = document.querySelector("header");
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelectorAll("nav a");
+
+    if (navToggle && headerEl) {
+      navToggle.addEventListener("click", () => {
+        const isOpen = headerEl.classList.toggle("nav-open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      // Close menu when a link is clicked
+      navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+          headerEl.classList.remove("nav-open");
+          navToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
     // Tab navigation
     const tabs = document.querySelectorAll(".menu-tab");
     const sections = document.querySelectorAll(".menu-section");
