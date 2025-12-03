@@ -497,6 +497,20 @@
         justify-content: center;
         align-items: center;
       }
+      
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* brand on left */
+      }
+
+      .nav-toggle {
+        margin-left: auto;           /* pushes the icon all the way right */
+      }
+
+      header nav {
+        flex: 0 0 auto;              /* stop nav from stretching between brand + icon */
+      }      
     }
 
     /* Animate into an "X" when open */
