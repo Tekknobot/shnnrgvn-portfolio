@@ -237,14 +237,6 @@
         gap: 0;
       }
 
-      /* Show hamburger on mobile */
-      .nav-toggle {
-        display: inline-flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
       /* Mobile nav dropdown */
       header {
         position: sticky;
@@ -495,6 +487,16 @@
 
     .nav-toggle span + span {
       margin-top: 5px;
+    }
+
+    /* Show hamburger on mobile (this comes AFTER the base rule) */
+    @media (max-width: 640px) {
+      .nav-toggle {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
     }
 
     /* Animate into an "X" when open */
