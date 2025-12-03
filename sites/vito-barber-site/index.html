@@ -678,20 +678,51 @@
       }
     }
 
-    /* Make hero title fit max 2 lines on small phones */
+    /* Small phones: put title above the card and let it breathe */
     @media (max-width: 480px) {
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      /* Order: kicker + title first, then the card, then the rest */
+      .hero-kicker {
+        order: 1;
+      }
+
       .hero-title {
-        font-size: 2.1rem;        /* a bit smaller on tiny screens */
+        order: 2;
+        font-size: 2.4rem;     /* a bit smaller, but roomy */
         line-height: 1.15;
-        max-width: 15ch;          /* keeps it to ~2 lines */
+        max-width: 18ch;       /* ~2 lines, not super narrow */
         margin-inline: auto;
       }
 
+      .hero-inline-card {
+        order: 3;
+        margin-top: 1.8rem;
+      }
+
+      .hero-text {
+        order: 4;
+        margin-top: 1.4rem;
+      }
+
+      .hero-actions {
+        order: 5;
+      }
+
+      .hero-meta {
+        order: 6;
+      }
+
+      /* Allow normal wrapping instead of one word per line */
       .hero-title span {
-        display: inline;          /* allow natural wrapping instead of 3 fixed lines */
+        display: inline;
       }
     }
-
   </style>
 </head>
 <body>
