@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vito's Barbershop | Bloordale Classic Cuts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* REDESIGN: VINTAGE BARBERSHOP THEME */
+    :root {
+      /* New Dark Palette */
+      --bg: #151719; /* Dark Charcoal/Inky Blue */
+      --ink: #EDEAE3; /* Cream/Off-White */
+      --muted: #BDB7AC; /* Light Muted Grey */
+      --barber-red: #A52A2A; /* Deep Barber Red */
+      --barber-stripe: #BDB7AC; /* A secondary accent color (light grey) */
+      --max-width: 960px; /* Narrower for a more classic print look */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Lora", Georgia, serif; /* Lora for a classic body font */
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem; /* Slightly smaller padding */
+    }
+
+    .section {
+      padding: 5rem 0; /* Increased vertical padding */
+      border-bottom: 1px solid rgba(237, 234, 227, 0.08); /* Subtle separator */
+    }
+
+    .section:last-of-type {
+        border-bottom: none;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-kicker {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em; /* More space for a signage look */
+      color: var(--barber-red);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      font-size: 2.4rem; /* Larger titles */
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+    }
+
+    .section-subtitle {
+      max-width: 45rem;
+      margin: 1rem auto 0;
+      font-size: 1rem;
+      color: var(--muted);
+      font-style: italic; /* Emphasize the subtitle */
+    }
+
+    p {
+        max-width: 36rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    p + p {
+      margin-top: 1rem;
+    }
+
+    /* HEADER / NAV */
+
+    header {
+      position: relative; /* Not fixed, more like a classic masthead */
+      z-index: 40;
+      background: var(--bg);
+      padding: 1.5rem 0 0;
+      border-bottom: 3px solid var(--barber-red);
+    }
+
+    .masthead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.75rem;
+      color: var(--ink);
+      padding: 0 1.5rem 1.2rem;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      text-align: left;
+    }
+
+    .brand-main {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem; /* Larger */
+      letter-spacing: 0.1em;
+      text-transform: none; /* Less aggressive uppercase */
+      font-weight: 700;
+    }
+
+    .brand-sub {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--barber-stripe);
+    }
+
+    .nav {
+      list-style: none;
+      display: flex;
+      gap: 2rem; /* Wider gap */
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 500;
+      font-family: "Lora", serif;
+    }
+
+    .nav a {
+      position: relative;
+      padding-bottom: 0.3rem;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0; /* Underline starts from the left */
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--barber-red);
+      transform: none; /* No translateX */
+      transition: width 180ms ease-out;
+    }
+
+    .nav a:hover::after,
+    .nav a:focus-visible::after,
+    .nav a.is-active::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      border-radius: 4px; /* Square toggle button */
+      border: 1px solid var(--barber-stripe);
+      padding: 0.4rem 0.6rem;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      margin: 4px 0;
+      background: var(--ink);
+    }
+
+/* HERO: Centered layout and strong typography */
+
+    .hero {
+      min-height: auto;
+      padding: 5rem 0 7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      text-align: center;
+      background: linear-gradient(
+        rgba(21, 23, 25, 0.9),
+        rgba(21, 23, 25, 0.9)
+      ), url("images/news-chair.png") center center / cover; /* Image as background */
+      border-bottom: 4px solid var(--barber-red);
+    }
+
+    .hero-inner {
+      display: block;
+      min-height: auto;
+    }
+
+    .hero-left, .hero-right {
+        display: block;
+        padding: 0;
+        background: transparent;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 48rem;
+    }
+
+    /* NEW INLINE CARD STYLE */
+    .hero-inline-card {
+        max-width: 260px; /* Small, focused size */
+        margin: 0 auto 2.5rem; /* Centered, generous margin below */
+        background: #25282b; /* Dark frame background */
+        border: 2px solid var(--barber-red);
+        padding: 0.75rem;
+        border-radius: 6px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-inline-card img {
+        border-radius: 4px;
+        filter: saturate(1.1) brightness(0.9);
+    }
+    /* END NEW INLINE CARD STYLE */
+
+    .hero-kicker {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--barber-stripe);
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      max-width: 100%;
+      line-height: 1.1;
+      margin: 0 auto;
+    }
+
+    .hero-title span {
+      display: block;
+    }
+
+    .hero-text {
+      margin-top: 1.5rem;
+      max-width: 38rem;
+      font-size: 1.05rem;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      margin-top: 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Button Styling: Classic, framed look */
+    .btn-primary, .btn-outline {
+      border-radius: 4px;
+      padding: 0.8rem 1.8rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    .btn-primary {
+      border: 2px solid var(--barber-red);
+      background: var(--barber-red);
+      color: var(--ink);
+    }
+
+    .btn-primary:hover {
+        background: #802020;
+    }
+
+    .btn-outline {
+      border: 2px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn-outline:hover {
+        background: var(--ink);
+        color: var(--bg);
+    }
+
+    .hero-meta {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      justify-content: center;
+      color: var(--barber-stripe);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .hero-meta span::before {
+      content: "•";
+      font-size: 1.2em;
+      background: none;
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      color: var(--barber-red);
+      opacity: 1;
+    }
+
+    .hero-photo-card, .hero-tag {
+        display: none; /* Hide the card/tag in the centered layout */
+    }
+
+    /* CONTENT LAYOUTS */
+
+    .section--light, .section--muted {
+      background: var(--bg); /* All sections are dark */
+    }
+
+    .columns {
+      display: grid;
+      gap: 3rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 900px) {
+      .columns {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        align-items: flex-start;
+      }
+    }
+
+    .aside-card {
+      background: #25282b; /* Slightly lighter background for the card */
+      border-radius: 8px;
+      padding: 1.8rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(165, 42, 42, 0.3); /* Red border accent */
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .aside-card strong {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .aside-card img {
+      border-radius: 6px;
+      margin-top: 1rem;
+      border: 1px solid var(--barber-red);
+    }
+
+    .aside-caption {
+      font-size: 0.85rem;
+      margin-top: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    
+    /* SERVICES / RATES */
+
+    .rate-list {
+      list-style: none;
+      margin-top: 1.8rem;
+      border-top: 2px solid var(--barber-red); /* Thick red line */
+      background: #25282b;
+      padding: 0 1.5rem;
+      border-radius: 8px;
+    }
+
+    .rate-list li {
+      display: grid;
+      grid-template-columns: 1.5fr auto;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(237, 234, 227, 0.15); /* Solid separator */
+      align-items: center;
+    }
+
+    .rate-list li:last-child {
+        border-bottom: none;
+    }
+
+    .rate-name {
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: capitalize;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .rate-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+      font-style: italic;
+    }
+
+    .rate-price {
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: var(--barber-red); /* Prices in red */
+      text-align: right;
+    }
+
+    .hours-card {
+      border-radius: 8px;
+      padding: 2rem;
+      background: var(--barber-red); /* Red card */
+      color: var(--ink);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .hours-title {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      margin-bottom: 0.35rem;
+      font-weight: 700;
+      font-family: "Playfair Display", serif;
+    }
+
+    .hours-sub {
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 1.2rem;
+      color: #EDEAE3;
+    }
+
+    .hours {
+      list-style: none;
+      border-top: 2px solid var(--ink); /* Thick white line */
+      padding-top: 1rem;
+      font-size: 0.95rem;
+      font-family: "Lora", serif;
+    }
+
+    .hours li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.35rem 0;
+    }
+
+    .hours-tagline {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: #f0ebe4;
+    }
+
+    /* GALLERY */
+
+    .gallery-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .gallery-grid figure {
+      overflow: hidden;
+      border-radius: 8px;
+      border: 4px solid var(--barber-red); /* Red frame */
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+      background: #000;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.0);
+      filter: grayscale(0.1) brightness(0.9) contrast(1.1); /* Slight vintage effect */
+      transition: transform 200ms ease-out;
+    }
+
+    .gallery-grid figure:hover img {
+      transform: scale(1.03);
+    }
+
+    .gallery-caption {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      text-align: center;
+      color: var(--barber-stripe);
+    }
+
+    /* VISIT */
+
+    .visit-note {
+      font-size: 1rem;
+      color: var(--muted);
+      font-style: italic;
+      text-align: center;
+      max-width: 30rem;
+      margin-bottom: 2rem;
+    }
+
+    .address-card {
+      margin-top: 1rem;
+      border-radius: 8px;
+      padding: 1.6rem;
+      background: var(--barber-red);
+      color: var(--ink);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      font-size: 1rem;
+      text-align: center;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .address-card strong {
+        font-family: "Playfair Display", serif;
+        font-size: 1.25rem;
+        display: block;
+        margin-bottom: 0.3rem;
+    }
+
+    .map-placeholder {
+      border-radius: 8px;
+      border: 4px solid var(--barber-red);
+      background-image: none;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+    }
+
+    /* make the map responsive */
+    .map-placeholder iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      min-height: 300px;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+      background: var(--bg);
+      color: var(--muted);
+      border-top: 4px solid var(--barber-red);
+      margin-top: 0;
+    }
+
+    footer .shell {
+      padding: 1.6rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.8rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    footer strong {
+      color: var(--ink);
+    }
+
+    /* RESPONSIVE NAV */
+
+    @media (max-width: 900px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav {
+        position: absolute;
+        inset: auto 1.5rem 0 1.5rem; /* Position below header, not fixed */
+        background: #25282b;
+        padding: 1rem 1.5rem 1.6rem;
+        flex-direction: column;
+        gap: 1rem;
+        transform: translateY(10px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 180ms ease-out, opacity 180ms ease-out;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        border-radius: 0 0 8px 8px;
+        border: 1px solid var(--barber-red);
+      }
+
+      .nav.is-open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .section {
+        padding: 4rem 0;
+      }
+
+      .hero {
+          padding-bottom: 5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="site-header">
+    <div class="shell masthead">
+      <div class="brand">
+        <div class="brand-main">Vito's Barbershop</div>
+        <div class="brand-sub">Bloordale · Toronto · Est. 1960</div>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav" id="nav">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Rates</a></li>
+        <li><a href="#gallery">Room</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <main>
+    <section class="hero" id="top">
+      <div class="shell hero-inner">
+        <div class="hero-copy">
+          
+          <div class="hero-inline-card">
+              <img
+                src="images/vito-character.png"
+                alt="Barber cutting hair in a vintage chair"
+              />
+          </div>
+          <div class="hero-kicker">Good Look Guaranteed</div>
+          <h1 class="hero-title">
+            <span>Experienced &</span>
+            <span>Traditional</span>
+            <span>Barber Shop</span>
+          </h1>
+          <p class="hero-text">
+            Old-school chairs, careful hands, and the quiet buzz of clippers.
+            Vito’s Barbershop has kept Bloordale looking sharp since 1960.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#visit" class="btn-primary">Walk-ins Preferred</a>
+            <a href="#services" class="btn-outline">View Services</a>
+          </div>
+
+          <div class="hero-meta">
+            <span>1258 Bloor Street West · Toronto</span>
+            <span>Saturday Haircuts · $16 Tax-in</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light" id="about">
+      <div class="shell">
+        <div class="section-header">
+          <div class="section-kicker">About Us</div>
+          <h2 class="section-title">Feels Like Old Times</h2>
+          <p class="section-subtitle">
+            Sports clippings, hanging plants, a sleepy cat, and the same steady
+            pair of hands. Vito’s is the kind of room you settle into—not just
+            pass through.
+          </p>
+        </div>
+
+        <div class="columns">
+          <div>
+            <p>
+              Inside these tiled floors and red vinyl chairs, the pace is
+              slower. The TV murmurs from the corner, scissors move with a
+              practiced rhythm, and regulars sink into their usual seats as if
+              they’ve never left.
+            </p>
+            <p>
+              Vito is kind and unhurried—happy to talk hockey or let the room
+              stay quiet while the cut takes shape. The shop cat drifts from
+              sunbeam to sunbeam, occasionally stopping to inspect a new pair of
+              shoes. It’s a Bloordale fixture that still feels like Saturday
+              afternoon in another decade.
+            </p>
+          </div>
+
+          <aside class="aside-card">
+            <strong>Those Red Waiting Chairs</strong>
+            <p>
+              Come a few minutes early, flip through the sports page, and watch
+              the neighbourhood wander in and out.
+            </p>
+            <img
+              src="images/chairs.jpg"
+              alt="Red waiting-room chairs inside Vito's Barbershop"
+            />
+            <p class="aside-caption">
+              Worn just enough to be comfortable; familiar enough to feel like
+              home.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" id="services">
+      <div class="shell">
+        <div class="section-header">
+          <div class="section-kicker">Services & Rates</div>
+          <h2 class="section-title">Clean Lines, Honest Prices</h2>
+          <p class="section-subtitle">
+            No memberships, no gimmicks—just straightforward barbershop
+            services, done properly and priced for the neighbourhood.
+          </p>
+        </div>
+
+        <div class="columns">
+          <div>
+            <ul class="rate-list">
+              <li>
+                <div>
+                  <div class="rate-name">Adult Haircut</div>
+                  <div class="rate-note">
+                    Classic taper, tidy trim, or something in between.
+                  </div>
+                </div>
+                <div class="rate-price">$20 · Sat $16</div>
+              </li>
+              <li>
+                <div>
+                  <div class="rate-name">Children’s Haircut</div>
+                  <div class="rate-note">
+                    Easy-going cuts for younger regulars discovering their first
+                    barbershop.
+                  </div>
+                </div>
+                <div class="rate-price">$15</div>
+              </li>
+              <li>
+                <div>
+                  <div class="rate-name">Beard Trim & Line-Up</div>
+                  <div class="rate-note">
+                    Neat edges, careful shaping, and no fuss.
+                  </div>
+                </div>
+                <div class="rate-price">$12</div>
+              </li>
+              <li>
+                <div>
+                  <div class="rate-name">Hot Towel Shave</div>
+                  <div class="rate-note">
+                    Steam, lather, and an old-school steady hand.
+                  </div>
+                </div>
+                <div class="rate-price">$25</div>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="hours-card">
+            <div class="hours-title">Opening Hours</div>
+            <div class="hours-sub">Time in the chair</div>
+            <ul class="hours">
+              <li><span>Tuesday – Friday</span><span>9:00 am – 6:00 pm</span></li>
+              <li><span>Saturday</span><span>8:30 am – 4:00 pm</span></li>
+              <li><span>Sunday & Monday</span><span>Closed</span></li>
+            </ul>
+            <p class="hours-tagline">
+              Walk-ins are welcome. On holidays or snowstorm days, a quick look
+              at the front window sign will tell you if the clippers are on.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--light" id="gallery">
+      <div class="shell">
+        <div class="section-header">
+          <div class="section-kicker">Inside the Room</div>
+          <h2 class="section-title">Scenes from Vito’s</h2>
+          <p class="section-subtitle">
+            From price boards and team photos to hanging plants and glass
+            lettering, every corner of the shop tells a little piece of
+            Bloordale’s story.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <figure>
+            <img
+              src="images/front-wall.jpg"
+              alt="Wall of framed photos and price board inside the barbershop"
+            />
+          </figure>
+          <figure>
+            <img
+              src="images/outside-window.jpg"
+              alt="View from inside the shop looking out through hanging plants"
+            />
+          </figure>
+          <figure>
+            <img
+              src="images/window.jpg"
+              alt="Vito's Barbershop sign painted on the front window"
+            />
+          </figure>
+        </div>
+
+        <div class="gallery-caption">
+          Vito's Barbershop · 1258 Bloor Street West · Bloordale · Toronto
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" id="visit">
+      <div class="shell">
+        <div class="section-header">
+          <div class="section-kicker">Visit Us</div>
+          <h2 class="section-title">Find Your Way to the Chair</h2>
+          <p class="section-subtitle">
+            Look for the barber pole colours and gold lettering in the window.
+            When the door’s propped open and the TV glow spills onto the
+            sidewalk, you’re in the right place.
+          </p>
+        </div>
+
+        <div class="columns">
+          <div>
+            <p class="visit-note">
+              Vito’s sits on the south side of Bloor Street West, a short walk
+              from Lansdowne Station. There’s bike parking out front and street
+              parking along the neighbouring blocks.
+            </p>
+
+            <div class="address-card">
+              <strong>Vito's Barbershop</strong><br />
+              1258 Bloor Street West<br />
+              Bloordale · Toronto · Canada
+            </div>
+          </div>
+
+          <aside class="map-placeholder" aria-label="Map to Vito's Barbershop">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.4828747788256!2d-79.4404869!3d43.6589263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b344471926f9d%3A0xeac8b13ff32d4c9b!2sVito%20Barber%20Shop!5e0!3m2!1sen!2sca!4v1764692861409!5m2!1sen!2sca"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <span>© <strong>Vito's Barbershop</strong> · Since 1960 on Bloor Street West.</span>
+      <span>Classic Cuts · Barber Pole Colours · No Fuss.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation toggle
+    const toggle = document.querySelector(".nav-toggle");
+    const nav = document.getElementById("nav");
+
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("is-open");
+    });
+
+    nav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("is-open");
+      });
+    });
+
+    // Removed the "sticky header" script because the header is no longer fixed.
+
+    // Fluid navigation: highlight active section - KEPT
+    const sections = document.querySelectorAll("main section[id]");
+    const navLinks = document.querySelectorAll(".nav a");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            navLinks.forEach((link) => {
+              link.classList.toggle(
+                "is-active",
+                link.getAttribute("href") === "#" + id
+              );
+            });
+          }
+        });
+      },
+      { threshold: 0.45 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>
