@@ -364,6 +364,47 @@
       justify-content: space-between;
       align-items: center;
     }
+
+    /* Hero Image Banner */
+    .hero-image-wrap {
+      position: relative;
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      filter: brightness(0.82);
+    }
+
+    .hero-image-overlay {
+      position: absolute;
+      bottom: 28px;
+      left: 40px;
+      color: white;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.45);
+    }
+
+    .hero-image-title {
+      font-family: "Playfair Display", serif;
+      font-size: 40px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+    }
+
+    .hero-image-subtitle {
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
   </style>
 </head>
 
@@ -385,6 +426,18 @@
   </header>
 
   <main id="top">
+    <div class="divider"></div>
+
+    <!-- Hero Image Banner -->
+    <section class="hero-image-wrap">
+      <img src="images/garden-bar.png" alt="Nakatomi Nights garden bar" class="hero-image" />
+
+      <div class="hero-image-overlay">
+        <h1 class="hero-image-title">Nakatomi Nights</h1>
+        <p class="hero-image-subtitle">South Asian Fusion · Oceanfront Dining</p>
+      </div>
+    </section>
+
     <div class="divider"></div>
 
     <section class="hero-title-wrapper" id="story">
