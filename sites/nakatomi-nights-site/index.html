@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nakatomi Nights | South Asian Fusion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Elegant typefaces -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #faf7f3;
+      --fg: #161515;
+      --accent: #e26a3f;
+      --muted: #a9a4a1;
+      --border: #ece3dc;
+      --max-width: 1120px;
+      --letterspace-wide: 0.22em;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(250, 247, 243, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-family: "Playfair Display", serif;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      font-size: 11px;
+      margin-right: 16px;
+      white-space: nowrap;
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    nav li a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    nav li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 1px;
+      background: var(--accent);
+      transition: width 160ms ease-out;
+    }
+
+    nav li a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cart {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    .divider {
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    .hero-title-wrapper {
+      text-align: center;
+      margin: 80px 0 48px;
+    }
+
+    .hero-kicker {
+      letter-spacing: var(--letterspace-wide);
+      text-transform: uppercase;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(32px, 3.4vw, 44px);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .hero-subtitle {
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    /* Menu tabs */
+
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .menu-tab {
+      cursor: pointer;
+      position: relative;
+      padding-bottom: 4px;
+      color: var(--muted);
+      transition: color 160ms ease-out, transform 160ms ease-out;
+    }
+
+    .menu-tab::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 1px;
+      background: var(--accent);
+      transition: width 160ms ease-out;
+    }
+
+    .menu-tab.active {
+      color: var(--fg);
+    }
+
+    .menu-tab.active::after {
+      width: 100%;
+    }
+
+    .menu-tab:hover {
+      transform: translateY(-1px);
+    }
+
+    .menu-meta {
+      text-align: center;
+      margin-bottom: 32px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .menu-section {
+      display: none;
+      animation: fadeIn 180ms ease-out;
+    }
+
+    .menu-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Columns */
+
+    .menu-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 48px;
+      row-gap: 32px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 880px) {
+      .menu-columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .menu-columns {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+    }
+
+    .menu-column-title {
+      font-family: "Playfair Display", serif;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .menu-item {
+      margin-bottom: 22px;
+      padding-right: 8px;
+    }
+
+    .menu-item-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .menu-item-name {
+      flex: 1;
+      white-space: normal;
+    }
+
+    .menu-item-price {
+      white-space: nowrap;
+    }
+
+    .menu-item-desc {
+      margin-top: 6px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    /* Elegant photo placeholders */
+
+    .photo-strip {
+      margin-top: 96px;
+      border-top: 1px solid var(--border);
+      padding-top: 40px;
+    }
+
+    .photo-strip-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 18px;
+    }
+
+    .photo-strip-title {
+      font-family: "Playfair Display", serif;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .photo-strip-note {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 800px) {
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .photo-placeholder {
+      border-radius: 20px;
+      border: 1px dashed rgba(0, 0, 0, 0.08);
+      background: radial-gradient(circle at top left, #f4ece3, #f8f2eb);
+      min-height: 170px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .photo-placeholder-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .photo-placeholder-text {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      max-width: 280px;
+      line-height: 1.4;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 80px;
+      padding: 28px 24px 40px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">NAKATOMI NIGHTS</div>
+      <nav>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#menu">Menus</a></li>
+          <li><a href="#story">Story</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cart">Reservations</div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="divider"></div>
+
+    <section class="hero-title-wrapper" id="story">
+      <div class="hero-kicker">South Asian Night Kitchen &amp; Bar</div>
+      <h1 class="hero-title">Dine-In &amp; Late-Night Pick-Up</h1>
+      <p class="hero-subtitle">
+        Nakatomi Nights weaves classic comfort dishes with the heat, smoke, and perfume of South Asia.
+        Small plates meant for sharing, cocktails laced with chai, tamarind and mango, and a playlist that never sleeps.
+      </p>
+    </section>
+
+    <div class="divider" id="menu"></div>
+
+    <!-- Tabs -->
+    <div class="menu-tabs">
+      <div class="menu-tab active" data-target="food">Food</div>
+      <div class="menu-tab" data-target="cocktails">Cocktails</div>
+      <div class="menu-tab" data-target="beer-cider">Beer &amp; Cider</div>
+      <div class="menu-tab" data-target="zero-proof">Zero-Proof</div>
+    </div>
+
+    <div class="menu-meta">
+      Menus are seasonal. Please inform us of any allergies.
+    </div>
+
+    <!-- FOOD -->
+    <section class="menu-section active" id="food">
+      <div class="menu-columns">
+        <div>
+          <div class="menu-column-title">Small Plates</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Gunpowder Fries</div>
+              <div class="menu-item-price">10</div>
+            </div>
+            <div class="menu-item-desc">
+              Crisp fries dusted in Andhra “gunpowder” spice, curry leaf &amp; lime aioli.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Paneer Bao Sliders</div>
+              <div class="menu-item-price">14</div>
+            </div>
+            <div class="menu-item-desc">
+              Soft bao, charred paneer, pickled onions, chili jam &amp; coriander.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Masala Popcorn Chicken</div>
+              <div class="menu-item-price">15</div>
+            </div>
+            <div class="menu-item-desc">
+              Ginger-garlic fried chicken bites, smoked yogurt, green chutney.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="menu-column-title">Plates &amp; Bowls</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Butter Chicken Ramen</div>
+              <div class="menu-item-price">21</div>
+            </div>
+            <div class="menu-item-desc">
+              Creamy tomato broth, fresh noodles, tandoori chicken, soft egg, chili oil &amp; scallions.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Coconut Lemongrass Biryani</div>
+              <div class="menu-item-price">20</div>
+            </div>
+            <div class="menu-item-desc">
+              Fragrant basmati baked with lemongrass, coconut, roasted vegetables &amp; crispy shallots.
+              Choice of paneer or chicken.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Tamarind Glazed Short Rib</div>
+              <div class="menu-item-price">26</div>
+            </div>
+            <div class="menu-item-desc">
+              Slow-braised beef, black pepper jus, mash with mustard seeds &amp; charred broccolini.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="menu-column-title">Night Bites</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Nakatomi Naan Pizza</div>
+              <div class="menu-item-price">17</div>
+            </div>
+            <div class="menu-item-desc">
+              Garlic naan, mozzarella, tikka sauce, roasted peppers, cilantro &amp; chili flakes.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Desi Street Tacos (3)</div>
+              <div class="menu-item-price">16</div>
+            </div>
+            <div class="menu-item-desc">
+              Choice of masala jackfruit or chili chicken, slaw, mint crema &amp; pickled radish.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Cardamom Chocolate Mousse</div>
+              <div class="menu-item-price">11</div>
+            </div>
+            <div class="menu-item-desc">
+              Dark chocolate, cardamom cream, pistachio praline, sea salt.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COCKTAILS -->
+    <section class="menu-section" id="cocktails">
+      <div class="menu-columns">
+        <div>
+          <div class="menu-column-title">Signatures</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Midnight Masala</div>
+              <div class="menu-item-price">15</div>
+            </div>
+            <div class="menu-item-desc">
+              Spiced citrus, ginger, and a house garam masala syrup over crushed ice, finished with burnt orange.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Chai Old Fashioned</div>
+              <div class="menu-item-price">16</div>
+            </div>
+            <div class="menu-item-desc">
+              Chai-infused spirit, jaggery, bitters &amp; orange peel, stirred and served over a clear cube.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Bombay Negroni</div>
+              <div class="menu-item-price">15</div>
+            </div>
+            <div class="menu-item-desc">
+              Classic bitter profile with hints of cardamom &amp; rose, gently smoked at the table.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="menu-column-title">Fresh &amp; Bright</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Mango Skylight</div>
+              <div class="menu-item-price">15</div>
+            </div>
+            <div class="menu-item-desc">
+              Mango, lime, a touch of chili and bubbles for lift – tropical, sweet-heat and light.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Coconut Lassi Fizz</div>
+              <div class="menu-item-price">15</div>
+            </div>
+            <div class="menu-item-desc">
+              Coconut, yogurt, citrus and gentle spice, shaken to a soft foam and lengthened with soda.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Tamarind Collins</div>
+              <div class="menu-item-price">14</div>
+            </div>
+            <div class="menu-item-desc">
+              Tamarind, lemon and soda over ice with a salted rim and fresh coriander.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="menu-column-title">Classics, Tilted</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Masala Gin &amp; Tonic</div>
+              <div class="menu-item-price">14</div>
+            </div>
+            <div class="menu-item-desc">
+              House masala tonic, citrus and cracked peppercorns with a slice of cucumber.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Rosewater Paloma</div>
+              <div class="menu-item-price">15</div>
+            </div>
+            <div class="menu-item-desc">
+              Grapefruit, lime and a whisper of rose, topped with soda and a chili-salt rim.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Masala Espresso</div>
+              <div class="menu-item-price">16</div>
+            </div>
+            <div class="menu-item-desc">
+              Espresso shaken with a hint of cardamom and vanilla; rich, foamy and perfect after dinner.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEER & CIDER -->
+    <section class="menu-section" id="beer-cider">
+      <div class="menu-columns">
+        <div>
+          <div class="menu-column-title">On Tap</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">House Lager</div>
+              <div class="menu-item-price">9</div>
+            </div>
+            <div class="menu-item-desc">
+              Clean, crisp and quietly floral. Brewed locally for Nakatomi Nights.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Monsoon Pale Ale</div>
+              <div class="menu-item-price">9</div>
+            </div>
+            <div class="menu-item-desc">
+              Bright citrus and gentle bitterness with a hint of tropical fruit.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="menu-column-title">Bottles &amp; Cans</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Local Seasonal Release</div>
+              <div class="menu-item-price">8</div>
+            </div>
+            <div class="menu-item-desc">
+              Ask your server about what’s currently in rotation.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Two-Point Porter</div>
+              <div class="menu-item-price">9</div>
+            </div>
+            <div class="menu-item-desc">
+              Cocoa, coffee and a touch of caramel – dark but easy.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="menu-column-title">Cider</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Himalayan Apple Cider</div>
+              <div class="menu-item-price">9</div>
+            </div>
+            <div class="menu-item-desc">
+              Dry, crisp cider with hints of green mango and spice.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Ginger Pear Cider</div>
+              <div class="menu-item-price">9</div>
+            </div>
+            <div class="menu-item-desc">
+              Juicy pear, fresh ginger and a subtle warmth on the finish.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZERO-PROOF -->
+    <section class="menu-section" id="zero-proof">
+      <div class="menu-columns">
+        <div>
+          <div class="menu-column-title">Zero-Proof Signatures</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Mumbai Midnight</div>
+              <div class="menu-item-price">9</div>
+            </div>
+            <div class="menu-item-desc">
+              Black tea, lime, mint and masala syrup, shaken and poured over crushed ice.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Lychee Lassi Cooler</div>
+              <div class="menu-item-price">9</div>
+            </div>
+            <div class="menu-item-desc">
+              Lychee, yogurt, cardamom and soda – creamy, floral and light.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="menu-column-title">Softs &amp; Sodas</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Masala Lemonade</div>
+              <div class="menu-item-price">7</div>
+            </div>
+            <div class="menu-item-desc">
+              Fresh lemon, black salt, cumin and soda. Sweet-tart and refreshing.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Mango Chili Soda</div>
+              <div class="menu-item-price">7</div>
+            </div>
+            <div class="menu-item-desc">
+              Mango puree, lime, chili and fizz.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="menu-column-title">Tea &amp; Coffee</div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">House Masala Chai</div>
+              <div class="menu-item-price">6</div>
+            </div>
+            <div class="menu-item-desc">
+              Slow-simmered with ginger, cardamom, clove and milk.
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-header">
+              <div class="menu-item-name">Night Market Cold Brew</div>
+              <div class="menu-item-price">6</div>
+            </div>
+            <div class="menu-item-desc">
+              Cold brew coffee with jaggery and a whisper of vanilla.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Elegant photo placeholders -->
+    <section class="photo-strip" id="gallery">
+      <div class="photo-strip-header">
+        <div class="photo-strip-title">Atmosphere</div>
+        <div class="photo-strip-note">Photography coming soon</div>
+      </div>
+      <div class="photo-grid">
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-label">Dining Room</div>
+          <div class="photo-placeholder-text">
+            Soft neon, warm brass, shadows and silhouettes.
+            Future photos of Nakatomi Nights will live here.
+          </div>
+        </div>
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-label">Bar &amp; Kitchen</div>
+          <div class="photo-placeholder-text">
+            Smoke curling off skewers, citrus being sliced, ice cracking in the shaker.
+            Until the cameras arrive, imagine the glow.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-inner">
+      <div>© Nakatomi Nights — South Asian Fusion &amp; Night Bar</div>
+      <div>Open nightly · 5pm – late · Fictional District</div>
+    </div>
+  </footer>
+
+  <script>
+    // Tab navigation
+    const tabs = document.querySelectorAll(".menu-tab");
+    const sections = document.querySelectorAll(".menu-section");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.target;
+
+        tabs.forEach(t => t.classList.remove("active"));
+        sections.forEach(sec => sec.classList.remove("active"));
+
+        tab.classList.add("active");
+        document.getElementById(target).classList.add("active");
+      });
+    });
+
+    // Smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener("click", e => {
+        const href = link.getAttribute("href");
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        window.scrollTo({
+          top: target.offsetTop - 88,
+          behavior: "smooth"
+        });
+      });
+    });
+  </script>
+</body>
+</html>
