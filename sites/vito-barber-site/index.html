@@ -631,18 +631,22 @@
 
       .nav {
         position: absolute;
-        inset: auto 1.5rem 0 1.5rem; /* Position below header, not fixed */
+        top: 100%;              /* drop the menu directly below the header */
+        left: 0;
+        right: 0;
+        margin: 0 1.5rem;       /* same horizontal padding as masthead */
         background: #25282b;
         padding: 1rem 1.5rem 1.6rem;
         flex-direction: column;
         gap: 1rem;
-        transform: translateY(10px);
+        transform: translateY(8px);  /* small slide down animation */
         opacity: 0;
         pointer-events: none;
         transition: transform 180ms ease-out, opacity 180ms ease-out;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
         border-radius: 0 0 8px 8px;
         border: 1px solid var(--barber-red);
+        z-index: 50;
       }
 
       .nav.is-open {
@@ -656,9 +660,10 @@
       }
 
       .hero {
-          padding-bottom: 5rem;
+        padding-bottom: 5rem;
       }
     }
+
   </style>
 </head>
 <body>
