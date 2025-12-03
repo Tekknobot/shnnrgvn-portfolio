@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Vito's Barbershop | Bloordale Classic Cuts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="images/scissors.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,16 +128,29 @@
 
     .brand {
       display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      text-align: left;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
       flex-direction: column;
       gap: 0.1rem;
-      text-align: left;
     }
 
     .brand-main {
       font-family: "Playfair Display", serif;
       font-size: 1.5rem; /* Larger */
       letter-spacing: 0.1em;
-      text-transform: none; /* Less aggressive uppercase */
+      text-transform: none;
       font-weight: 700;
     }
 
@@ -670,8 +684,15 @@
   <header id="site-header">
     <div class="shell masthead">
       <div class="brand">
-        <div class="brand-main">Vito's Barbershop</div>
-        <div class="brand-sub">Bloordale · Toronto · Est. 1960</div>
+        <img
+          src="images/scissors.png"
+          alt="Vito's Barbershop scissors logo"
+          class="brand-logo"
+        />
+        <div class="brand-text">
+          <div class="brand-main">Vito's Barbershop</div>
+          <div class="brand-sub">Bloordale · Toronto · Est. 1960</div>
+        </div>
       </div>
 
       <button class="nav-toggle" aria-label="Toggle navigation">
