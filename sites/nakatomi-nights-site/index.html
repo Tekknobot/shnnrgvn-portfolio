@@ -95,17 +95,11 @@
       width: 100%;
     }
 
-    .nav-cart {
-      font-size: 13px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
     main {
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 56px 24px 80px;
-      padding-top: 8px
+      padding-top: 8px;
     }
 
     .divider {
@@ -224,44 +218,6 @@
     @media (max-width: 880px) {
       .menu-columns {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 640px) {
-      .menu-columns {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .nav-inner {
-        padding: 10px 16px;
-        gap: 0;
-      }
-
-      /* Mobile nav: stacked dropdown, not absolute */
-      header nav {
-        flex-basis: 100%;
-      }
-
-      header nav ul {
-        margin: 8px 0 0;
-        padding: 12px 0 16px;
-        list-style: none;
-        background: rgba(250, 247, 243, 0.98);
-        border-top: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-        display: none;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      /* When nav is open */
-      header.nav-open nav ul {
-        display: flex;
-      }
-
-      header nav li a {
-        font-size: 13px;
-        letter-spacing: 0.16em;
       }
     }
 
@@ -427,36 +383,6 @@
       text-transform: uppercase;
     }
 
-    /* Mobile tweaks for hero image + overlay text */
-    @media (max-width: 640px) {
-      .hero-image-wrap {
-        border-radius: 18px;
-      }
-
-      .hero-image {
-        height: 220px;            /* crops a bit vertically */
-        object-fit: cover;        /* keeps it full-bleed */
-        object-position: 50% 60%; /* nudges framing toward the drinks/table */
-      }
-
-      .hero-image-overlay {
-        bottom: 20px;
-        left: 18px;
-        right: 18px;
-        text-align: center;       /* centers the text block on mobile */
-      }
-
-      .hero-image-title {
-        font-size: 24px;
-        letter-spacing: 0.16em;
-      }
-
-      .hero-image-subtitle {
-        font-size: 11px;
-        letter-spacing: 0.18em;
-      }
-    }
-
     /* Hamburger button (hidden on desktop by default) */
     .nav-toggle {
       display: none;
@@ -480,22 +406,6 @@
       margin-top: 5px;
     }
 
-    /* Show hamburger on mobile (this comes AFTER the base rule) */
-    @media (max-width: 640px) {
-      .nav-toggle {
-        display: inline-flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start; /* brand on left */
-      }    
-    }
-
     /* Animate into an "X" when open */
     header.nav-open .nav-toggle span:first-child {
       transform: translateY(3.5px) rotate(45deg);
@@ -505,6 +415,83 @@
       transform: translateY(-3.5px) rotate(-45deg);
     }
 
+    /* MOBILE LAYOUT */
+    @media (max-width: 640px) {
+      /* layout */
+      .menu-columns {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .nav-inner {
+        padding: 10px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* brand left */
+      }
+
+      /* show hamburger */
+      .nav-toggle {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto; /* push to right */
+      }
+
+      /* nav dropdown below header */
+      header nav {
+        flex-basis: 100%;
+      }
+
+      header nav ul {
+        margin: 8px 0 0;
+        padding: 12px 0 16px;
+        list-style: none;
+        background: rgba(250, 247, 243, 0.98);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      header.nav-open nav ul {
+        display: flex;
+      }
+
+      header nav li a {
+        font-size: 13px;
+        letter-spacing: 0.16em;
+      }
+
+      /* hero image tweaks */
+      .hero-image-wrap {
+        border-radius: 18px;
+      }
+
+      .hero-image {
+        height: 220px;
+        object-fit: cover;
+        object-position: 50% 60%;
+      }
+
+      .hero-image-overlay {
+        bottom: 20px;
+        left: 18px;
+        right: 18px;
+        text-align: center;
+      }
+
+      .hero-image-title {
+        font-size: 24px;
+        letter-spacing: 0.16em;
+      }
+
+      .hero-image-subtitle {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+      }
+    }
   </style>
 </head>
 
