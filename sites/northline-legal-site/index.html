@@ -22,7 +22,6 @@
   --transition-fast: 180ms ease-out;
   --mx: 0;  /* mouse offset X */
   --my: 0;  /* mouse offset Y */
-
 }
 
 * {
@@ -206,7 +205,7 @@ main {
   z-index: 1;
 }
 
-/* Base section background using gradients instead of images */
+/* Base section background + animated “liquid” gradients */
 section {
   --section-gradient: linear-gradient(135deg, #1b1029, #05030a);
 
@@ -218,19 +217,6 @@ section {
   overflow: hidden;
 }
 
-/* Base section background using gradients instead of images */
-section {
-  --section-gradient: linear-gradient(135deg, #1b1029, #05030a);
-
-  min-height: 100vh;
-  padding: calc(var(--nav-height) + 4rem) 8vw 5rem;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Animated “liquid” gradient layers */
 section::before,
 section::after {
   content: "";
@@ -285,65 +271,6 @@ section::after {
     );
   transform: translate3d(calc(var(--mx) * -0.15px), calc(var(--my) * -0.15px), 0);
   transition: transform 0.22s ease-out;
-}
-
-
-/* Liquid gradient layer that shifts with the cursor */
-section::before {
-  z-index: -2;
-  background:
-    radial-gradient(
-      circle at calc(10% + var(--mx) * 6.6px)
-                  calc(0% + var(--my) * 5.5px),
-      rgba(255, 255, 255, 0.10),
-      transparent 55%
-    ),
-    radial-gradient(
-      circle at calc(90% + var(--mx) * -8.8px)
-                  calc(25% + var(--my) * 7.7px),
-      rgba(255, 31, 122, 0.40),
-      transparent 60%
-    ),
-    radial-gradient(
-      circle at calc(50% + var(--mx) * 4.4px)
-                  calc(100% + var(--my) * -6.6px),
-      rgba(255, 180, 60, 0.35),
-      transparent 60%
-    ),
-    var(--section-gradient);
-  transform: translate3d(calc(var(--mx) * 0.25px), calc(var(--my) * 0.25px), 0);
-  transition: transform 0.16s ease-out;
-}
-
-/* Deeper shadowy layer that moves slower for a parallax/3D feel */
-section::after {
-  z-index: -1;
-  background:
-    radial-gradient(
-      circle at calc(20% + var(--mx) * -0.3px)
-                  calc(110% + var(--my) * 0.4px),
-      rgba(0, 0, 0, 0.9),
-      transparent 60%
-    ),
-    radial-gradient(
-      circle at calc(80% + var(--mx) * 0.2px)
-                  calc(-10% + var(--my) * -0.3px),
-      rgba(0, 0, 0, 0.75),
-      transparent 60%
-    );
-  transform: translate3d(calc(var(--mx) * -0.15px), calc(var(--my) * -0.15px), 0);
-  transition: transform 0.22s ease-out;
-}
-
-section::before {
-  background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 55%),
-    var(--section-gradient);
-}
-
-section::after {
-  z-index: -1;
-  background: radial-gradient(circle at bottom, rgba(0, 0, 0, 0.8), transparent 55%);
 }
 
 /* Section-specific gradients — 6-color palette */
@@ -764,14 +691,12 @@ footer a:hover {
     display: none;
   }
 }
-/* Add this at the very BOTTOM of your existing <style> block */
 
 /* Force all text to be white */
 body,
 body * {
   color: #ffffff !important;
 }
-
 </style>
 
 </head>
