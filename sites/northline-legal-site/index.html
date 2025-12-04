@@ -20,6 +20,9 @@
   --border-subtle: rgba(255, 255, 255, 0.12);
   --nav-height: 72px;
   --transition-fast: 180ms ease-out;
+  --mx: 0;  /* mouse offset X */
+  --my: 0;  /* mouse offset Y */
+
 }
 
 * {
@@ -986,6 +989,26 @@ body * {
   <script>
     // Set the year in the footer
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Liquid gradient motion
+    (function () {
+      const root = document.documentElement;
+
+      function handlePointerMove(event) {
+        const rect = document.body.getBoundingClientRect();
+        const xNorm = (event.clientX - rect.left) / rect.width - 0.5;  // -0.5 to 0.5
+        const yNorm = (event.clientY - rect.top) / rect.height - 0.5;
+
+        // Scale to a comfortable range so it doesn't go wild
+        const mx = xNorm * 40; // tweak strength here
+        const my = yNorm * 40;
+
+        root.style.setProperty("--mx", mx.toFixed(2));
+        root.style.setProperty("--my", my.toFixed(2));
+      }
+
+      window.addEventListener("pointermove", handlePointerMove);
+    })();
 
     // Scroll spy for nav + dots
     const sections = document.querySelectorAll("main section");
