@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZAK MORRIS — Atelier</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #050505;
+      --fg: #f0f0f0;
+      --muted: #777777;
+      --accent: #d4d4d4; /* Silver/White accent instead of gold for colder feel */
+      --line-color: rgba(255, 255, 255, 0.2);
+      
+      --font-display: 'Cormorant Garamond', serif;
+      --font-sans: 'Inter', sans-serif;
+
+      --nav-height: 80px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ZERO RADIUS ENFORCEMENT */
+    * {
+      border-radius: 0 !important;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--fg);
+      background: var(--bg);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle Grain */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9000;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Vertical Grid Lines */
+    .grid-lines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 4vw;
+    }
+
+    .line {
+      width: 1px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* ---------- HEADER ---------- */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      padding: 0 4vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line-color);
+    }
+
+    .logo {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    nav {
+      display: flex;
+      gap: 3rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      opacity: 1;
+      text-decoration: line-through; /* Strikethrough for active state style */
+      text-decoration-thickness: 1px;
+    }
+
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    /* ---------- LAYOUT UTILS ---------- */
+
+    .section {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      padding: calc(var(--nav-height) + 4rem) 4vw 4rem;
+      border-bottom: 1px solid var(--line-color);
+      z-index: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-inner {
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .meta-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      display: block;
+      letter-spacing: 0.05em;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      color: #fff;
+      line-height: 0.9;
+    }
+
+    h1 em, h2 em, h3 em {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 300;
+      color: #aaa;
+    }
+
+    p.description {
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+      line-height: 1.4;
+      max-width: 45ch;
+      border-left: 1px solid var(--line-color);
+      padding-left: 1.5rem;
+    }
+
+    .btn-link {
+      display: inline-block;
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 1rem 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-link:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+
+    /* ---------- HERO SECTION ---------- */
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 6vw;
+      align-items: end;
+    }
+
+    .hero-heading-group h1 {
+      font-size: clamp(4rem, 9vw, 10rem);
+      margin-left: -0.3rem; /* Visual alignment fix for massive font */
+      margin-bottom: 3rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-details {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      border-top: 1px solid var(--line-color);
+      padding-top: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .detail-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .detail-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .detail-value {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+    }
+
+    .hero-image-column {
+      position: relative;
+      height: 100%;
+      min-height: 60vh;
+      border-left: 1px solid var(--line-color);
+      padding-left: 2rem;
+    }
+
+    .hero-image-frame {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      background-image: url('./images/model-01.png');
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(100%) contrast(1.1);
+      transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .section:hover .hero-image {
+      transform: scale(1.03);
+    }
+
+    .vertical-tag {
+      writing-mode: vertical-rl;
+      position: absolute;
+      left: -1rem;
+      bottom: 0;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+    }
+
+    /* ---------- COLLECTION SECTION ---------- */
+
+    /* Remove floating cards, use strict grid */
+    
+    .collection-layout {
+      display: grid;
+      grid-template-columns: 1.5fr 3fr;
+      gap: 4rem;
+    }
+
+    .collection-copy {
+      position: sticky;
+      top: 150px;
+      height: fit-content;
+    }
+
+    .collection-copy h2 {
+      font-size: clamp(3rem, 5vw, 5rem);
+      margin-bottom: 2rem;
+    }
+
+    .collection-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .look-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      padding: 4rem 0;
+      border-top: 1px solid var(--line-color);
+      opacity: 0.4;
+      transition: opacity 0.5s ease;
+    }
+
+    .look-card:last-child {
+      border-bottom: 1px solid var(--line-color);
+    }
+
+    .look-card:hover {
+      opacity: 1;
+    }
+
+    .look-image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+
+    .look-card:hover .look-image {
+      filter: grayscale(0%);
+    }
+
+    .look-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .look-header {
+      margin-bottom: 2rem;
+    }
+
+    .look-title {
+      font-family: var(--font-sans); /* Sans for titles here, more tech/modern */
+      font-weight: 300;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .look-tag {
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    .look-specs {
+      margin-top: auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1rem;
+    }
+
+    .look-1 { background-image: url('./images/model-02.png'); }
+    .look-2 { background-image: url('./images/model-03.png'); }
+    .look-3 { background-image: url('./images/model-04.png'); }
+
+    /* ---------- ABOUT SECTION ---------- */
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+
+    .about-main h2 {
+      font-size: clamp(3rem, 5vw, 6rem);
+      margin-bottom: 3rem;
+    }
+
+    .about-main .description {
+      border-left: none; /* Remove border here for variation */
+      padding-left: 0;
+      font-size: 1.4rem;
+      margin-bottom: 4rem;
+      font-family: var(--font-display);
+      color: #fff;
+    }
+
+    .about-stats {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--line-color);
+      border-bottom: 1px solid var(--line-color);
+      padding: 1.5rem 0;
+      margin-bottom: 4rem;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 0.5fr 2fr;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .process-step-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .process-step-text {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .about-portrait {
+      position: relative;
+      background-image: url('./images/model-03.png');
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(100%) contrast(1.2);
+      min-height: 600px;
+    }
+
+    /* ---------- CONTACT SECTION ---------- */
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-copy h2 {
+      font-size: clamp(3rem, 5vw, 6rem);
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      margin-top: 4rem;
+    }
+
+    .contact-row {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      text-decoration: none;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line-color);
+      padding: 1.5rem 0;
+      transition: color 0.3s ease, padding 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contact-row span {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .contact-row:hover {
+      color: #fff;
+      padding-left: 1rem;
+    }
+    .contact-row:hover span {
+      opacity: 1;
+    }
+
+    /* Form Redesign - Sharp & Minimal */
+    .contact-panel {
+      padding-top: 2rem;
+    }
+
+    form.contact-form {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .field label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Underline style inputs */
+    .field input,
+    .field textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding: 0.5rem 0;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .field textarea {
+      min-height: 60px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-bottom-color: #fff;
+    }
+
+    .contact-submit {
+      margin-top: 1rem;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 1.2rem 3rem;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      cursor: pointer;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+
+    .contact-submit:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+
+    /* ---------- ANIMATION ---------- */
+
+    .section {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (max-width: 900px) {
+      .hero-layout,
+      .collection-layout,
+      .about-layout,
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .hero-image-column {
+        border-left: none;
+        padding-left: 0;
+        height: 50vh;
+        order: -1;
+      }
+
+      .hero-details {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .look-card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      nav {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        height: calc(100vh - var(--nav-height));
+        background: var(--bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        border-top: 1px solid var(--line-color);
+      }
+
+      nav.open {
+        transform: translateX(0);
+      }
+
+      nav a {
+        font-size: 1.5rem;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .collection-copy {
+        position: static;
+        top: auto;
+      }      
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay"></div>
+
+  <div class="grid-lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+
+  <header>
+    <div class="logo">ZAK MORRIS</div>
+    <nav>
+      <a href="#hero">Maison</a>
+      <a href="#collection">Collection</a>
+      <a href="#about">Profile</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="menu-toggle">Index</div>
+  </header>
+
+  <section class="section" id="hero">
+    <div class="section-inner hero-layout">
+      <div class="hero-text">
+        <div class="hero-heading-group">
+          <span class="meta-label">Fall / Winter 2026</span>
+          <h1>THE <em>SILENCE</em><br />OF FORM.</h1>
+          <p class="description">
+            Architectural language for the body. Sharp lines, deep shadows,
+            and uncompromising elegance traced in negative space.
+          </p>
+        </div>
+
+        <div class="hero-details">
+          <div class="detail-block">
+            <span class="detail-label">Discipline</span>
+            <span class="detail-value">Sculpting</span>
+          </div>
+          <div class="detail-block">
+            <span class="detail-label">Mood</span>
+            <span class="detail-value">Nocturnal</span>
+          </div>
+          <div class="detail-block">
+            <span class="detail-label">Origin</span>
+            <span class="detail-value">Paris</span>
+          </div>
+          <div class="detail-block">
+            <span class="detail-label">Availability</span>
+            <span class="detail-value">Salon Only</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image-column">
+        <div class="hero-image-frame">
+          <div class="hero-image"></div>
+        </div>
+        <div class="vertical-tag">Look 01 / Studio Noir</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="collection">
+    <div class="section-inner collection-layout">
+      <div class="collection-copy">
+        <span class="meta-label">Latest Work</span>
+        <h2>NOIR <em>VOLUME</em></h2>
+        <p class="description">
+          Engineered draping meets liquid fabrics. A study in sheen, texture,
+          and the absolute power of monochrome in motion.
+        </p>
+        <a href="#" class="btn-link">Full Lookbook</a>
+      </div>
+
+      <div class="collection-list">
+        <article class="look-card">
+          <div class="look-image look-1"></div>
+          <div class="look-meta">
+            <div class="look-header">
+              <span class="look-tag">Look I</span>
+              <h3 class="look-title">Liquid Column</h3>
+              <p>High-shine satin carved into a strict vertical. Micro-boned bodice with invisible seaming.</p>
+            </div>
+            <div class="look-specs">
+              <span>Bias cut</span>
+              <span>Custom dye bath</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="look-card">
+          <div class="look-image look-2"></div>
+          <div class="look-meta">
+            <div class="look-header">
+              <span class="look-tag">Look II</span>
+              <h3 class="look-title">Glass Spine</h3>
+              <p>A sheer back panel reveals a vertebrae of hand-set hardware contrasted with matte crepe.</p>
+            </div>
+            <div class="look-specs">
+              <span>Hardware detailing</span>
+              <span>Hand finished</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="look-card">
+          <div class="look-image look-3"></div>
+          <div class="look-meta">
+            <div class="look-header">
+              <span class="look-tag">Look III</span>
+              <h3 class="look-title">Shadow Tracer</h3>
+              <p>Negative space sliced at the waist and shoulder. Gloss piping traces the body’s orbit.</p>
+            </div>
+            <div class="look-specs">
+              <span>Contour piping</span>
+              <span>Custom pattern</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="section-inner about-layout">
+      <div class="about-main">
+        <span class="meta-label">The Designer</span>
+        <h2>FUTURE <em>CLASSIC</em></h2>
+        <p class="description">
+          Zak Morris merges digital precision with atelier craftsmanship.
+          Algorithms sketch the first lines; human hands finish the final seam.
+        </p>
+
+        <div class="about-stats">
+            <div>
+              <div class="stat-label">Fittings per piece</div>
+              <div class="stat-value">05</div>
+            </div>
+            <div>
+              <div class="stat-label">Cities dressed</div>
+              <div class="stat-value">11</div>
+            </div>
+            <div>
+              <div class="stat-label">Studio Output</div>
+              <div class="stat-value">12</div>
+            </div>
+        </div>
+
+        <div class="about-process">
+          <div class="process-step">
+            <span class="process-step-label">01 / Algorithm</span>
+            <p class="process-step-text">
+              Silhouettes are drafted in 3D first, testing how light, shadow,
+              and movement orbit the body before any fabric is cut.
+            </p>
+          </div>
+          <div class="process-step">
+            <span class="process-step-label">02 / Translation</span>
+            <p class="process-step-text">
+              Draping is refined on the stand, seams are simplified, and every
+              edge is hand-finished to stay quiet on camera.
+            </p>
+          </div>
+          <div class="process-step">
+            <span class="process-step-label">03 / Salon</span>
+            <p class="process-step-text">
+              A final fitting in the private salon, under the same light the
+              garment is meant to live in.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="about-portrait"></aside>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="section-inner contact-layout">
+      <div class="contact-copy">
+        <span class="meta-label">Inquiries</span>
+        <h2>PRIVATE <em>SALON</em></h2>
+        <p class="description" style="border: none; padding: 0;">
+          Each piece begins with a conversation. Studio visits are limited and
+          arranged by appointment in Paris or Toronto.
+        </p>
+
+        <div class="contact-links">
+          <a href="mailto:studio@zakmorris.com" class="contact-row">
+            studio@zakmorris.com
+            <span>Email Studio</span>
+          </a>
+          <a href="#" class="contact-row">
+            Press Inquiries
+            <span>Media</span>
+          </a>
+          <a href="#" class="contact-row">
+            Book Appointment
+            <span>Salon</span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="contact-panel">
+        <form class="contact-form" action="#" method="post">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="" />
+          </div>
+          <div class="field">
+            <label for="location">City</label>
+            <input id="location" name="location" type="text" placeholder="" />
+          </div>
+          <div class="field">
+            <label for="message">Occasion</label>
+            <textarea id="message" name="message" placeholder=""></textarea>
+          </div>
+          <button type="submit" class="contact-submit">
+            Submit Request
+          </button>
+        </form>
+      </aside>
+    </div>
+  </section>
+
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('nav a');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('header nav');
+
+    // Simple Intersection Observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+            });
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    sections.forEach((sec) => observer.observe(sec));
+
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      menuToggle.textContent = nav.classList.contains('open') ? 'Close' : 'Index';
+    });
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('open');
+            menuToggle.textContent = 'Index';
+        })
+    })
+  </script>
+</body>
+</html>
