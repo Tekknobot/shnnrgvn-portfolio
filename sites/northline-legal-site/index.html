@@ -218,6 +218,19 @@ section {
   overflow: hidden;
 }
 
+/* Base section background using gradients instead of images */
+section {
+  --section-gradient: linear-gradient(135deg, #1b1029, #05030a);
+
+  min-height: 100vh;
+  padding: calc(var(--nav-height) + 4rem) 8vw 5rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated “liquid” gradient layers */
 section::before,
 section::after {
   content: "";
@@ -226,6 +239,54 @@ section::after {
   z-index: -2;
   will-change: transform, background-position;
 }
+
+/* Liquid gradient layer that shifts with the cursor */
+section::before {
+  z-index: -2;
+  background:
+    radial-gradient(
+      circle at calc(10% + var(--mx) * 1.5px)
+                  calc(0% + var(--my) * 1.2px),
+      rgba(255, 255, 255, 0.10),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at calc(90% + var(--mx) * -2px)
+                  calc(25% + var(--my) * 1.8px),
+      rgba(255, 31, 122, 0.40),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at calc(50% + var(--mx) * 1.2px)
+                  calc(100% + var(--my) * -1.6px),
+      rgba(255, 180, 60, 0.35),
+      transparent 60%
+    ),
+    var(--section-gradient);
+  transform: translate3d(calc(var(--mx) * 0.25px), calc(var(--my) * 0.25px), 0);
+  transition: transform 0.16s ease-out;
+}
+
+/* Deeper shadowy layer that moves slower for a parallax/3D feel */
+section::after {
+  z-index: -1;
+  background:
+    radial-gradient(
+      circle at calc(20% + var(--mx) * -0.5px)
+                  calc(110% + var(--my) * 0.6px),
+      rgba(0, 0, 0, 0.9),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at calc(80% + var(--mx) * 0.4px)
+                  calc(-10% + var(--my) * -0.5px),
+      rgba(0, 0, 0, 0.75),
+      transparent 60%
+    );
+  transform: translate3d(calc(var(--mx) * -0.15px), calc(var(--my) * -0.15px), 0);
+  transition: transform 0.22s ease-out;
+}
+
 
 /* Liquid gradient layer that shifts with the cursor */
 section::before {
