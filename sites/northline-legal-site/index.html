@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Northline Legal — Tech & Startup Lawyer | Toronto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Northline Legal is a Toronto-based boutique law practice focused on tech, startups, and creative businesses." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --bg: #05030a;
+  --bg-soft: #0c0817;
+  --accent: #ff1f7a;
+  --accent-soft: rgba(255, 31, 122, 0.18);
+  --text-main: #fdfbff;
+  --text-muted: #c2bed8;
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --nav-height: 72px;
+  --transition-fast: 180ms ease-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #2b1845 0, #05030a 60%);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.page {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Top Navigation */
+
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4vw;
+  backdrop-filter: blur(22px);
+  background: transparent;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.brand-sub {
+  opacity: 0.7;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.main-nav a {
+  position: relative;
+  text-decoration: none;
+  color: var(--text-muted);
+  padding-bottom: 0.3rem;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), #ffb43c);
+  transition: width var(--transition-fast);
+}
+
+.main-nav a:hover,
+.main-nav a:focus-visible {
+  color: var(--text-main);
+}
+
+.main-nav a:hover::after,
+.main-nav a:focus-visible::after,
+.main-nav a.is-active::after {
+  width: 100%;
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: radial-gradient(circle at top left, var(--accent-soft), rgba(5, 3, 10, 0.96));
+  color: #fff;
+  font-size: 0.8rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.nav-cta span {
+  font-size: 1.1rem;
+  transform: translateY(1px);
+}
+
+.nav-cta:hover {
+  border-color: var(--accent);
+}
+
+/* Side Dot Navigation */
+
+.side-nav {
+  position: fixed;
+  top: 50%;
+  right: 2.3rem;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.dot-link {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: transform var(--transition-fast), background 160ms ease-out, border-color 160ms ease-out;
+}
+
+.dot-link::after {
+  content: attr(data-label);
+  position: absolute;
+  right: 170%;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  white-space: nowrap;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease-out, transform 180ms ease-out;
+}
+
+.dot-link:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.dot-link.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.12);
+}
+
+/* Layout & Sections */
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Base section background using gradients instead of images */
+section {
+  --section-gradient: linear-gradient(135deg, #1b1029, #05030a);
+
+  min-height: 100vh;
+  padding: calc(var(--nav-height) + 4rem) 8vw 5rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+section::before,
+section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+section::before {
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 55%),
+    var(--section-gradient);
+}
+
+section::after {
+  z-index: -1;
+  background: radial-gradient(circle at bottom, rgba(0, 0, 0, 0.8), transparent 55%);
+}
+
+/* Section-specific gradients — 6-color palette */
+
+#hero {
+  --section-gradient: linear-gradient(135deg, #ff1f7a, #5b1ea6);   /* magenta → violet */
+  padding-top: calc(var(--nav-height) + 2.8rem);
+}
+
+#about {
+  --section-gradient: linear-gradient(135deg, #5b1ea6, #2833b0);   /* violet → deep blue */
+}
+
+#practice {
+  --section-gradient: linear-gradient(135deg, #2833b0, #145c8f);   /* deep blue → blue-teal */
+}
+
+#process {
+  --section-gradient: linear-gradient(135deg, #145c8f, #126b63);   /* blue-teal → teal */
+}
+
+#clients {
+  --section-gradient: linear-gradient(135deg, #6b256e, #261332);   /* plum → ink */
+}
+
+#contact {
+  --section-gradient: linear-gradient(135deg, #ffb43c, #ff1f7a);   /* amber → magenta */
+}
+
+.section-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section-kicker {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.9rem;
+}
+
+.section-title {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: clamp(2.4rem, 3vw, 3rem);
+  letter-spacing: 0.02em;
+  margin-bottom: 1.2rem;
+  color: var(--text-main);
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 3.8rem;
+  align-items: flex-start;
+}
+
+.section-body {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+/* Hero */
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr);
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.1rem;
+}
+
+.hero-title {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: clamp(3.4rem, 4.4vw, 4.8rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title span {
+  display: block;
+}
+
+.hero-highlight {
+  letter-spacing: 0.32em;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #e4defa;
+  margin-bottom: 1.7rem;
+}
+
+.hero-copy {
+  font-size: 0.98rem;
+  line-height: 1.9;
+  color: var(--text-muted);
+  max-width: 32rem;
+  margin-bottom: 2.2rem;
+}
+
+.hero-copy strong {
+  color: var(--text-main);
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+}
+
+.hero-meta span {
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.hero-meta span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0.9rem;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateY(-50%);
+}
+
+/* Cards, pills, etc */
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill {
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #e5e1ff;
+  background: rgba(5, 3, 10, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.pill--accent {
+  border-color: var(--accent);
+  color: #fff;
+  background: rgba(255, 31, 122, 0.3);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.6rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  border-radius: 18px;
+  padding: 1.4rem 1.5rem;
+  border: 1px solid var(--border-subtle);
+  background: linear-gradient(145deg, rgba(5, 3, 10, 0.98), rgba(15, 10, 40, 0.96));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  color: var(--text-main);
+}
+
+.card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.card-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9f97d5;
+  margin-bottom: 0.4rem;
+}
+
+/* Section-specific tweaks */
+
+#practice .card h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.process-steps {
+  margin-top: 1.4rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.24);
+  padding-left: 1.3rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.process-step {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.process-step span {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #a9a3cf;
+}
+
+.process-step h3 {
+  font-size: 0.95rem;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  color: var(--text-main);
+}
+
+.process-step p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.testimonial-quote {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 34rem;
+  margin-bottom: 1.3rem;
+  font-style: italic;
+  color: var(--text-main);
+}
+
+.testimonial-meta {
+  font-size: 0.85rem;
+  color: #b0aacd;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.contact-list {
+  list-style: none;
+  display: grid;
+  gap: 0.9rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.contact-list strong {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.contact-form {
+  border-radius: 18px;
+  padding: 1.6rem 1.8rem;
+  border: 1px solid var(--border-subtle);
+  background: linear-gradient(145deg, rgba(5, 3, 10, 0.98), rgba(24, 10, 46, 0.96));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+.contact-form h3 {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text-main);
+}
+
+.field-group {
+  margin-bottom: 1rem;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+  color: #a9a3cf;
+}
+
+.field {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(5, 3, 10, 0.9);
+  padding: 0.7rem 1rem;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+textarea.field {
+  border-radius: 12px;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.field::placeholder {
+  color: rgba(194, 190, 216, 0.6);
+}
+
+.field:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(255, 31, 122, 0.4);
+}
+
+.button-primary {
+  margin-top: 0.4rem;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(120deg, var(--accent), #ffb43c);
+  color: #05030a;
+  font-size: 0.83rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  filter: brightness(1.05);
+}
+
+footer {
+  padding: 1.6rem 8vw 2.4rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: transparent;
+}
+
+/* links in footer */
+footer a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--text-main);
+}
+
+/* Responsive */
+
+@media (max-width: 980px) {
+  .hero-grid,
+  .section-grid,
+  .contact-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #hero {
+    padding-top: calc(var(--nav-height) + 3.5rem);
+  }
+
+  .side-nav {
+    right: 1.2rem;
+  }
+}
+
+@media (max-width: 780px) {
+  .top-nav {
+    padding: 0 1.4rem;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .nav-cta {
+    padding-inline: 1rem;
+  }
+
+  section {
+    padding: calc(var(--nav-height) + 3rem) 1.5rem 3.5rem;
+  }
+
+  footer {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-title {
+    font-size: 2.6rem;
+  }
+
+  .side-nav {
+    display: none;
+  }
+}
+/* Add this at the very BOTTOM of your existing <style> block */
+
+/* Force all text to be white */
+body,
+body * {
+  color: #ffffff !important;
+}
+
+</style>
+
+</head>
+<body>
+  <div class="page">
+    <!-- TOP NAV -->
+    <header class="top-nav">
+      <div class="brand">
+        <div>
+          <div>NORTHLINE LEGAL</div>
+          <div class="brand-sub">TORONTO · TECH &amp; STARTUP LAW</div>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#hero" class="is-active">Studio</a>
+        <a href="#about">Who We Serve</a>
+        <a href="#practice">Practice</a>
+        <a href="#process">Process</a>
+        <a href="#clients">Clients</a>
+      </nav>
+
+      <a href="#contact" class="nav-cta">
+        Book a Call
+        <span>↗</span>
+      </a>
+    </header>
+
+    <!-- SIDE DOT NAV -->
+    <nav class="side-nav" aria-label="Section navigation">
+      <a class="dot-link is-active" href="#hero" data-label="Studio"></a>
+      <a class="dot-link" href="#about" data-label="Who We Serve"></a>
+      <a class="dot-link" href="#practice" data-label="Practice"></a>
+      <a class="dot-link" href="#process" data-label="Process"></a>
+      <a class="dot-link" href="#clients" data-label="Clients"></a>
+      <a class="dot-link" href="#contact" data-label="Contact"></a>
+    </nav>
+
+    <main>
+      <!-- HERO -->
+      <section id="hero" class="hero">
+        <div class="section-inner hero-grid">
+          <div>
+            <div class="hero-eyebrow">Before your next round closes</div>
+            <h1 class="hero-title">
+              <span>Set the</span>
+              <span>Terms Before</span>
+              <span>They’re Spun.</span>
+            </h1>
+            <div class="hero-highlight">
+              Toronto · Tech &amp; Startup Law Firm · Boutique Practice
+            </div>
+            <p class="hero-copy">
+              <strong>Northline Legal</strong> is a Toronto-based boutique firm focused on early-stage tech companies,
+              founders and creative studios. From first hire to venture rounds,
+              we help you negotiate the documents that quietly decide your future:
+              cap tables, IP, data, and the fine print everyone says they’ll “fix later”.
+            </p>
+
+            <div class="pill-row" style="margin-bottom: 1.6rem;">
+              <span class="pill pill--accent">Founder-side only</span>
+              <span class="pill">Product &amp; privacy</span>
+              <span class="pill">Venture financings</span>
+              <span class="pill">Digital creators</span>
+            </div>
+
+            <div class="hero-meta">
+              <span>Operating across Ontario</span>
+              <span>Flat-fee &amp; subscription models</span>
+              <span>Virtual-first · In-person on Bay Street</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHO WE SERVE -->
+      <section id="about">
+        <div class="section-inner section-grid">
+          <div>
+            <div class="section-kicker">Who We Serve</div>
+            <h2 class="section-title">Built for founders, not for a boardroom playbook.</h2>
+            <p class="section-body">
+              Northline Legal exists for teams moving too fast for traditional firms but
+              too smart to copy-paste templates from the internet. We work with:
+            </p>
+
+            <div class="card-grid">
+              <article class="card">
+                <div class="card-label">Founders &amp; Startup Teams</div>
+                <h3>From idea-stage to Series B</h3>
+                <p>
+                  Incorporations, founder agreements, SAFEs, equity plans, hiring
+                  documents and key commercial contracts – all tuned to Canadian law
+                  with global investors in mind.
+                </p>
+              </article>
+              <article class="card">
+                <div class="card-label">Digital Products</div>
+                <h3>SaaS, apps &amp; platforms</h3>
+                <p>
+                  Terms of use, privacy policies, data processing, subscription and
+                  enterprise deals, with a focus on privacy-forward design and
+                  minimizing future friction with regulators and partners.
+                </p>
+              </article>
+              <article class="card">
+                <div class="card-label">Creative &amp; Studio Work</div>
+                <h3>Agencies &amp; creators</h3>
+                <p>
+                  Licensing, collaboration agreements, brand deals, and IP structures
+                  for studios, creative shops and independent creators operating out
+                  of Toronto and beyond.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <p>
+              Based in downtown Toronto, our lawyers advise clients across Ontario and work
+              seamlessly with U.S. and European counsel when deals cross borders.
+              Expect clear, radical candour about risk – in language your team
+              doesn’t need a law degree to decode.
+            </p>
+            <p style="margin-top:1.4rem;">
+              Engagements start with a focused strategy call: we map your next
+              90 days (fundraise, launch, hire, or exit), identify the documents
+              that matter most, and then design a legal stack that scales with you
+              instead of slowing you down.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRACTICE AREAS -->
+      <section id="practice">
+        <div class="section-inner section-grid">
+          <div>
+            <div class="section-kicker">Practice</div>
+            <h2 class="section-title">The documents that quietly run your company.</h2>
+            <p class="section-body">
+              Rather than trying to be “full service”, we focus on a narrow band of
+              work that moves the needle for tech teams in Toronto’s ecosystem.
+            </p>
+            <div class="card-grid">
+              <article class="card">
+                <h3>Startup Formation &amp; Founder Alignment</h3>
+                <p>
+                  Incorporation strategy for Ontario and federal corporations,
+                  founder agreements, vesting, cap table design, advisory equity
+                  and early employee incentive plans.
+                </p>
+              </article>
+              <article class="card">
+                <h3>Financing Rounds &amp; Investor Docs</h3>
+                <p>
+                  SAFEs, convertible notes, priced rounds, side letters and
+                  shareholder agreements – with negotiation support tailored to
+                  Canadian and U.S. investors.
+                </p>
+              </article>
+              <article class="card">
+                <h3>Product, Privacy &amp; Data</h3>
+                <p>
+                  Terms of use, privacy policies, DPA/DPAs, data-sharing
+                  relationships and internal playbooks aligned with Canadian
+                  privacy laws and global norms.
+                </p>
+              </article>
+              <article class="card">
+                <h3>Commercial &amp; Technology Contracts</h3>
+                <p>
+                  SaaS and licensing agreements, pilot projects, reseller and
+                  partnership deals, NDAs and MSAs that protect your IP without
+                  derailing sales cycles.
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <p>
+              If your needs fall outside this lane – employment disputes, complex
+              litigation, tax restructuring – we tap a small network of Toronto
+              specialists while remaining your first call and strategic translator.
+            </p>
+            <p style="margin-top:1.4rem;">
+              Pricing is transparent: flat-fee menus for common projects, and
+              subscription counsel for growing teams that need on-call help without
+              in-house overhead.
+            </p>
+            <p style="margin-top:1.4rem;">
+              <strong>Typical entry engagements:</strong> pre-seed formation
+              packages, review of a lead investor’s term sheet, or a full refresh
+              of your product’s legal surface before launch.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section id="process">
+        <div class="section-inner section-grid">
+          <div>
+            <div class="section-kicker">Process</div>
+            <h2 class="section-title">A legal workflow that respects your sprint cadence.</h2>
+            <p class="section-body">
+              The work is structured for founders who live in Figma, Notion and
+              GitHub – not in boardrooms. No mystery bills, no eight-person
+              conference calls.
+            </p>
+
+            <div class="process-steps">
+              <div class="process-step">
+                <span>01 · Orientation</span>
+                <h3>Thirty minutes of brutal clarity</h3>
+                <p>
+                  We map your next funding, product and hiring milestones, review
+                  existing docs and pinpoint the top three legal gaps that could
+                  actually hurt you.
+                </p>
+              </div>
+              <div class="process-step">
+                <span>02 · Build</span>
+                <h3>The smallest stack that works</h3>
+                <p>
+                  We draft or upgrade the agreements your team uses weekly – the pieces
+                  you can actually operate confidently without a lawyer in
+                  every email thread.
+                </p>
+              </div>
+              <div class="process-step">
+                <span>03 · Run</span>
+                <h3>On-call as you negotiate</h3>
+                <p>
+                  As deals and hires progress, we sit on your side of the table,
+                  helping you prioritize what to push on and what to let through
+                  to keep momentum without giving up leverage.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-body">
+            <p>
+              Communication runs through email and shared workspaces – with
+              crisp written summaries instead of dense memos. Every deliverable
+              arrives with a one-page “how to use this” guide for your team.
+            </p>
+            <p style="margin-top:1.4rem;">
+              We currently take on a limited number of subscription counsel clients
+              each quarter to keep response times tight. If the roster is full,
+              we can work project-by-project until a slot opens.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLIENTS / TESTIMONIALS -->
+      <section id="clients">
+        <div class="section-inner section-grid">
+          <div>
+            <div class="section-kicker">Clients</div>
+            <h2 class="section-title">Quietly behind some of Toronto’s loudest launches.</h2>
+            <p class="section-body">
+              Most of our work is under NDA. What we can say: we’ve helped founders
+              close rounds with Canadian and U.S. funds, ship products used by
+              millions, and sign deals with global brands – without sacrificing
+              the terms that matter later.
+            </p>
+            <div class="pill-row" style="margin-top:1.6rem;">
+              <span class="pill">Toronto &amp; Waterloo corridor</span>
+              <span class="pill">Pre-seed to Series B</span>
+              <span class="pill">Impact &amp; climate tech</span>
+              <span class="pill">Digital health</span>
+            </div>
+          </div>
+
+          <div>
+            <p class="testimonial-quote">
+              “Northline Legal translated a chaotic Google Drive of contracts into a clean,
+              founder-friendly stack in under a month. When our U.S. lead investor
+              pushed for changes, the team flagged the three that actually mattered –
+              and we kept all three.”
+            </p>
+            <div class="testimonial-meta">
+              CO-FOUNDER · TORONTO SAAS COMPANY · SERIES A
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-inner">
+          <div class="section-kicker">Contact</div>
+          <h2 class="section-title">Tell us where you’re headed. We’ll decide if counsel fits.</h2>
+
+          <div class="contact-panel">
+            <div class="section-body">
+              <p>
+                We work with a small number of teams at any given time. If you’re
+                a founder or leadership team member, share a snapshot of your
+                company, your runway and the decisions in front of you.
+              </p>
+              <ul class="contact-list" style="margin-top:1.6rem;">
+                <li><strong>Based in:</strong> Toronto, Ontario — operating virtually across the province</li>
+                <li><strong>Typical clients:</strong> Canadian corporations with global customers or investors</li>
+                <li><strong>Ideal time to reach out:</strong> 2–4 weeks before a funding round, launch or key hire</li>
+                <li><strong>Email:</strong> hello@northlinelegal.ca (placeholder)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Northline Legal · Barristers &amp; Solicitors (Ontario)</div>
+      <div>Website concept for demo purposes only.</div>
+    </footer>
+  </div>
+
+  <script>
+    // Set the year in the footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Scroll spy for nav + dots
+    const sections = document.querySelectorAll("main section");
+    const dotLinks = document.querySelectorAll(".dot-link");
+    const topLinks = document.querySelectorAll(".main-nav a");
+
+    const getTargetId = (hash) => hash.replace("#", "");
+
+    const setActive = (id) => {
+      dotLinks.forEach((dot) => {
+        dot.classList.toggle("is-active", getTargetId(dot.getAttribute("href")) === id);
+      });
+      topLinks.forEach((link) => {
+        link.classList.toggle("is-active", getTargetId(link.getAttribute("href")) === id);
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.45 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>
